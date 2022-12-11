@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Style>
+        input,textarea,select {
+            display: block;
+        }
+        .inline {
+            display: inline;
+        }
+
+    </Style>
+</head>
+
+<body>
+    <form method="post" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="제목">
+        <input type="file" name="file">
+        <textarea name="content" cols="30" rows="10"></textarea>
+        <input type="text" name="price" placeholder="가격">
+        <input class="inline" type="radio" name="category" value="공식 굿즈"><label for="public">공식 굿즈</label>
+        <input class="inline" type="radio" name="category" value="비공식 굿즈"><label for="private">비공식 굿즈</label>
+        <select name="condition">
+            <option value="미개봉">미개봉</option>
+            <option value="거의 새상품">거의 새상품</option>
+            <option value="사용감있는 깨끗한 상품">사용감있는 깨끗한 상품</option>
+            <option value="사용흔적이 있는 상품">사용흔적이 있는 상품</option>
+            <option value="하자가 있는 상품">하자가 있는 상품</option>
+        </select>
+        
+        <input type="radio" name="deliveryType" class="inline" value="택배"><label>택배</label>
+        <input type="radio" name="deliveryType" class="inline" value="준등기"><label for="">준등기</label>
+        <input type="radio" name="deliveryType" class="inline" value="직거래"><label for="">직거래</label>
+        <input type="submit">
+    </form>
+</body>
+
+</html>

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MemberService {
 
-    
+
     void reg(Member member);
     Member getMember(String memberId);
     List<Member> getList();

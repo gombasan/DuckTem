@@ -21,11 +21,12 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Member getMember(String memberId) {
-        return memberDao.findById(memberId);
+        Member member = memberDao.findById(memberId);
+        return member;
     }
 
     @Override
     public List<Member> getList() {
-        return memberDao.findByAll();
+        return memberDao.findAll();
     }
 }

@@ -16,6 +16,7 @@ public class MemberDaoImpl implements MemberDao{
 
     @Override
     public void save(Member member) {
+
         memberRepository.put(member.getUserId(),member);
     }
 
@@ -26,7 +27,22 @@ public class MemberDaoImpl implements MemberDao{
     }
 
     @Override
-    public List<Member> findByAll() {
+    public List<Member> findAll() {
+
         return new ArrayList<>(memberRepository.values());
+    }
+
+    @Override
+    public Member findByName(String memberName) {
+        ArrayList<Member> members = new ArrayList<>(memberRepository.values());
+        Member member = null;
+        for (Member m : members) {
+            if(m.getName().equals(memberName)) {
+                member = memberRepository.get(m.getUserId());
+            }
+
+        }
+
+        return member;
     }
 }

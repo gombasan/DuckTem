@@ -9,7 +9,8 @@ public interface MemberDao {
 
     Member findById(String meberId);
 
-    List<Member> findByAll();
+    List<Member> findAll();
 
+    Member findByName(String memberName);
 
 }

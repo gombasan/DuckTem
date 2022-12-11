@@ -1,37 +1,18 @@
 package com.ducktem.web.entity;
 
 public class Member {
-
-    private String userId;
     private String name;
-    private String pwd;
-    private String phoneNumber;
+    private String userId;
+    private String password;
     private String email;
-    private String img;
-    private String intro;
-    private Role role;
-    private float level;
+    private String phoneNum;
 
-
-
-    public Member(String userId, String name, String pwd, String phoneNumber, String email, Role role) {
-        this.userId = userId;
+    public Member(String name, String userId, String password, String email, String phoneNum) {
         this.name = name;
-        this.pwd = pwd;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.img = null;
-        this.intro = null;
-        this.role = role;
-        this.level = 0;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
         this.userId = userId;
+        this.password = password;
+        this.email = email;
+        this.phoneNum = phoneNum;
     }
 
     public String getName() {
@@ -42,20 +23,20 @@ public class Member {
         this.name = name;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -66,50 +47,23 @@ public class Member {
         this.email = email;
     }
 
-    public String getImg() {
-        return img;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public float getLevel() {
-        return level;
-    }
-
-    public void setLevel(float level) {
-        this.level = level;
-    }
 
     @Override
     public String toString() {
         return "Member{" +
-                "userId='" + userId + '\'' +
-                ", name='" + name + '\'' +
-                ", pwd='" + pwd + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                "name='" + name + '\'' +
+                ", userId='" + userId + '\'' +
+                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", img='" + img + '\'' +
-                ", intro='" + intro + '\'' +
-                ", role=" + role +
-                ", level=" + level +
+                ", phoneNum='" + phoneNum + '\'' +
                 '}';
     }
 }
