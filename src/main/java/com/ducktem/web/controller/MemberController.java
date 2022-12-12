@@ -35,7 +35,7 @@ public class MemberController {
     public String list(Model model) {
         List<Member> members = memberService.getList();
         model.addAttribute("members",members);
-        return "/member/list";
+        return "member/list";
     }
 
     @GetMapping("/login")
@@ -47,7 +47,7 @@ public class MemberController {
     @PostMapping("/login")
     public String login(@RequestParam("userId") String id, @RequestParam("pwd") String pwd, HttpSession session) {
         Member user = memberService.getMember(id);
-        if(user.getPassword().equals(pwd)) {
+        if(user.getPwd().equals(pwd)) {
 
             session.setAttribute("id",user.getName());
 

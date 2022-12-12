@@ -2,7 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ducktem.web.dao.MemberDao">
     <insert id="save" parameterType="com.ducktem.web.entity.Member">
-
+	
+	INSERT INTO `Member` 
+	(`name`, `userId`, `pwd`, `nickName`, `eMail`, `phoneNumber`) 
+	VALUES (#{name},#{userId}, #{pwd}, #{nickName}, #{eMail}, #{phoneNumber});
 
     </insert>
+    
+    <select id="findAll" resultType="com.ducktem.web.entity.Member">
+		select*from `Member`;
+    </select>
+    
+    <select id="findById" resultType="com.ducktem.web.entity.Member">
+		select *from `Member` where `userId` = `123`;
+    </select>
+    
 </mapper>
