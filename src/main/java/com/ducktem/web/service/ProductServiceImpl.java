@@ -26,22 +26,12 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void upload(String memberName, MultipartFile file, Product product) throws Exception {
-
-        String productImgPath = System.getProperty("user.dir") + "/src/main/resources/static/productimgs";
-
-        UUID uuid = UUID.randomUUID();
-
-        String productImgName = uuid + "_" + file.getOriginalFilename();
-
-        File productImgFile = new File(productImgPath, productImgName);
-
-        file.transferTo(productImgFile);
-        product.setImg("productimgs/" + productImgName);
-
-
         Member member = memberDao.findByName(memberName);
 
+        /* 파일 저장을 위한 사전 작업 */
+        product.setImg(fileSave(file));
 
+        /* 현재 날짜를 같이 저장 */
         LocalDate now = LocalDate.now(ZoneId.of("Asia/Tokyo"));
         product.setRegDate(now);
 
@@ -64,4 +54,15 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> list() {
         return productDao.findAll();
     }
+
+    static String fileSave(MultipartFile file) throws Exception {
+        String productImgPath = System.getProperty("user.dir") + "/src/main/resources/static/productimgs";
+        UUID uuid = UUID.randomUUID();
+        String productImgName = uuid + "_" + file.getOriginalFilename();
+        File productImgFile = new File(productImgPath, productImgName);
+        file.transferTo(productImgFile);
+        return productImgName;
+
+    }
+
 }
