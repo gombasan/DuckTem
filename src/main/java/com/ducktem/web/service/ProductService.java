@@ -1,6 +1,8 @@
 package com.ducktem.web.service;
 
 import com.ducktem.web.entity.Product;
+import com.ducktem.web.entity.ProductPreview;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -19,5 +21,7 @@ public interface ProductService {
     List<Product> list();
 
     Long getProductId();
+
+	List<ProductPreview> preview();
 
 }

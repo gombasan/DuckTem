@@ -1,6 +1,7 @@
 package com.ducktem.web.controller;
 
 import com.ducktem.web.entity.Product;
+import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.service.ImgService;
 import com.ducktem.web.service.ProductService;
 import jakarta.servlet.http.HttpSession;
@@ -58,8 +59,9 @@ public class ProductController {
     
     @GetMapping("test")
     public String Test() {
+    	List<ProductPreview> list = productService.preview();
     	
-    	
+    	System.out.println(list.size());
     	return "test";
     }
 

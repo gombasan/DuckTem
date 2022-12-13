@@ -5,6 +5,8 @@ import com.ducktem.web.dao.ProductDao;
 import com.ducktem.web.entity.Member;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductImg;
+import com.ducktem.web.entity.ProductPreview;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,6 +59,11 @@ public class ProductServiceImpl implements ProductService{
     public Long getProductId() {
         return productDao.findId();
     }
+
+	@Override
+	public List<ProductPreview> preview() {
+		return productDao.getPreviewAll();
+	}
 
 
 }
