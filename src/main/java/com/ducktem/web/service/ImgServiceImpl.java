@@ -16,15 +16,21 @@ public class ImgServiceImpl implements ImgService{
     @Autowired
     private ImgDao imgDao;
 
+
+    /* 상품 이미지 등록 서비스*/
     @Override
     public void upload(MultipartFile file,Long productId) {
         ProductImg productImg = new ProductImg();
         productImg.setProductId(productId);
+        /* 상품 이미지 파일 이름에 UUID 삽입 후 저장 */
         productImg.setName(fileSave(file));
 
 
         imgDao.save(productImg);
     }
+
+
+    /* 파일을 받아 UUID 삽입과 파일 저장을 위한 함수 */
     static String fileSave(MultipartFile file) {
 
         String productImgPath = System.getProperty("user.dir") + "/src/main/resources/static/productimgs";

@@ -1,6 +1,7 @@
 package com.ducktem.web.dao;
 
 import com.ducktem.web.entity.Product;
+import com.ducktem.web.entity.ProductPreview;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -13,7 +14,10 @@ public class ProductDaoImpl implements ProductDao{
     private static Map<String, Product> store = new HashMap<>();
 
 
-
+    @Override
+    public List<ProductPreview> getPreviewAll() {
+        return null;
+    }
 
     @Override
     public void save(Product product) {

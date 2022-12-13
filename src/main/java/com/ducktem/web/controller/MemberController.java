@@ -18,19 +18,25 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    // ===================================================================회원 등록 ==========================================================
+    @GetMapping("/sign-up")
+    public String signUpForm() {
 
-    @GetMapping("/member/new")
-    public String regMemberForm() {
-
-        return "/member/member-form";
+        return "sign-up";
     }
 
-    @PostMapping("/member/new")
-    public String regMember(Member member) {
-        memberService.reg(member);
-        return "redirect:/";
+    @PostMapping("/sign-up")
+    public String signUp(Member member) {
+        if(memberService.reg(member)){
+            return "/sign-up-ending";
+        } else {
+            return "redirect:/sign-up";
+        }
     }
 
+
+
+    // =================================================================== 회원 조회==========================================================
     @GetMapping("/member/list")
     public String list(Model model) {
         List<Member> members = memberService.getList();
@@ -38,18 +44,22 @@ public class MemberController {
         return "member/list";
     }
 
+
+
+
+
+
+    // ===================================================================로그인/로그아웃==========================================================
     @GetMapping("/login")
     public String loginForm() {
 
-        return "/login";
+        return "login";
     }
     @PostMapping("/login")
     public String login(@RequestParam("userId") String id, @RequestParam("pwd") String pwd, HttpSession session) {
         Member user = memberService.getMember(id);
         if(user != null && user.getPwd().equals(pwd)) {
-
-            session.setAttribute("id",user.getName());
-
+            session.setAttribute("id",user.getNickName());
             return "redirect:/";
         }
         else {

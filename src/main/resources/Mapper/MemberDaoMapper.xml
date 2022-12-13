@@ -10,10 +10,10 @@
     </insert>
     
     <select id="findAll" resultType="com.ducktem.web.entity.Member">
-		select*from `Member`;
+		select * from `Member`;
     </select>
     
-    <select id="findById" resultType="com.ducktem.web.entity.Member">
+    <select id="findById" parameterType="com.ducktem.web.entity.Member" resultType="com.ducktem.web.entity.Member">
 		select * from `Member` where `userId` = #{userId};
     </select>
 
