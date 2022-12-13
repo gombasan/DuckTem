@@ -1,49 +1,27 @@
 package com.ducktem.web.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Product {
-
-    private String title;
-    private String content;
-    private String img;
+    private Long id;
+    private String name;
     private String price;
-    private String category;
-    private Tag tag;
+    private String description;
+    private LocalDateTime regDate;
+
     private String condition;
-    private String deliveryType;
-    private LocalDate regDate;
+    private int categoryId;
+    private String regMemberId;
+    private int salesStatusId;
 
-    public LocalDate getRegDate() {
-        return regDate;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setRegDate(LocalDate regDate) {
-        this.regDate = regDate;
-    }
-
-    public Product(String title, String content, String img, String price) {
-        this.title = title;
-        this.content = content;
-        this.img = img;
-        this.price = price;
-    }
-
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public Tag getTag() {
-        return tag;
-    }
-
-    public void setTag(Tag tag) {
-        this.tag = tag;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCondition() {
@@ -54,46 +32,12 @@ public class Product {
         this.condition = condition;
     }
 
-    public String getDeliveryType() {
-        return deliveryType;
+    public String getName() {
+        return name;
     }
 
-    public void setDeliveryType(String shippingType) {
-        this.deliveryType = shippingType;
-    }
-
-    public String getProductCategory() {
-        return category;
-    }
-
-    public void setProductCategory(String category) {
-        this.category = category;
-    }
-
-
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPrice() {
@@ -104,18 +48,43 @@ public class Product {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", img='" + img + '\'' +
-                ", price='" + price + '\'' +
-                ", category='" + category + '\'' +
-                ", tag=" + tag +
-                ", condition='" + condition + '\'' +
-                ", deliveryType='" + deliveryType + '\'' +
-                ", regDate=" + regDate +
-                '}';
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(LocalDateTime regDate) {
+        this.regDate = regDate;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getRegMemberId() {
+        return regMemberId;
+    }
+
+    public void setRegMemberId(String regMemberId) {
+        this.regMemberId = regMemberId;
+    }
+
+    public int getSalesStatusId() {
+        return salesStatusId;
+    }
+
+    public void setSalesStatusId(int salesStatusId) {
+        this.salesStatusId = salesStatusId;
     }
 }

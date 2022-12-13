@@ -1,6 +1,7 @@
 package com.ducktem.web.controller;
 
 import com.ducktem.web.entity.Product;
+import com.ducktem.web.service.ImgService;
 import com.ducktem.web.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private ImgService imgService;
+
 
     @GetMapping("/product")
     public String regProductForm() {
@@ -26,9 +30,9 @@ public class ProductController {
     }
     @PostMapping("/product")
     public String regProduct(Product product , MultipartFile file, HttpSession session) throws Exception{
-
-
         productService.upload((String) session.getAttribute("id"), file ,product);
+        Long productId = productService.getProductId();
+        imgService.upload(file,productId);
 
 
         return "redirect:/";

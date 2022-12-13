@@ -19,12 +19,12 @@
 
 <body>
     <form method="post" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="제목">
+        <input type="text" name="name" placeholder="제목">
         <input type="file" name="file">
-        <textarea name="content" cols="30" rows="10"></textarea>
+        <textarea name="description" cols="30" rows="10"></textarea>
         <input type="text" name="price" placeholder="가격">
-        <input class="inline" type="radio" name="category" value="공식 굿즈"><label for="public">공식 굿즈</label>
-        <input class="inline" type="radio" name="category" value="비공식 굿즈"><label for="private">비공식 굿즈</label>
+        <input class="inline" type="radio" name="categoryId" value="0"><label for="public">공식 굿즈</label>
+        <input class="inline" type="radio" name="categoryId" value="1"><label for="private">비공식 굿즈</label>
         <select name="condition">
             <option value="미개봉">미개봉</option>
             <option value="거의 새상품">거의 새상품</option>

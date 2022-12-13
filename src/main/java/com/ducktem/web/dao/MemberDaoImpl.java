@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/* DB 구축 전 기능확인을 위한 Dao 구현객체 */
 public class MemberDaoImpl implements MemberDao{
 
     private static Map<String,Member> memberRepository = new HashMap<>();

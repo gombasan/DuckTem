@@ -43,11 +43,10 @@ public class MemberController {
 
         return "/login";
     }
-
     @PostMapping("/login")
     public String login(@RequestParam("userId") String id, @RequestParam("pwd") String pwd, HttpSession session) {
         Member user = memberService.getMember(id);
-        if(user.getPwd().equals(pwd)) {
+        if(user != null && user.getPwd().equals(pwd)) {
 
             session.setAttribute("id",user.getName());
 

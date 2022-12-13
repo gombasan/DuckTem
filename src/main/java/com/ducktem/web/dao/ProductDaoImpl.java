@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 
-@Repository
 public class ProductDaoImpl implements ProductDao{
     private static Map<String, Product> store = new HashMap<>();
 
@@ -17,9 +16,9 @@ public class ProductDaoImpl implements ProductDao{
 
 
     @Override
-    public void upload(String memberName,Product product) {
+    public void save(Product product) {
 
-        store.put(memberName, product);
+        // store.put(memberId, product);
     }
 
     @Override
@@ -43,6 +42,11 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public Product find() {
+        return null;
+    }
+
+    @Override
+    public Long findId() {
         return null;
     }
 }

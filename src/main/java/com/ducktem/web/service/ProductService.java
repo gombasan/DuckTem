@@ -18,5 +18,6 @@ public interface ProductService {
 
     List<Product> list();
 
+    Long getProductId();
 
 }

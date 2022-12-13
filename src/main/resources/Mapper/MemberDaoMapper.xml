@@ -14,7 +14,11 @@
     </select>
     
     <select id="findById" resultType="com.ducktem.web.entity.Member">
-		select *from `Member` where `userId` = `123`;
+		select * from `Member` where `userId` = #{userId};
     </select>
-    
+
+    <select id="findByName" parameterType="com.ducktem.web.entity.Member" resultType="com.ducktem.web.entity.Member">
+        select * from `Member` where `name` = #{name};
+    </select>
+
 </mapper>

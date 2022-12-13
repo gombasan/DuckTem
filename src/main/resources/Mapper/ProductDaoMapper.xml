@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ducktem.web.dao.ProductDao">
+    <insert id="save" parameterType="com.ducktem.web.entity.Product">
+
+        INSERT INTO `ducktemdb`.`Product` (`price`, `discription`, `name`, `regMemberId`, `categoryId`, `salesStatusId`,`condition`)
+        VALUES (#{price}, #{description} , #{name}, #{regMemberId}, #{categoryId}, #{salesStatusId}, #{condition});
+
+    </insert>
+    
+    <select id="findId" resultType="Long">
+        select last_insert_id() `Product`;
+    </select>
+
+</mapper>
