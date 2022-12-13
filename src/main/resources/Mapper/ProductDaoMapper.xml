@@ -12,4 +12,11 @@
         select last_insert_id() `Product`;
     </select>
 
+    <select id="getPreviewAll" resultType="com.ducktem.web.entity.ProductPreview">
+		select pi.name imgName, p.price, p.regDate, p.name 
+		from Product_image pi 
+		inner join Product p on pi.productId = p.id;
+    </select>
+
+
 </mapper>

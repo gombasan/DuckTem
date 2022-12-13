@@ -55,5 +55,12 @@ public class ProductController {
 
         return "list";
     }
+    
+    @GetMapping("test")
+    public String Test() {
+    	
+    	
+    	return "test";
+    }
 
 }

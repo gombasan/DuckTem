@@ -1,24 +1,24 @@
 package com.ducktem.web.entity;
 
 public class ProductPreview {
-    private String thumbNailImg;
+    private String imgName;
     private String price;
     private String name;
     private String regDate;
 
-    public ProductPreview(String thumbNailImg, String price, String name, String regDate) {
-        this.thumbNailImg = thumbNailImg;
+    public ProductPreview(String imgName, String price, String name, String regDate) {
+        this.imgName = imgName;
         this.price = price;
         this.name = name;
         this.regDate = regDate;
     }
 
     public String getThumbNailImg() {
-        return thumbNailImg;
+        return imgName;
     }
 
     public void setThumbNailImg(String thumbNailImg) {
-        this.thumbNailImg = thumbNailImg;
+        this.imgName = imgName;
     }
 
     public String getPrice() {
@@ -48,7 +48,7 @@ public class ProductPreview {
     @Override
     public String toString() {
         return "ProductPreview{" +
-                "thumbNailImg='" + thumbNailImg + '\'' +
+                "imgName='" + imgName + '\'' +
                 ", price='" + price + '\'' +
                 ", name='" + name + '\'' +
                 ", regDate='" + regDate + '\'' +

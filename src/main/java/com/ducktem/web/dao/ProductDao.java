@@ -10,7 +10,10 @@ import java.util.List;
 @Mapper
 public interface ProductDao {
 
-
+	List<ProductPreview> getPreviewAll();
+	
+	
+	
     //상품 등록하기
     void save(Product product);
 
