@@ -10,7 +10,7 @@ import java.util.List;
 public interface ProductService {
 
     /* 상품 등록 서비스 */
-    void upload(String memberName, MultipartFile file, Product product) throws Exception;
+    void upload(String memberName, Product product);
 
     /* 하나의 상품 조회 서비스*/
     Product get();

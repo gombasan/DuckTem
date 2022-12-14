@@ -42,6 +42,6 @@ public class ImgServiceImpl implements ImgService{
         }catch (Exception e){
 
         }
-        return productImgName;
+        return "/productimgs/" + productImgName;
     }
 }

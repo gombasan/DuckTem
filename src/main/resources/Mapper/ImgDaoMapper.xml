@@ -6,9 +6,6 @@
         INSERT INTO `Product_image` (`name`,`productId`) VALUES (#{name}, #{productId});
 
     </insert>
-    
-    <select id="findId" resultType="Long">
-        select last_insert_id() `Product`;
-    </select>
+
 
 </mapper>

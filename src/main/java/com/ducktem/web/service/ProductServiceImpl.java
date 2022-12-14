@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService{
 
     /* 상품 등록 서비스 */
     @Override
-    public void upload(String memberName, MultipartFile file, Product product) {
+    public void upload(String memberName, Product product) {
         Member member = memberDao.findByName(memberName);
 
         /* product 멤버 아이디 사용.*/
