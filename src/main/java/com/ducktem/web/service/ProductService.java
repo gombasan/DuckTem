@@ -13,10 +13,10 @@ public interface ProductService {
     void upload(String memberName, Product product);
 
     /* 하나의 상품 조회 서비스*/
-    Product get();
+    Product get(Long productId);
 
     /* 내 상품 리스트 조회 서비스 (프리뷰로 변경 예정)*/
-    List<Product> myList(String memberName);
+    List<ProductPreview> myList(String memberId);
 
     /* 전체 상품 리스트 조회 서비스 */
     List<Product> list();

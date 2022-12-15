@@ -2,13 +2,18 @@ package com.ducktem.web.controller;
 
 
 import com.ducktem.web.entity.Member;
+import com.ducktem.web.form.MemberForm;
 import com.ducktem.web.service.MemberService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -20,18 +25,23 @@ public class MemberController {
 
     // ===================================================================회원 등록 ==========================================================
     @GetMapping("/sign-up")
-    public String signUpForm() {
+    public String signUpForm(MemberForm memberForm) {
 
         return "sign-up";
     }
 
+
     @PostMapping("/sign-up")
-    public String signUp(Member member) {
-        if(memberService.reg(member)){
-            return "/sign-up-ending";
-        } else {
-            return "redirect:/sign-up";
+    public String signUp(@Valid MemberForm memberForm, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            if (memberService.reg(memberForm)) {
+                return "/sign-up-ending";
+            }
+            System.out.println("memberForm.toString() = " + memberForm.toString());
         }
+
+        return "/sign-up";
+
     }
 
 
@@ -39,8 +49,8 @@ public class MemberController {
     // =================================================================== 회원 조회==========================================================
     @GetMapping("/member/list")
     public String list(Model model) {
-        List<Member> members = memberService.getList();
-        model.addAttribute("members",members);
+        List<Member> member = memberService.getList();
+        model.addAttribute("members", member);
         return "member/list";
     }
 

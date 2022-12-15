@@ -15,9 +15,18 @@ public class Product {
     private String regMemberId;
     private int salesStatusId;
 
+    private int hit;
 
     public Long getId() {
         return id;
+    }
+
+    public int getHit() {
+        return hit;
+    }
+
+    public void setHit(int hit) {
+        this.hit = hit;
     }
 
     public void setId(Long id) {

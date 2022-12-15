@@ -13,10 +13,20 @@
     </select>
 
     <select id="getPreviewAll" resultType="com.ducktem.web.entity.ProductPreview">
-		select pi.name imgName, p.price, p.regDate, p.name 
+		select pi.name thumbNailImg, p.price, p.regDate, p.id productId ,p.name
 		from Product_image pi 
 		inner join Product p on pi.productId = p.id;
     </select>
 
+    <select id="findById" resultType="com.ducktem.web.entity.Product" parameterType="Long">
+        select * from Product where id = #{productId};
+
+    </select>
+
+    <select id="findMemberProductList" resultType="com.ducktem.web.entity.ProductPreview" parameterType="String">
+        select pi.name thumbNailImg, p.price, p.regDate, p.id productId ,p.name, p.regMemberId
+        from Product_image pi
+        inner join Product p on pi.productId = p.id where p.regMemberId = #{memberId}
+    </select>
 
 </mapper>

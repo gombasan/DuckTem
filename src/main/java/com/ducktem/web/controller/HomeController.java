@@ -29,7 +29,6 @@ public class HomeController {
         model.addAttribute("preview", preview);
 
 
-
         return "index";
     }
 

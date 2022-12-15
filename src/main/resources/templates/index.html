@@ -138,25 +138,26 @@
       <section>
         <h3 id="title2">최근 등록된 상품</h3>
 
-        <div th:each="preview : ${preview}" class="product-wrap">
+            <div th:each="preview : ${preview}" class="product-wrap">
+          <a th:href="@{|/product/${preview.productId}|}">
+              <div  class="product-container">
+                <div><img th:src="${preview.thumbNailImg}" alt="product-img"></div>
 
-          <div class="product-container">
-            <div><img th:src="${preview.thumbNailImg}" alt="product-img"></div>
+                <div class="price-wish">
+                  <span th:text = "${preview.price}"></span>
+                  <img src="/image/icon/heart.svg" alt="찜">
+                </div>
 
-            <div class="price-wish">
-              <span th:text = "${preview.price}"></span>
-              <img src="/image/icon/heart.svg" alt="찜">
+                <div th:text="${preview.name}" class="name">
+                  러브다이브미공포
+                </div>
+
+                <div th:text="${preview.regDate}" class="time">
+                  0일 전
+                </div>
+              </div>
+          </a>
             </div>
-
-            <div th:text="${preview.name}" class="name">
-              러브다이브미공포
-            </div>
-
-            <div th:text="${preview.regDate}" class="time">
-              0일 전
-            </div>
-          </div>
-        </div>
       </section>
 
     </section>

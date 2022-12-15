@@ -1,24 +1,33 @@
 package com.ducktem.web.entity;
 
 public class ProductPreview {
-    private String imgName;
+    private Long productId;
+    private String thumbNailImg;
     private String price;
     private String name;
     private String regDate;
 
-    public ProductPreview(String imgName, String price, String name, String regDate) {
-        this.imgName = imgName;
+    public ProductPreview(String thumbNailImg, String price, String name, String regDate) {
+        this.thumbNailImg = thumbNailImg;
         this.price = price;
         this.name = name;
         this.regDate = regDate;
     }
 
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
     public String getThumbNailImg() {
-        return imgName;
+        return thumbNailImg;
     }
 
     public void setThumbNailImg(String thumbNailImg) {
-        this.imgName = imgName;
+        this.thumbNailImg = thumbNailImg;
     }
 
     public String getPrice() {
@@ -48,7 +57,7 @@ public class ProductPreview {
     @Override
     public String toString() {
         return "ProductPreview{" +
-                "imgName='" + imgName + '\'' +
+                "thumbNailImg='" + thumbNailImg + '\'' +
                 ", price='" + price + '\'' +
                 ", name='" + name + '\'' +
                 ", regDate='" + regDate + '\'' +

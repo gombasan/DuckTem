@@ -2,9 +2,11 @@ package com.ducktem.web.service;
 
 import com.ducktem.web.dao.MemberDao;
 import com.ducktem.web.entity.Member;
+import com.ducktem.web.form.MemberForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -17,18 +19,16 @@ public class MemberServiceImpl implements MemberService{
 
     /* 회원 등록 서비스 아이디가 중복이라면 false, 아니면 true 반환 */
     @Override
-    public boolean reg(Member member) {
-
-        /* 멤버 중복 확인 후 중복이 아니라면 true */
-        boolean result = validMember(member);
+    public boolean reg(MemberForm memberForm) {
+        boolean result = validMember(memberForm);
 
         if(result) {
+            Member member = bindMember(memberForm);
             memberDao.save(member);
             return true;
-        } else{
+        }else {
             return false;
         }
-
     }
 
     /* 회원 아이디로 조회한 후 멤버 객체를 반환한다. */
@@ -45,9 +45,11 @@ public class MemberServiceImpl implements MemberService{
     }
 
     /* 회원 중복을 확인하기 위한 함수. (예외 처리로 변경예정) */
-    private boolean validMember(Member member) {
-        String userId = member.getUserId();
+    private boolean validMember(MemberForm memberForm) {
+        String userId = memberForm.getUserId();
         Member byId = memberDao.findById(userId);
+
+
 
         if(byId != null) {
             return false;
@@ -55,6 +57,20 @@ public class MemberServiceImpl implements MemberService{
             return true;
         }
 
+    }
+
+
+    /* MemberForm 에서 Member로 값 이동 */
+    private Member bindMember(MemberForm memberForm) {
+        Member member = new Member();
+        member.setUserId(memberForm.getUserId());
+        member.setName(memberForm.getName());
+        member.setNickName(memberForm.getNickName());
+        member.setPhoneNumber(memberForm.getPhoneNumber());
+        member.setPwd(memberForm.getPwd());
+        member.setEmail(memberForm.geteMail());
+
+        return member;
     }
 
 }

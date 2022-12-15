@@ -4,8 +4,8 @@
     <insert id="save" parameterType="com.ducktem.web.entity.Member">
 	
 	INSERT INTO `Member` 
-	(`name`, `userId`, `pwd`, `nickName`, `eMail`, `phoneNumber`) 
-	VALUES (#{name},#{userId}, #{pwd}, #{nickName}, #{eMail}, #{phoneNumber});
+	(`name`, `userId`, `pwd`, `nickName`, `email`, `phoneNumber`)
+	VALUES (#{name},#{userId}, #{pwd}, #{nickName}, #{email}, #{phoneNumber});
 
     </insert>
     

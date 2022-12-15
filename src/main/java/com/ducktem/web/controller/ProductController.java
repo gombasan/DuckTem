@@ -1,14 +1,18 @@
 package com.ducktem.web.controller;
 
+import com.ducktem.web.entity.Member;
 import com.ducktem.web.entity.Product;
+import com.ducktem.web.entity.ProductImg;
 import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.service.ImgService;
+import com.ducktem.web.service.MemberService;
 import com.ducktem.web.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +26,9 @@ public class ProductController {
 
     @Autowired
     private ImgService imgService;
+
+    @Autowired
+    private MemberService memberService;
 
 // ===================================================================상품 등록 ==========================================================
 
@@ -51,9 +58,9 @@ public class ProductController {
     @GetMapping("/mylist")
     public String myProductList(Model model, HttpSession session) {
 
-        List<Product> list = productService.myList((String) session.getAttribute("id"));
+//        List<Product> list = productService.myList((String) session.getAttribute("id"));
 
-        model.addAttribute("list",list);
+//        model.addAttribute("list",list);
 
 
         return "mylist";
@@ -68,12 +75,24 @@ public class ProductController {
     }
 
     /* 상품 리스트 보기 (상품 미리보기 형태로 변경)*/
-    @GetMapping("test")
-    public String Test() {
-    	List<ProductPreview> list = productService.preview();
-    	
-    	System.out.println(list.size());
-    	return "test";
+
+    @GetMapping("/product/{id}")
+    public String productDetail(Model model, @PathVariable("id") Long productId) {
+        Product product = productService.get(productId);
+        List<ProductImg> productImgs = imgService.getList(productId);
+        String regMemberId = product.getRegMemberId();
+        Member member = memberService.getMember(regMemberId);
+        List<ProductPreview> memberProducts = productService.myList(member.getUserId());
+
+        model.addAttribute("productImgs", productImgs);
+        model.addAttribute("product", product);
+        model.addAttribute("member", member);
+        model.addAttribute("memberProducts", memberProducts);
+
+
+        return "detail";
     }
+
+
 
 }

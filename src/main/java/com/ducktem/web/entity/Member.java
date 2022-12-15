@@ -1,119 +1,129 @@
 package com.ducktem.web.entity;
 
+import jakarta.validation.constraints.NotEmpty;
+
+import java.time.LocalDateTime;
+
+
 public class Member {
-	private String userId;
-	private String nickName;
-	private String name;
-	private String pwd;
-	private String phoneNumber;
-	private String eMail;
-	
-	
-	public Member(String userId, String nickName, String name, String pwd, String phoneNumber, String eMail) {
-		this.userId = userId;
-		this.nickName = nickName;
-		this.name = name;
-		this.pwd = pwd;
-		this.phoneNumber = phoneNumber;
-		this.eMail = eMail;
-	}
 
 
-	/**
-	 * @return the userId
-	 */
-	public String getUserId() {
-		return userId;
-	}
+    private int id;
+    private String userId;
+    private String nickName;
+    private String name;
+    private String pwd;
+    private String phoneNumber;
+    private String email;
 
+    private String profileImg;
+    private String intro;
+    private LocalDateTime regDate;
+    private byte role;
+    private float level;
+    private int countryId;
 
-	/**
-	 * @param userId the userId to set
-	 */
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return the nickName
-	 */
-	public String getNickName() {
-		return nickName;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	/**
-	 * @param nickName the nickName to set
-	 */
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
+    public String getNickName() {
+        return nickName;
+    }
 
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+    public String getPwd() {
+        return pwd;
+    }
 
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	/**
-	 * @return the pwd
-	 */
-	public String getPwd() {
-		return pwd;
-	}
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	/**
-	 * @param pwd the pwd to set
-	 */
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
+    public String getProfileImg() {
+        return profileImg;
+    }
 
+    public void setProfileImg(String profileImg) {
+        this.profileImg = profileImg;
+    }
 
-	/**
-	 * @return the phoneNumber
-	 */
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public String getIntro() {
+        return intro;
+    }
 
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
 
-	/**
-	 * @param phoneNumber the phoneNumber to set
-	 */
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public LocalDateTime getRegDate() {
+        return regDate;
+    }
 
+    public void setRegDate(LocalDateTime regDate) {
+        this.regDate = regDate;
+    }
 
-	/**
-	 * @return the eMail
-	 */
-	public String geteMail() {
-		return eMail;
-	}
+    public byte getRole() {
+        return role;
+    }
 
+    public void setRole(byte role) {
+        this.role = role;
+    }
 
-	/**
-	 * @param eMail the eMail to set
-	 */
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
-	}
+    public float getLevel() {
+        return level;
+    }
 
-	
-	
+    public void setLevel(float level) {
+        this.level = level;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
