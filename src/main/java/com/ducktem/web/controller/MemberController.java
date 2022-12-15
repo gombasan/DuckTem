@@ -34,13 +34,20 @@ public class MemberController {
     @PostMapping("/sign-up")
     public String signUp(@Valid MemberForm memberForm, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            if (memberService.reg(memberForm)) {
-                return "/sign-up-ending";
+            if(!memberForm.getPwd().equals(memberForm.getPwdCheck())){
+                bindingResult.rejectValue("pwd","passwordInCorrect","비밀번호가 다릅니다. 다시 확인해주세요.");
+                return "sign-up";
             }
-            System.out.println("memberForm.toString() = " + memberForm.toString());
         }
 
-        return "/sign-up";
+        if (memberService.reg(memberForm))
+            return "/sign-up-ending";
+
+        else {
+            bindingResult.rejectValue("userId", "duplicatedUserId", "중복된 아이디 입니다.아이디를 변경해주세요.");
+            return "/sign-up";
+        }
+
 
     }
 
