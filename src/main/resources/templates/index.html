@@ -29,7 +29,7 @@
 
           <div class="menu-bar-category">
             <div class="category-login">
-              <a th:if="${session.id} == null" href="/login">로그인/회원가입</a>
+              <a th:if="${session.id} == null" href="/login">로그인/회원가입1</a>
               <a th:if="${session.id} != null" href="/login" th:text="${session.id}"></a>
               <a th:if="${session.id} != null" href="/logout">로그아웃</a>
             </div>
