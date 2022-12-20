@@ -36,19 +36,16 @@ public class MemberController {
         if (!bindingResult.hasErrors()) {
             if(!memberForm.getPwd().equals(memberForm.getPwdCheck())){
                 bindingResult.rejectValue("pwd","passwordInCorrect","비밀번호가 다릅니다. 다시 확인해주세요.");
-                return "sign-up";
+                return "/sign-up";
+            }
+            else {
+                memberService.reg(memberForm);
+                return "redirect:/sign-up-ending";
             }
         }
-
-        if (memberService.reg(memberForm))
-            return "/sign-up-ending";
-
         else {
-            bindingResult.rejectValue("userId", "duplicatedUserId", "중복된 아이디 입니다.아이디를 변경해주세요.");
             return "/sign-up";
         }
-
-
     }
 
 

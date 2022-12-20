@@ -27,4 +27,5 @@ public interface ProductService {
     /* 상품 리스트 조회 서비스 */
 	List<ProductPreview> preview();
 
+    void upHit(Long productId);
 }

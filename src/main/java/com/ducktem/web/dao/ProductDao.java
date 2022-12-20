@@ -13,7 +13,7 @@ public interface ProductDao {
 	List<ProductPreview> getPreviewAll();
 
     /* 상품 등록하기 */
-    void save(Product product);
+    Long save(Product product);
 
     /* 전체 상품 리스트 찾기 */
     List<Product> findAll();
@@ -26,4 +26,6 @@ public interface ProductDao {
 
     /* 상품 테이블 id 찾기 */
     Long findId();
+
+    void plusHit(Long productId);
 }

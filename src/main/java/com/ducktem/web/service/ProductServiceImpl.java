@@ -66,5 +66,10 @@ public class ProductServiceImpl implements ProductService{
 		return productDao.getPreviewAll();
 	}
 
+    @Override
+    public void upHit(Long productId) {
+        productDao.plusHit(productId);
+    }
+
 
 }

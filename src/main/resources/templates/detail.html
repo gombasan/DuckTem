@@ -88,9 +88,9 @@
         <img th:src="${productImgs[0].name}" class="product-img" src="/image/product-img.jpg" alt="">
 
         <section class="profile-container">
-            <img class="profile-img" src="/image/prof-img.jpg" alt="">
+            <img class="profile-img" th:src="${member.profileImg}" alt="">
             <h1 th:text="${member.nickName}">미지123</h1>
-            <span class="product-count">판매상품 6</span>
+            <span class="product-count">판매상품 <span th:text="${#lists.size(memberProducts)}"></span></span>
 
             <span class="review-info">★★★★★(2)</span>
         </section>

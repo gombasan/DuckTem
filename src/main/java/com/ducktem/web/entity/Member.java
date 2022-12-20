@@ -1,6 +1,8 @@
 package com.ducktem.web.entity;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
@@ -9,6 +11,9 @@ public class Member {
 
 
     private int id;
+
+    @NotBlank(message = "아이디를 작성해주세요")
+    @Size(max = 10, message = "아이디는 10자 이내로 작성해 주세요.")
     private String userId;
     private String nickName;
     private String name;

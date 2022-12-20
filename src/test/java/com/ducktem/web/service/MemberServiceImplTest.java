@@ -2,6 +2,8 @@ package com.ducktem.web.service;
 
 import com.ducktem.web.dao.MemberDao;
 import com.ducktem.web.dao.MemberDaoImpl;
+import org.springframework.boot.test.context.SpringBootTest;
+
 
 class MemberServiceImplTest {
 
