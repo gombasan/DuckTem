@@ -22,4 +22,8 @@ public interface MemberDao {
     /* 이름으로 회원찾기 */
     Member findByName(String memberName);
 
+    /* 회원 상태 비활성화 */
+    void updateStatus(String userId);
+
+
 }

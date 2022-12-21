@@ -63,4 +63,10 @@ public class MemberServiceImpl implements MemberService{
         return member;
     }
 
+    //    회원 아이디 받아서 Member의 status를 1(탈퇴회원)로 변경
+    @Override
+    public void deactMember(String userId) {
+        memberDao.updateStatus(userId);
+
+    }
 }

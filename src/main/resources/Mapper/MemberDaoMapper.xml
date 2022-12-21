@@ -21,4 +21,10 @@
         select * from `Member` where `name` = #{name};
     </select>
 
+    <update id="updateStatus" parameterType="com.ducktem.web.entity.Member">
+        update Member
+        set status = 1
+        where userId = #{userId};
+    </update>
+
 </mapper>

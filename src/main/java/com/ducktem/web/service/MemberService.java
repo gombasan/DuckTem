@@ -18,4 +18,8 @@ public interface MemberService {
 
     /* 중복 확인 서비스 */
     boolean validMember(String userId);
+
+    /*회원 탈퇴 서비스*/
+    void deactMember(String userId);
+
 }
