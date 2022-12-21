@@ -3,16 +3,16 @@ package com.ducktem.web.service;
 import com.ducktem.web.dao.MemberDao;
 import com.ducktem.web.dao.ProductDao;
 import com.ducktem.web.entity.Member;
+import com.ducktem.web.form.MemberForm;
 import com.ducktem.web.entity.Product;
+import com.ducktem.web.entity.ProductPreview;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
-import java.util.UUID;
 
 
 @Service
@@ -23,45 +23,69 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     private MemberDao memberDao;
 
-
+    /* 상품 등록 서비스 */
     @Override
-    public void upload(String memberName, MultipartFile file, Product product) throws Exception {
-
-        String productImgPath = System.getProperty("user.dir") + "/src/main/resources/static/productimgs";
-
-        UUID uuid = UUID.randomUUID();
-
-        String productImgName = uuid + "_" + file.getOriginalFilename();
-
-        File productImgFile = new File(productImgPath, productImgName);
-
-        file.transferTo(productImgFile);
-        product.setImg("productimgs/" + productImgName);
-
-
+    public void upload(String memberName, Product product) {
         Member member = memberDao.findByName(memberName);
 
+        /* product 멤버 아이디 사용.*/
+        product.setRegMemberId(member.getUserId());
 
-        LocalDate now = LocalDate.now(ZoneId.of("Asia/Tokyo"));
-        product.setRegDate(now);
-
-        productDao.upload(member.getName() ,product);
+        productDao.save(product);
     }
 
+    /* 하나의 상품 조회 서비스 */
     @Override
-    public Product get() {
+    public Product get(Long productId) {
 
-        return null;
+        return productDao.findById(productId);
     }
 
+
+    /* 내 상품 리스트 조회 후 상품타입 리스트를 반환한다. */
     @Override
-    public List<Product> myList(String memberName) {
-        Member member = memberDao.findByName(memberName);
-        return productDao.findMemberProductList(member.getName());
+    public List<ProductPreview> myList(String memberId) {
+
+        return productDao.findMemberProductList(memberId);
+
     }
 
+    /* 전체 상품 리스트 조회 서비스 (프리뷰료 변경 예정) */
     @Override
     public List<Product> list() {
         return productDao.findAll();
     }
+
+    /* 상품의 아이디를 조회 후 LONG 반환 */
+    @Override
+    public Long getProductId() {
+        return productDao.findId();
+    }
+
+    /* 전체 상품을 조회 후 프리뷰타입 리스트를 반환한다. */
+	@Override
+	public List<ProductPreview> preview() {
+		return productDao.getPreviewAll();
+	}
+
+    @Override
+    public void upHit(HttpServletResponse response, String hitCookie, Long productId) {
+        if(validHit(response,hitCookie,productId)) {
+            productDao.plusHit(productId);
+        }
+    }
+
+
+    /* 쿠키값을 비교하여 상품 아이디와 같다면 false , 다르다면 쿠키값 변경 후 true 반환. */
+    private static boolean validHit(HttpServletResponse response, String hitCookie, Long productId) {
+        if(!hitCookie.equals(String.valueOf(productId))) {
+            hitCookie = String.valueOf(productId);
+            Cookie cookie = new Cookie("newHit", hitCookie);
+            response.addCookie(cookie);
+            return true;
+        }
+
+        return false;
+    }
+
 }

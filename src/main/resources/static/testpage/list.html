@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="memberForm : ${memberForms}">
+  <p th:text="${memberForm.name}"></p>
+    <p th:text="${memberForm.userId}"></p>
+    <p th:text="${memberForm.pwd}" ></p>
+    <p th:text="${memberForm.eMail}" ></p>
+    <p th:text="${memberForm.phoneNumber}" ></p>
+</div>
+</body>
+</html>

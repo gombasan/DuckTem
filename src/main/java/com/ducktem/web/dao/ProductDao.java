@@ -1,21 +1,31 @@
 package com.ducktem.web.dao;
 
 import com.ducktem.web.entity.Product;
+import com.ducktem.web.entity.ProductPreview;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+
+@Mapper
 public interface ProductDao {
 
-    //상품 등록하기
-    void upload(String memberId ,Product product);
+	List<ProductPreview> getPreviewAll();
 
-    // 전체 상품 리스트 가져오기
+    /* 상품 등록하기 */
+    Long save(Product product);
+
+    /* 전체 상품 리스트 찾기 */
     List<Product> findAll();
 
-    // 유저 상품 리스트 가져오기
-    List<Product> findMemberProductList(String memberName);
+    /* 회원이름으로 상품 리스트 찾기(userId로 변경 예정) */
+    List<ProductPreview> findMemberProductList(String memberId);
 
-    // 상품 디테일 페이지
-    Product find();
+    /* 상품 찾기 */
+    Product findById(Long productId);
 
+    /* 상품 테이블 id 찾기 */
+    Long findId();
+
+    void plusHit(Long productId);
 }

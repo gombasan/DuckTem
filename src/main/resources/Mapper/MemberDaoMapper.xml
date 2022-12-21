@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ducktem.web.dao.MemberDao">
+    <insert id="save" parameterType="com.ducktem.web.entity.Member">
+	
+	INSERT INTO `Member` 
+	(`name`, `userId`, `pwd`, `nickName`, `email`, `phoneNumber`)
+	VALUES (#{name},#{userId}, #{pwd}, #{nickName}, #{email}, #{phoneNumber});
+
+    </insert>
+    
+    <select id="findAll" resultType="com.ducktem.web.entity.Member">
+		select * from `Member`;
+    </select>
+    
+    <select id="findById" parameterType="com.ducktem.web.entity.Member" resultType="com.ducktem.web.entity.Member">
+		select * from `Member` where `userId` = #{userId};
+    </select>
+
+    <select id="findByName" parameterType="com.ducktem.web.entity.Member" resultType="com.ducktem.web.entity.Member">
+        select * from `Member` where `name` = #{name};
+    </select>
+
+    <update id="updateStatus" parameterType="com.ducktem.web.entity.Member">
+        update Member
+        set status = 1
+        where userId = #{userId};
+    </update>
+
+</mapper>

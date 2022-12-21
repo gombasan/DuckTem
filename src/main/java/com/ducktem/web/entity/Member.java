@@ -1,26 +1,40 @@
 package com.ducktem.web.entity;
 
+import java.time.LocalDateTime;
+
 public class Member {
-    private String name;
+
+    private int id;
     private String userId;
-    private String password;
+    private String nickName;
+    private String name;
+    private String pwd;
+    private String phoneNumber;
     private String email;
-    private String phoneNum;
 
-    public Member(String name, String userId, String password, String email, String phoneNum) {
-        this.name = name;
-        this.userId = userId;
-        this.password = password;
-        this.email = email;
-        this.phoneNum = phoneNum;
+    private String profileImg;
+    private String intro;
+    private LocalDateTime regDate;
+    private byte role;
+    private float level;
+    private int countryId;
+    private byte status;
+
+
+    public byte getStatus() {
+        return status;
     }
 
-    public String getName() {
-        return name;
+    public void setStatus(byte status) {
+        this.status = status;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUserId() {
@@ -31,12 +45,28 @@ public class Member {
         this.userId = userId;
     }
 
-    public String getPassword() {
-        return password;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -47,23 +77,59 @@ public class Member {
         this.email = email;
     }
 
-    public String getPhoneNum() {
-        return phoneNum;
+    public String getProfileImg() {
+        return profileImg;
     }
 
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
+    public void setProfileImg(String profileImg) {
+        this.profileImg = profileImg;
     }
 
+    public String getIntro() {
+        return intro;
+    }
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "name='" + name + '\'' +
-                ", userId='" + userId + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNum='" + phoneNum + '\'' +
-                '}';
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public LocalDateTime getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(LocalDateTime regDate) {
+        this.regDate = regDate;
+    }
+
+    public byte getRole() {
+        return role;
+    }
+
+    public void setRole(byte role) {
+        this.role = role;
+    }
+
+    public float getLevel() {
+        return level;
+    }
+
+    public void setLevel(float level) {
+        this.level = level;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
