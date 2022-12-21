@@ -83,12 +83,14 @@ public class ProductController {
     /* 상품 리스트 보기 (상품 미리보기 형태로 변경)*/
 
     @GetMapping("/product/{id}")
-    public String productDetail(Model model, HttpServletResponse response, @CookieValue(name = "newHit") String newCookie, @PathVariable("id") Long productId) {
+    public String productDetail(Model model,
+                                HttpServletResponse response,
+                                @CookieValue(name = "newHit", required=false, defaultValue = "default") String hitCookie,
+                                @PathVariable("id") Long productId)
+    {
 
         /* 새로 고침 조회수 막기 위해 추가. */
-        if(validHit(response,newCookie,productId)) {
-            productService.upHit(productId);
-        }
+        productService.upHit(response,hitCookie,productId);
 
         Product product = productService.get(productId);
         List<ProductImg> productImgs = imgService.getList(productId);
@@ -105,18 +107,6 @@ public class ProductController {
         return "detail";
     }
 
-
-    /* 쿠키값을 비교하여 상품 아이디와 같다면 false , 다르다면 쿠키값 변경 후 true 반환. */
-    private boolean validHit(HttpServletResponse response,String newCookie, Long productId) {
-        if(!newCookie.equals(String.valueOf(productId))) {
-            newCookie = String.valueOf(productId);
-            Cookie cookie = new Cookie("newHit", newCookie);
-            response.addCookie(cookie);
-            return true;
-        }
-
-        return false;
-    }
 
 
 }

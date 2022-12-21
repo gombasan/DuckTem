@@ -3,6 +3,7 @@ package com.ducktem.web.service;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductPreview;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -27,5 +28,5 @@ public interface ProductService {
     /* 상품 리스트 조회 서비스 */
 	List<ProductPreview> preview();
 
-    void upHit(Long productId);
+    void upHit(HttpServletResponse response,String hitCookie, Long productId);
 }

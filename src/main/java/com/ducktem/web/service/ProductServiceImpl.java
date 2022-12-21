@@ -7,6 +7,8 @@ import com.ducktem.web.form.MemberForm;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductPreview;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,9 +69,23 @@ public class ProductServiceImpl implements ProductService{
 	}
 
     @Override
-    public void upHit(Long productId) {
-        productDao.plusHit(productId);
+    public void upHit(HttpServletResponse response, String hitCookie, Long productId) {
+        if(validHit(response,hitCookie,productId)) {
+            productDao.plusHit(productId);
+        }
     }
 
+
+    /* 쿠키값을 비교하여 상품 아이디와 같다면 false , 다르다면 쿠키값 변경 후 true 반환. */
+    private static boolean validHit(HttpServletResponse response, String hitCookie, Long productId) {
+        if(!hitCookie.equals(String.valueOf(productId))) {
+            hitCookie = String.valueOf(productId);
+            Cookie cookie = new Cookie("newHit", hitCookie);
+            response.addCookie(cookie);
+            return true;
+        }
+
+        return false;
+    }
 
 }

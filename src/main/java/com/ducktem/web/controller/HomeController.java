@@ -4,6 +4,8 @@ package com.ducktem.web.controller;
 import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.service.MemberService;
 import com.ducktem.web.service.ProductService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
