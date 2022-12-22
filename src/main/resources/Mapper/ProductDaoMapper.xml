@@ -15,7 +15,8 @@
     <select id="getPreviewAll" resultType="com.ducktem.web.entity.ProductPreview">
 		select pi.name thumbNailImg, p.price, p.regDate, p.id productId ,p.name
 		from Product_image pi 
-		inner join Product p on pi.productId = p.id;
+		inner join Product p on pi.productId = p.id
+        order by regDate desc ;
     </select>
 
     <select id="findById" resultType="com.ducktem.web.entity.Product" parameterType="Long">
@@ -27,6 +28,7 @@
         select pi.name thumbNailImg, p.price, p.regDate, p.id productId ,p.name, p.regMemberId
         from Product_image pi
         inner join Product p on pi.productId = p.id where p.regMemberId = #{memberId}
+        order by regDate desc;
     </select>
 
     <update id="plusHit" parameterType="Long">
