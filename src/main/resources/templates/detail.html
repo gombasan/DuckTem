@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/detail.css">
 
+	<script src="/js/wish.js"></script>
 </th:block>
 
 
 
-
 <!--  공통 css 제외한 나머지 css&js    -->
+
+
 <!--   메인 태그에     layout:fragment="content"    달아주세요~~~ -->
 
 
@@ -95,7 +97,8 @@
     <section class="bottom-bar-wrap">
         <div class="bottom-bar">
             <div>
-                <img src="/image/icon/heart.svg" alt=""><label for="">2</label>
+<!--             <img class ="wish" src="/image/icon/heart.svg" alt=""><label th:src="${wishList.totalNumber}" for="">2</label> -->
+                <img class ="wish" src="/image/icon/heart.svg" alt=""><label for="">2</label>
             </div>
             <div>
                 <span th:text="${product.price}">5000원</span>
