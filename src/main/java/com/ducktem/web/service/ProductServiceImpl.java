@@ -25,8 +25,8 @@ public class ProductServiceImpl implements ProductService{
 
     /* 상품 등록 서비스 */
     @Override
-    public void upload(String memberName, Product product) {
-        Member member = memberDao.findByName(memberName);
+    public void upload(String memberNickName, Product product) {
+        Member member = memberDao.findByName(memberNickName);
 
         /* product 멤버 아이디 사용.*/
         product.setRegMemberId(member.getUserId());
@@ -68,6 +68,7 @@ public class ProductServiceImpl implements ProductService{
 		return productDao.getPreviewAll();
 	}
 
+    /* 쿠키와 상품 아이디를 비교 후 다르다면 조휘수 증가.*/
     @Override
     public void upHit(HttpServletResponse response, String hitCookie, Long productId) {
         if(validHit(response,hitCookie,productId)) {

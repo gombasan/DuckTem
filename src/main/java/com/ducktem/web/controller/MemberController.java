@@ -135,7 +135,7 @@ public class MemberController {
             return "/login";
         }
         else if(user != null && user.getPwd().equals(pwd)) {
-            session.setAttribute("id",user.getNickName());
+            session.setAttribute("nickName",user.getNickName());
             session.setAttribute("userId",user.getUserId());
 //            세션에서 멤버식별용 아이디 얻어와야 마이페이지에서 멤버별 정보 가져올 수 있음
             String sessionId = session.getId();

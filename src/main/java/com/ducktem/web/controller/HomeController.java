@@ -5,6 +5,7 @@ import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.service.MemberService;
 import com.ducktem.web.service.ProductService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,6 @@ public class HomeController {
     public String index(Model model, HttpSession session) {
         List<ProductPreview> preview = productService.preview();
         model.addAttribute("preview", preview);
-
 
         return "index";
     }

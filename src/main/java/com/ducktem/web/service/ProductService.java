@@ -11,7 +11,7 @@ import java.util.List;
 public interface ProductService {
 
     /* 상품 등록 서비스 */
-    void upload(String memberName, Product product);
+    void upload(String memberNickName, Product product);
 
     /* 하나의 상품 조회 서비스*/
     Product get(Long productId);

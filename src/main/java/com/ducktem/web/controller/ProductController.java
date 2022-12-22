@@ -9,6 +9,7 @@ import com.ducktem.web.service.ImgService;
 import com.ducktem.web.service.MemberService;
 import com.ducktem.web.service.ProductService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,16 +42,17 @@ public class ProductController {
 
     /* 상품 등록 폼파일 요청 */
     @GetMapping("/product")
-    public String regProductForm() {
-
+    public String regProductForm(HttpSession session) {
+        System.out.println(session.getAttribute("id"));
         return "/member/sell/index";
     }
 
     /* 상품 등록 요청 */
     @PostMapping("/product")
-    public String regProduct(Product product , MultipartFile file, HttpSession session) {
-        productService.upload((String) session.getAttribute("id"),product);
-        imgService.upload(file,product.getId());
+    public String regProduct(Product product , MultipartFile file, HttpSession session, HttpServletRequest request) {
+
+        productService.upload((String) session.getAttribute("nickName"),product);
+        imgService.upload(file,product.getId(),request);
 
         return "redirect:/";
     }

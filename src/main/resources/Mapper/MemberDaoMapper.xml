@@ -17,8 +17,8 @@
 		select * from `Member` where `userId` = #{userId};
     </select>
 
-    <select id="findByName" parameterType="com.ducktem.web.entity.Member" resultType="com.ducktem.web.entity.Member">
-        select * from `Member` where `name` = #{name};
+    <select id="findByName" parameterType="String" resultType="com.ducktem.web.entity.Member">
+        select * from Member where nickName = #{memberNickName};
     </select>
 
     <update id="updateStatus" parameterType="com.ducktem.web.entity.Member">
