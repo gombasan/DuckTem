@@ -32,7 +32,7 @@ window.addEventListener("load",function(){
     searchIcon.onclick = function(e) {
         if(!alarm.classList.contains("d-none"))
             alarm.classList.add("d-none")
-        search.classList.remove("d-none");
+        search.classList.toggle("d-none");
     }
 
 
@@ -63,7 +63,7 @@ window.addEventListener("load",function(){
     alarmIcon.onclick = function(e) {
         if(!search.classList.contains("d-none"))
             search.classList.add("d-none")
-        alarm.classList.remove("d-none");
+        alarm.classList.toggle("d-none");
     }
 
     alarm.onclick = function(e){

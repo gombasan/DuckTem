@@ -77,11 +77,5 @@ window.addEventListener('load', function(){
         else if(current==2)
             bannerWrap.style.transform = 'translate(-200vw)';
 
-
-
-
     }
-
-
-    
 });
