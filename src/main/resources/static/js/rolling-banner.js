@@ -4,11 +4,6 @@ window.addEventListener('load', function(){
     let bannerWrap = document.querySelector('.banner-wrap');
 
     let current = 0;
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> refs/remotes/origin/dev
     let interval = setInterval(auto = function(){
         if(current<3){
             current++;
@@ -24,8 +19,6 @@ window.addEventListener('load', function(){
         else if(current==2)
             bannerWrap.style.transform = 'translate(-200vw)';
     },6000)
-<<<<<<< HEAD
-=======
 
 
 
@@ -71,7 +64,7 @@ window.addEventListener('load', function(){
             bannerWrap.style.transform = 'translate(-200vw)';
 
         interval = setInterval(auto,6000);
->>>>>>> refs/remotes/origin/dev
+
 
 
 	
