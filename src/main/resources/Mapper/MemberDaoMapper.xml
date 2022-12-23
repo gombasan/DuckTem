@@ -21,10 +21,24 @@
         select * from Member where nickName = #{memberNickName};
     </select>
 
-    <update id="updateStatus" parameterType="com.ducktem.web.entity.Member">
+    <update id="updateStatus">
         update Member
         set status = 1
         where userId = #{userId};
+
     </update>
+
+    <update id="updateAutoLogin">
+        update Member
+        set autoLogin = #{sessionId}
+        where userId = #{userId};
+    </update>
+
+	<!-- 함수 이상함. 수정할 것.  -->
+    <select id="findLoginInfo" resultType="String">
+        select autoLogin
+        from Member 
+        where autoLogin = #{loginInfo};
+    </select>
 
 </mapper>

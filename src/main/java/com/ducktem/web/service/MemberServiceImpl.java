@@ -3,6 +3,9 @@ package com.ducktem.web.service;
 import com.ducktem.web.dao.MemberDao;
 import com.ducktem.web.entity.Member;
 import com.ducktem.web.form.MemberForm;
+
+import jakarta.servlet.http.Cookie;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,4 +72,18 @@ public class MemberServiceImpl implements MemberService{
         memberDao.updateStatus(userId);
 
     }
+
+    /*자동 로그인*/
+	@Override
+	public void addAutoLogin(String userId, String sessionId) {
+		memberDao.updateAutoLogin(userId, sessionId);
+		
+	}
+
+	/////////작성중//////
+	@Override
+	public String findLoginInfo(String loginInfo) {
+		
+		return memberDao.findLoginInfo(loginInfo);
+	}
 }

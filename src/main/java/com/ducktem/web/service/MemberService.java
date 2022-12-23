@@ -3,6 +3,8 @@ package com.ducktem.web.service;
 import com.ducktem.web.entity.Member;
 import com.ducktem.web.form.MemberForm;
 
+import jakarta.servlet.http.Cookie;
+
 import java.util.List;
 
 public interface MemberService {
@@ -21,5 +23,11 @@ public interface MemberService {
 
     /*회원 탈퇴 서비스*/
     void deactMember(String userId);
+
+    /*자동로그인 서비스*/
+	void addAutoLogin(String userId, String sessionId);
+
+	String findLoginInfo(String loginInfo);
+
 
 }

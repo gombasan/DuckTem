@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/sign-up.css">
 
-
     <title>Signup</title>
 </head>
 
@@ -41,12 +40,10 @@
             <h1 class="d-none">회원가입</h1>
 
 
-            <form th:object="${memberForm}" method="post">
+            <form th:object="${memberForm}"  method="post">
                 <!-- 백에서 사용할 로그인 함수이름-->
 
                 <div class="signup-container">
-
-
 
                     <div>
                         <label class="required" for="name">이름</label>
