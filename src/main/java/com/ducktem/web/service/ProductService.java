@@ -28,5 +28,7 @@ public interface ProductService {
     /* 상품 리스트 조회 서비스 */
 	List<ProductPreview> preview();
 
+    List<ProductPreview> preview(int page);
+
     void upHit(HttpServletResponse response,String hitCookie, Long productId);
 }

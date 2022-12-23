@@ -43,7 +43,7 @@ public class MemberController {
             }
             else {
                 memberService.reg(memberForm);
-                return "redirect:/sign-up-ending";
+                return "redirect:sign-up-ending";
             }
         }
         else {

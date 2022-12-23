@@ -65,8 +65,19 @@ public class ProductServiceImpl implements ProductService{
     /* 전체 상품을 조회 후 프리뷰타입 리스트를 반환한다. */
 	@Override
 	public List<ProductPreview> preview() {
-		return productDao.getPreviewAll();
+
+        return this.preview(1);
 	}
+
+    @Override
+    public List<ProductPreview> preview(int page) {
+        int size = 10;
+        int offset = (page-1)*size;
+
+
+
+        return productDao.getPreviewList(size,offset);
+    }
 
     /* 쿠키와 상품 아이디를 비교 후 다르다면 조휘수 증가.*/
     @Override
