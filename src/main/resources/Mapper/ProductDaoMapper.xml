@@ -24,7 +24,7 @@
 
     </select>
 
-    <select id="findMemberProductList" resultType="com.ducktem.web.entity.ProductPreview" parameterType="String">
+    <select id="findMemberProductList" resultType="com.ducktem.web.entity.ProductPreview">
         select pi.name thumbNailImg, p.price, p.regDate, p.id productId ,p.name, p.regMemberId
         from Product_image pi
         inner join Product p on pi.productId = p.id where p.regMemberId = #{memberId}
@@ -35,4 +35,11 @@
         update Product set hit = hit+1 where id = #{productId};
 
     </update>
+
+    <select id="getPreviewList" resultType="com.ducktem.web.entity.ProductPreview" parameterType="Int">
+        select pi.name thumbNailImg, p.price, p.regDate, p.id productId ,p.name, p.regMemberId
+        from Product_image pi
+                 inner join Product p on pi.productId = p.id
+        order by regDate desc LIMIT #{size} OFFSET #{offset};
+    </select>
 </mapper>

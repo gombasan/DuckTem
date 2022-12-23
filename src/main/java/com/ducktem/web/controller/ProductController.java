@@ -43,7 +43,7 @@ public class ProductController {
     /* 상품 등록 폼파일 요청 */
     @GetMapping("/product")
     public String regProductForm(HttpSession session) {
-        System.out.println(session.getAttribute("id"));
+
         return "/member/sell/index";
     }
 
@@ -77,9 +77,9 @@ public class ProductController {
     /* 상품 리스트 보기 (변경 예정.)*/
     @GetMapping("/list")
     public String productList(Model model) {
-        model.addAttribute("list", productService.list());
+        // model.addAttribute("list", productService.list());
 
-        return "ProdcutList";
+        return "list";
     }
 
     /* 상품 리스트 보기 (상품 미리보기 형태로 변경)*/

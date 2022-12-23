@@ -44,6 +44,7 @@ public class MemberController {
             else {
                 memberService.reg(memberForm);
                 return "/sign-up-ending";
+
             }
         }
         else {

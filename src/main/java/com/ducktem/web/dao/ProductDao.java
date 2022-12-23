@@ -28,4 +28,6 @@ public interface ProductDao {
     Long findId();
 
     void plusHit(Long productId);
+
+    List<ProductPreview> getPreviewList(int size, int offset);
 }

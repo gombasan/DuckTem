@@ -125,9 +125,63 @@
 
     </section>
 
+    <script defer>
+      const productSection = document.querySelector(".product-wrap");
+      let html = document.querySelector("html");
+      let page = 2;
+      let isEndPage = false;
+
+
+
+      const autoPaging = function (){
+        let paddingOfBottom = 300;
+        let htmlScrollHeight =html.scrollHeight
+        let htmlScrollTop = html.scrollTop;
+        let htmlScrollClientHeight = html.clientHeight;
+
+        if(htmlScrollHeight - htmlScrollTop - paddingOfBottom <= htmlScrollClientHeight) {
+
+          fetch(`/${page}`)
+                  .then((response) => response.json())
+                  .then(products => {
+                    if(products.length < 10) {
+                      isEndPage = true;
+                    }
+                    for(let product of products){
+                      let template = `
+                <div class="product-container">
+                    <a href="/product/${product.productId}">
+                      <div><img src=${product.thumbNailImg} alt="product-img"></div>
+
+                      <div class="price-wish">
+                          <span>${product.price}</span>
+                          <img src="/image/icon/heart.svg" alt="찜">
+                      </div>
+
+                      <div class="name">
+                          ${product.name}
+                      </div>
+
+                      <div class="time">
+                          ${product.regDate}
+                      </div>
+                    </a>
+                </div>`;
+                      productSection.insertAdjacentHTML("beforeend", template);
+                    }
+                  });
+          page++;
+        }
+        if(isEndPage) {
+          window.removeEventListener("scroll",autoPaging);
+        }
+      };
+
+      window.addEventListener("scroll", autoPaging);
+
+    </script>
 
   </main>
 
- 
 
 </html>
