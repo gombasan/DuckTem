@@ -1,17 +1,25 @@
 window.addEventListener("load",function(){
-	let wish = document.querySelector(".wish");
+	let main = document.querySelector("main");
 	
-	wish.onclick = function(e){
-			
-        if(!e.target.classList.contains("checked")){
-			wish.classList.add("checked");
-			wish.src = "/image/icon/icon-heart-red.svg";		
-		}
-		else if(e.target.classList.contains("checked")){
-			wish.classList.remove("checked");
-			wish.src = "/image/icon/heart.svg";
+	main.onclick = function(e){
+	
+		if(e.target.classList.contains("wish"))	{
+			e.preventDefault();
+	        if(!e.target.classList.contains("checked")){
+				e.target.classList.add("checked");
+				e.target.src = "/image/icon/icon-heart-red.svg";		
+			}
+			else if(e.target.classList.contains("checked")){
+				e.target.classList.remove("checked");
+				e.target.src = "/image/icon/heart.svg";
+			}
 		}
 	}
+	
+	
+	
+	
+	
 	
 	
 })

@@ -1,5 +1,12 @@
-package com.ducktem.web.dao;
-
-public interface WishListDao {
-	
-}
+//package com.ducktem.web.dao;
+//
+//import org.apache.ibatis.annotations.Mapper;
+//
+//import com.ducktem.web.entity.WishList;
+//
+//@Mapper
+//public interface WishListDao {
+//
+//	void save(WishList wishList);
+//	
+//}
