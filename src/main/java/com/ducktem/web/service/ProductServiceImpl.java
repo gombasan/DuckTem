@@ -12,6 +12,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -37,6 +42,14 @@ public class ProductServiceImpl implements ProductService{
     /* 하나의 상품 조회 서비스 */
     @Override
     public Product get(Long productId) {
+
+
+        /* 상품 시간 n분전으로 표시 준비.*/
+//        Product product = productDao.findById(productId);
+//        Date regDate = product.getRegDate();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+//        System.out.println("regDate = " + sdf.format(regDate));
+
 
         return productDao.findById(productId);
     }
@@ -85,6 +98,18 @@ public class ProductServiceImpl implements ProductService{
         if(validHit(response,hitCookie,productId)) {
             productDao.plusHit(productId);
         }
+    }
+
+    @Override
+    public void update(Product product) {
+        productDao.update(product);
+    }
+
+    @Override
+    public void stateChange(Long productId, int salesStatusId) {
+        Product product = productDao.findById(productId);
+        product.setSalesStatusId(salesStatusId);
+        productDao.update(product);
     }
 
 

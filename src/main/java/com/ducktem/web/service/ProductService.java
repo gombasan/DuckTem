@@ -31,4 +31,8 @@ public interface ProductService {
     List<ProductPreview> preview(int page);
 
     void upHit(HttpServletResponse response,String hitCookie, Long productId);
+
+    void update(Product product);
+
+    void stateChange(Long productId, int salesStatusId);
 }

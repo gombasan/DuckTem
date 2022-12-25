@@ -3,8 +3,8 @@
 <mapper namespace="com.ducktem.web.dao.ProductDao">
     <insert id="save" parameterType="com.ducktem.web.entity.Product" useGeneratedKeys="true" keyProperty="id">
 
-        INSERT INTO `ducktemdb`.`Product` (`price`, `description`, `name`, `regMemberId`, `categoryId`, `salesStatusId`,`condition`)
-        VALUES (#{price}, #{description} , #{name}, #{regMemberId}, #{categoryId}, #{salesStatusId}, #{condition});
+        INSERT INTO `ducktemdb`.`Product` (`price`, `description`, `name`, `regMemberId`, `categoryId`, `salesStatusId`,`condition`,`deliveryType`)
+        VALUES (#{price}, #{description} , #{name}, #{regMemberId}, #{categoryId}, #{salesStatusId}, #{condition},#{deliveryType});
 
     </insert>
     
@@ -13,9 +13,7 @@
     </select>
 
     <select id="getPreviewAll" resultType="com.ducktem.web.entity.ProductPreview">
-		select pi.name thumbNailImg, p.price, p.regDate, p.id productId ,p.name
-		from Product_image pi 
-		inner join Product p on pi.productId = p.id
+		select * from ProductPreview
         order by regDate desc ;
     </select>
 
@@ -25,9 +23,8 @@
     </select>
 
     <select id="findMemberProductList" resultType="com.ducktem.web.entity.ProductPreview">
-        select pi.name thumbNailImg, p.price, p.regDate, p.id productId ,p.name, p.regMemberId
-        from Product_image pi
-        inner join Product p on pi.productId = p.id where p.regMemberId = #{memberId}
+        select * from ProductPreview
+        where regMemberId = #{memberId}
         order by regDate desc;
     </select>
 
@@ -37,9 +34,20 @@
     </update>
 
     <select id="getPreviewList" resultType="com.ducktem.web.entity.ProductPreview" parameterType="Int">
-        select pi.name thumbNailImg, p.price, p.regDate, p.id productId ,p.name, p.regMemberId
-        from Product_image pi
-                 inner join Product p on pi.productId = p.id
+        select * from ProductPreview
         order by regDate desc LIMIT #{size} OFFSET #{offset};
     </select>
+
+    <update id="update" parameterType="com.ducktem.web.entity.Product">
+        update Product
+            <set>
+                <if test="name != null">name = #{name},</if>
+                <if test="price != null">price = #{price},</if>
+                <if test="description != null">description = #{description},</if>
+                <if test="condition != null">Product.condition = #{condition},</if>
+                <if test="deliveryType != null">deliveryType = #{deliveryType},</if>
+                <if test="salesStatusId != null">salesStatusId = #{salesStatusId}</if>
+            </set>
+        where id = #{id}
+    </update>
 </mapper>

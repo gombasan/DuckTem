@@ -62,34 +62,46 @@ public class ProductController {
 
     // ===================================================================상품 조회 ==========================================================
 
-    /* 마이 상품 페이지 요청 */
-    @GetMapping("/mylist")
-    public String myProductList(Model model, HttpSession session) {
+    /* 내 상품 수정 페이지 요청 */
+    @GetMapping("/product/myproduct/{memberNickName}/{id}")
+    public String myProduct(Model model,@PathVariable("memberNickName") String memberNickName,@PathVariable(value = "id", required = false) Long productId, HttpSession session) {
+        if(memberNickName.equals(session.getAttribute("nickName"))) {
+            model.addAttribute("img", imgService.getList(productId));
+            model.addAttribute("product", productService.get(productId));
+            
 
-//        List<Product> list = productService.myList((String) session.getAttribute("id"));
+            return "member/update-product/index";
+        }
+        return "redirect:/product/{id}";
+    }
 
-//        model.addAttribute("list",list);
+    /* 내 상품 정보 수정*/
+    @PostMapping("/product/myproduct/{memberNickName}/{id}")
+    public String myProductUpdate(Product product) {
+        productService.update(product);
 
+        return "redirect:/product/{id}";
+    }
 
-        return "mylist";
+    @PostMapping("/product/{id}")
+    public String productStateUpdate() {
+        return "";
     }
 
     /* 상품 리스트 보기 (변경 예정.)*/
     @GetMapping("/list")
     public String productList(Model model) {
-        // model.addAttribute("list", productService.list());
-
         return "list";
     }
 
-    /* 상품 리스트 보기 (상품 미리보기 형태로 변경)*/
 
+
+    /* 상품 상세 화면 보기*/
     @GetMapping("/product/{id}")
     public String productDetail(Model model,
                                 HttpServletResponse response,
                                 @CookieValue(name = "newHit", required=false, defaultValue = "default") String hitCookie,
-                                @PathVariable("id") Long productId)
-    {
+                                @PathVariable("id") Long productId) {
 
         /* 새로 고침 조회수 막기 위해 추가. */
         productService.upHit(response,hitCookie,productId);

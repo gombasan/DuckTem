@@ -8,7 +8,29 @@
 
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/detail.css">
+    <style>
+        .state-select {
+            background-color: var(--color-light);
+            width: 95%;
+            /* height: 500px; */
 
+
+            border: 3px solid black;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+
+    </style>
 </th:block>
 
 
@@ -19,7 +41,7 @@
 
 
 <main layout:fragment="content">
-    <img th:src="${productImgs[0].name}" class="product-img" src="/image/product-img.jpg" alt="">
+    <img th:src="${productImgs[0].name}" class="product-img" th:classappend="${product.salesStatusId != 0 ? (product.salesStatusId !=1 ? 'reservation':'completion'):''}" src="/image/product-img.jpg" alt="">
 
     <section class="profile-container">
         <img class="profile-img" th:src="${member.profileImg}" alt="">
@@ -61,8 +83,8 @@
     <hr>
     <section class="detail-spec-container">
         <ul>
-            <li>상품상태 거의 새상품</li>
-            <li>배송방법</li>
+            <li th:text="|상품상태 : ${product.condition}|">상품상태</li>
+            <li th:text="|배송방법 : ${product.deliveryType}|">배송방법</li>
         </ul>
     </section>
     <hr>
@@ -98,12 +120,71 @@
                 <img src="/image/icon/heart.svg" alt=""><label for="">2</label>
             </div>
             <div>
-                <span th:text="${product.price}">5000원</span>
+                <span th:text="|${product.price}원|"></span>
             </div>
-            <div>
+            <div th:if="${session.nickName} != ${member.nickName}">
                 <a class="btn btn-default " href="">덕템톡</a>
             </div>
+            <div th:if="${session.nickName} == ${member.nickName}" class="state-btn">
+                <a class="btn btn-default " href="">상태변경</a>
+            </div>
+            <div th:if="${session.nickName} == ${member.nickName}">
+                <a class="btn btn-default " th:href="@{|/product/myproduct/${session.nickName}/${product.id}|}">수정</a>
+            </div>
+            <div th:if="${session.nickName} == ${member.nickName}" class="state-select d-none">
+                <div class="category-supercategory">상품 상태 변경</div>
+                <img class="exit" src="/image/icon/icon-close.svg" alt="">
+                <div>
+                    <input value="0" id="sell" name="subcategory" type="radio" required>
+                    <label class="category-select" for="sell">판매중</label>
+                </div>
+                <div>
+                    <input value="1" id="Completion" name="subcategory" type="radio" required>
+                    <label class="category-select" for="Completion">판매 완료</label>
+                </div>
+                <div>
+                    <input value="2" id="Reservation" name="subcategory" type="radio" required>
+                    <label class="category-select" for="Reservation">예약중</label>
+                </div>
+                <div class="btn btn-default" onclick="stateChange()">선택완료</div>
+            </div>
         </div>
+        <script th:if="${session.nickName} == ${member.nickName}">
+            let stateBtn = document.querySelector(".state-btn");
+            let stateSelect = document.querySelector(".state-select");
+            let main = document.querySelector("main");
+
+
+            let stateChange = function () {
+                let selectState = null;
+                let checkBoxes = document.querySelectorAll("[name=subcategory]");
+                for(let i=0; i<checkBoxes.length; i++) {
+                    if(checkBoxes[i].checked) {
+                        selectState = checkBoxes[i].value;
+                        break;
+                    }
+                }
+                if(selectState === null) {
+                    alert("체크박스를 선택해주세요.");
+                    return;
+                }
+                let url = window.location.pathname.split("/");
+                let productId = url[2];
+
+                fetch(`/product/myproduct/sellStatesChange/${productId}/${selectState}`,{method:'POST'})
+                    .then(() => {
+                        location.reload();
+                    })
+
+            }
+
+            stateBtn.addEventListener("click",function (e){
+                e.preventDefault();
+                stateSelect.classList.remove("d-none");
+
+            });
+        </script>
+
     </section>
 
 

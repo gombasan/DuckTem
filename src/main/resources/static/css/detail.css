@@ -4,6 +4,11 @@ main {
 .product-img {
     width: 100%;
   }
+
+.reservation {
+  background: gray;
+  z-index: 1000;
+}
   
   .profile-img {
     height: 55px;

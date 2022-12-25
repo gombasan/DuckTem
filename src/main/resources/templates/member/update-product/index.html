@@ -8,6 +8,14 @@
 
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/member/update-product/index.css">
+    <style>
+        input[type=image] {
+            display: block;
+            width: 100px;
+            height: 250px;
+            object-fit: fill;
+        }
+    </style>
 
 </th:block>
 
@@ -20,26 +28,26 @@
         </div>
 
 
-        <form class="update-product-wrap">
+        <form class="update-product-wrap" method="post" enctype="multipart/form-data">
 
             <div class="update-product-img">
                 <div>상품 이미지</div>
-                <div>
-                    <input type="image" src="/image/빈-상품이미지.png" alt="">
+                <div th:each="img : ${img}">
+                    <input type="image" th:src="${img.name}" alt="">
                 </div>
             </div>
 
             <div class="update-product-titlein">
                 <div>상품 제목</div>
                 <div>
-                    <input type="text" name="" id="">
+                    <input type="text" name="name" th:value="${product.name}">
                 </div>
             </div>
 
             <div class="update-product-price">
                 <div>가격</div>
                 <div>
-                    <input type="number" name="" id="">
+                    <input type="number" name="price" th:value="${product.price}">
                 </div>
             </div>
 
@@ -53,20 +61,20 @@
             <div class="update-product-explain">
                 <div>상품 설명</div>
                 <div>
-                    <input type="text" name="" id="">
+                    <input type="text" name="description" id="" th:value="${product.description}">
                 </div>
             </div>
 
             <div class="update-product-condition">
                 <div>상품 컨디션</div>
                 <div class="check-condition-wrap">
-                    <input type="radio" name="condition" id="first-btn"><label class="btn btn-cancel"
+                    <input type="radio" name="condition" id="first-btn" value="미개봉"><label class="btn btn-cancel"
                         for="first-btn">미개봉</label>
-                    <input type="radio" name="condition" id="second-btn"><label class="btn btn-cancel" for="second-btn">거의
+                    <input type="radio" name="condition" id="second-btn" value="거의 새상품"><label class="btn btn-cancel" for="second-btn">거의
                         새상품</label>
-                    <input type="radio" name="condition" id="third-btn"><label class="btn btn-cancel" for="third-btn">사용흔적이
+                    <input type="radio" name="condition" id="third-btn" value="사용흔적이 있는 상품"><label class="btn btn-cancel" for="third-btn">사용흔적이
                         있는 상품</label>
-                    <input type="radio" name="condition" id="forth-btn"><label class="btn btn-cancel" for="forth-btn">하자가
+                    <input type="radio" name="condition" id="forth-btn" value="하자가 있는 상품"><label class="btn btn-cancel" for="forth-btn">하자가
                         있는
                         상품</label>
                 </div>
@@ -90,9 +98,9 @@
             <div class="update-product-delivery">
                 <div>배송방법</div>
                 <div class="delivery-img">
-                    <input type="radio" name="delivery" id="1"><label class="delivery1" for="1"><span>📮</span><span>일반우편</span></label>
-                    <input type="radio" name="delivery" id="2"><label class="delivery2" for="2"><span>✉️</span><span>준등기</span></label>
-                    <input type="radio" name="delivery" id="3"><label class="delivery3" for="3"><span>📦</span><span>택배</span></label>
+                    <input type="radio" name="deliveryType" id="1" value="일반우편"><label class="delivery1" for="1"><span>📮</span><span>일반우편</span></label>
+                    <input type="radio" name="deliveryType" id="2" value="준등기"><label class="delivery2" for="2"><span>✉️</span><span>준등기</span></label>
+                    <input type="radio" name="deliveryType" id="3" value="택배"><label class="delivery3" for="3"><span>📦</span><span>택배</span></label>
                 </div>
 
             </div>
