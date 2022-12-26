@@ -33,6 +33,9 @@ public class HomeController {
 
         return "index";
     }
+    
+    /*자동 로그인*/
+    
 
 
 }
