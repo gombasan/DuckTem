@@ -7,5 +7,9 @@ import com.ducktem.web.entity.WishList;
 @Mapper
 public interface WishListDao {
 	void save(WishList wishList);
+
+	void get(WishList wishList);
+
+	void delete(WishList wishList);
 	
 }

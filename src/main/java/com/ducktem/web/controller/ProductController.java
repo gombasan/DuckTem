@@ -105,7 +105,7 @@ public class ProductController {
         model.addAttribute("member", member);
         model.addAttribute("memberProducts", memberProducts);
 
-
+        
         return "detail";
     }
 

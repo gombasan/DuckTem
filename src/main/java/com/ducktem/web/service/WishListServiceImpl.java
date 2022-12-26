@@ -19,6 +19,14 @@ public class WishListServiceImpl implements WishListService{
     @Autowired
     private WishListDao wishListDao;
 	
+    @Override
+    public void findWish(String userId, Long productId) {
+		
+		WishList wishList =  new WishList(userId, productId);
+		
+        wishListDao.get(wishList);
+		
+    }
     
 //    wishList 클릭-저장 서비스
 	@Override
@@ -29,5 +37,17 @@ public class WishListServiceImpl implements WishListService{
         wishListDao.save(wishList);
 		
 	}
+
+	@Override
+	public void deleteWish(String userId, Long productId) {
+		
+		WishList wishList =  new WishList(userId, productId);
+		
+        wishListDao.delete(wishList);
+		
+		
+	}
+
+
 	
 }
