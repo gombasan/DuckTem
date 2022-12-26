@@ -1,6 +1,7 @@
 package com.ducktem.web.controller;
 
 
+import com.ducktem.web.entity.Member;
 import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.service.MemberService;
 import com.ducktem.web.service.ProductService;
@@ -27,9 +28,27 @@ public class HomeController {
 
     /* 메인 페이지*/
     @GetMapping("/")
-    public String index(Model model, HttpSession session) {
+    public String index(Model model, HttpSession session, HttpServletRequest request) {
         List<ProductPreview> preview = productService.preview();
         model.addAttribute("preview", preview);
+        
+        /*자동 로그인*/
+        Cookie[] cookies = request.getCookies();
+        String loginInfo = "";
+        
+        for (Cookie c : cookies) {
+        	String cName = c.getName();
+        	if(cName.equals("loginInfo")) {
+        		loginInfo = c.getValue();
+        		break;
+        	}
+        }
+        
+        if (!loginInfo.equals("")) {
+        	Member member = memberService.findByLoginInfo(loginInfo);
+        	session.setAttribute("nickName",member.getNickName());
+        	session.setAttribute("userId",member.getUserId());
+        }
 
         return "index";
     }

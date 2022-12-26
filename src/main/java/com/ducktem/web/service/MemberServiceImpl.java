@@ -80,10 +80,9 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
-	/////////작성중//////
 	@Override
-	public String findLoginInfo(String loginInfo) {
+	public Member findByLoginInfo(String loginInfo) {
 		
-		return memberDao.findLoginInfo(loginInfo);
+		return memberDao.findbyLoginInfo(loginInfo);
 	}
 }

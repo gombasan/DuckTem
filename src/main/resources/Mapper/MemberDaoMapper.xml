@@ -34,10 +34,8 @@
         where userId = #{userId};
     </update>
 
-	<!-- 함수 이상함. 수정할 것.  -->
-    <select id="findLoginInfo" resultType="String">
-        select autoLogin
-        from Member 
+    <select id="findbyLoginInfo" resultType="com.ducktem.web.entity.Member">
+        select * from Member 
         where autoLogin = #{loginInfo};
     </select>
 

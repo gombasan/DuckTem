@@ -32,7 +32,7 @@ public interface MemberDao {
 	void updateAutoLogin(String userId, String sessionId);
 
 	/* 자동로그인 세션 찾기 */
-	String findLoginInfo(String loginInfo);
+	Member findbyLoginInfo(String loginInfo);
 
 
 }

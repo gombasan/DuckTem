@@ -27,7 +27,7 @@ public interface MemberService {
     /*자동로그인 서비스*/
 	void addAutoLogin(String userId, String sessionId);
 
-	String findLoginInfo(String loginInfo);
+	Member findByLoginInfo(String loginInfo);
 
 
 }
