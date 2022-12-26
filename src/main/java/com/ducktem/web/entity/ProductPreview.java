@@ -1,5 +1,8 @@
 package com.ducktem.web.entity;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public class ProductPreview {
     private Long productId;
     private String thumbNailImg;

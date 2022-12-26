@@ -1,4 +1,4 @@
-// side bar
+
 window.addEventListener("load",function(){
     let main = document.querySelector("main");
     

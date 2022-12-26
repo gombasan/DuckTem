@@ -30,4 +30,6 @@ public interface ProductDao {
     void plusHit(Long productId);
 
     List<ProductPreview> getPreviewList(int size, int offset);
+
+    void update(Product product);
 }

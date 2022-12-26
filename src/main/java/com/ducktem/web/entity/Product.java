@@ -2,18 +2,21 @@ package com.ducktem.web.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Product {
     private Long id;
     private String name;
     private String price;
     private String description;
-    private LocalDateTime regDate;
+    private Date regDate;
 
     private String condition;
     private int categoryId;
     private String regMemberId;
     private int salesStatusId;
+
+    private String deliveryType;
 
     private int hit;
 
@@ -35,6 +38,15 @@ public class Product {
 
     public String getCondition() {
         return condition;
+    }
+
+
+    public String getDeliveryType() {
+        return deliveryType;
+    }
+
+    public void setDeliveryType(String deliveryType) {
+        this.deliveryType = deliveryType;
     }
 
     public void setCondition(String condition) {
@@ -65,11 +77,11 @@ public class Product {
         this.description = description;
     }
 
-    public LocalDateTime getRegDate() {
+    public Date getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(LocalDateTime regDate) {
+    public void setRegDate(Date regDate) {
         this.regDate = regDate;
     }
 
@@ -95,5 +107,22 @@ public class Product {
 
     public void setSalesStatusId(int salesStatusId) {
         this.salesStatusId = salesStatusId;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", description='" + description + '\'' +
+                ", regDate=" + regDate +
+                ", condition='" + condition + '\'' +
+                ", categoryId=" + categoryId +
+                ", regMemberId='" + regMemberId + '\'' +
+                ", salesStatusId=" + salesStatusId +
+                ", deliveryType='" + deliveryType + '\'' +
+                ", hit=" + hit +
+                '}';
     }
 }
