@@ -41,8 +41,10 @@
 
 
 <main layout:fragment="content">
-    <img th:src="${productImgs[0].name}" class="product-img" th:classappend="${product.salesStatusId != 0 ? (product.salesStatusId !=1 ? 'reservation':'completion'):''}" src="/image/product-img.jpg" alt="">
-
+    <div class="image-wrap">
+        <img th:src="${productImgs[0].name}" class="product-img" th:classappend="${product.salesStatusId != 0 ? (product.salesStatusId !=1 ? 'reservation':'completion'):''}" src="/image/product-img.jpg" alt="">
+        <span>예약중</span>
+    </div>
     <section class="profile-container">
         <img class="profile-img" th:src="${member.profileImg}" alt="">
         <h1 th:text="${member.nickName}">미지123</h1>
@@ -146,14 +148,14 @@
                     <input value="2" id="Reservation" name="subcategory" type="radio" required>
                     <label class="category-select" for="Reservation">예약중</label>
                 </div>
-                <div class="btn btn-default" onclick="stateChange()">선택완료</div>
+                <div class="btn btn-default"  id="submit-btn" onclick="stateChange()" th:attr="data-id=${product.id}">선택완료</div>
             </div>
         </div>
         <script th:if="${session.nickName} == ${member.nickName}">
             let stateBtn = document.querySelector(".state-btn");
             let stateSelect = document.querySelector(".state-select");
             let main = document.querySelector("main");
-
+            let submitBtn = document.querySelector("#submit-btn");
 
             let stateChange = function () {
                 let selectState = null;
@@ -168,9 +170,9 @@
                     alert("체크박스를 선택해주세요.");
                     return;
                 }
-                let url = window.location.pathname.split("/");
-                let productId = url[2];
-
+                let productId = submitBtn.dataset.id;
+                // let url = window.location.pathname.split("/");
+                // let productId = url[2];
                 fetch(`/product/myproduct/sellStatesChange/${productId}/${selectState}`,{method:'POST'})
                     .then(() => {
                         location.reload();
