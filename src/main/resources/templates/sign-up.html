@@ -68,11 +68,12 @@
                         <div class="d-none alert">중복 아이디 입니다. 다른 아이디를 입력해주세요.</div>
                     </div>
 
-                    <div>
+                    <div class="pwdInput">
                         <label class="required" for="password1">비밀번호</label>
-                        <input id="password1" name="pwd" type="password"  placeholder="비밀번호를 입력해주세요.">
-                        <input id="password2" name="pwdCheck" type="password" required placeholder="비밀번호를 입력해주세요.">
+                        <input class="pwd1" id="password1" name="pwd" type="password"  placeholder="비밀번호를 입력해주세요.">
+                        <input class="pwd2" id="password2" name="pwdCheck" type="password" required placeholder="비밀번호를 입력해주세요.">
                         <div th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
+                        <div class="d-none alert">비밀번호가 일치하지 않습니다.</div>
                     </div>
 
                     <div>

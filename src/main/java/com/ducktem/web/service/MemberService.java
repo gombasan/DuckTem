@@ -24,9 +24,10 @@ public interface MemberService {
     /*회원 탈퇴 서비스*/
     void deactMember(String userId);
 
-    /*자동로그인 서비스*/
-	void addAutoLogin(String userId, String sessionId);
-
+    /*자동로그인용 세션 추가*/
+	void addAutoLogin(String userId, String sessionId);	
+	
+	/*자동로그인용 세션 가져오기*/
 	Member findByLoginInfo(String loginInfo);
 	
 	/*닉네임 중복 확인*/
