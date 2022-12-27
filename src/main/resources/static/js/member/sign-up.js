@@ -22,8 +22,6 @@ window.addEventListener("load", function() {
 			pwdAlert.classList.remove("d-none");
 		else
 			pwdAlert.classList.add("d-none");
-	
-		
 	})
 
 	userIdInput.addEventListener("input", function() {

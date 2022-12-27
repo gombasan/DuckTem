@@ -3,8 +3,8 @@
 <mapper namespace="com.ducktem.web.dao.ProductDao">
     <insert id="save" parameterType="com.ducktem.web.entity.Product" useGeneratedKeys="true" keyProperty="id">
 
-        INSERT INTO `ducktemdb`.`Product` (`price`, `description`, `name`, `regMemberId`, `categoryId`, `salesStatusId`,`condition`)
-        VALUES (#{price}, #{description} , #{name}, #{regMemberId}, #{categoryId}, #{salesStatusId}, #{condition});
+        INSERT INTO `ducktemdb`.`Product` (`price`, `description`, `name`, `regMemberId`, `deliveryType`, `categoryId`,`condition`)
+        VALUES (#{price}, #{description} , #{name}, #{regMemberId}, #{deliveryType}, #{categoryId}, #{condition});
 
     </insert>
     

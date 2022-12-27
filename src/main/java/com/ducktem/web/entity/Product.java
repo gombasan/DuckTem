@@ -13,11 +13,22 @@ public class Product {
     private String condition;
     private int categoryId;
     private String regMemberId;
+    private String deliveryType;
     private int salesStatusId;
 
     private int hit;
 
-    public Long getId() {
+    
+    
+    public String getDeliveryType() {
+		return deliveryType;
+	}
+
+	public void setDeliveryType(String deliveryType) {
+		this.deliveryType = deliveryType;
+	}
+
+	public Long getId() {
         return id;
     }
 
