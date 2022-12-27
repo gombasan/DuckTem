@@ -17,6 +17,9 @@
 
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/sign-up.css">
+    
+    <script src="/js/member/sign-up.js"></script>
+
 
     <title>Signup</title>
 </head>
@@ -51,17 +54,18 @@
                         <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                     </div>
 
-                    <div>
+                    <div id="nickNameInput">
                         <label class="required" for="uid">닉네임</label>
-                        <input name="nickName" type="text"  placeholder="닉네임 입력해주세요.">
+                        <input class="nickName" name="nickName" type="text"  placeholder="닉네임을 입력해주세요.">
                         <div th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}"></div>
+                        <div class="d-none alert">중복 닉네임 입니다. 다른 닉네임을 입력해주세요.</div>
                     </div>
 
                     <div id="userIdInput">
                         <label class="required" for="uid">아이디</label>
                         <input id="uid" name="userId" type="text"  placeholder="아이디를 입력해주세요.">
                         <div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></div>
-                        <div class="d-none">중복아이디 입니다. 다른 아이디를 입력해주세요.</div>
+                        <div class="d-none alert">중복 아이디 입니다. 다른 아이디를 입력해주세요.</div>
                     </div>
 
                     <div>
@@ -227,8 +231,6 @@
                         </div>
                     </div>
 
-
-
                 </div>
 
                 <div>
@@ -254,7 +256,7 @@
 
 
 </body>
-<script>
+<!--  <script> 
     const userIdDuplicateCheck = document.querySelector("#uid");
     const userIdInput = document.querySelector("#userIdInput");
     const alert = document.querySelector("#userIdInput>div");
@@ -284,5 +286,5 @@
             })
     });
 
-</script>
+</script>-->
 </html>
