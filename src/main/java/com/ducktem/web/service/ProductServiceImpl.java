@@ -33,6 +33,7 @@ public class ProductServiceImpl implements ProductService{
     public void upload(String memberNickName, Product product) {
         Member member = memberDao.findByName(memberNickName);
 
+
         /* product 멤버 아이디 사용.*/
         product.setRegMemberId(member.getUserId());
 
@@ -55,13 +56,6 @@ public class ProductServiceImpl implements ProductService{
     }
 
 
-    /* 내 상품 리스트 조회 후 상품타입 리스트를 반환한다. */
-    @Override
-    public List<ProductPreview> myList(String memberId) {
-
-        return productDao.findMemberProductList(memberId);
-
-    }
 
     /* 전체 상품 리스트 조회 서비스 (프리뷰료 변경 예정) */
     @Override
@@ -69,34 +63,12 @@ public class ProductServiceImpl implements ProductService{
         return productDao.findAll();
     }
 
-    /* 상품의 아이디를 조회 후 LONG 반환 */
-    @Override
-    public Long getProductId() {
-        return productDao.findId();
-    }
-
-    /* 전체 상품을 조회 후 프리뷰타입 리스트를 반환한다. */
-	@Override
-	public List<ProductPreview> preview() {
-
-        return this.preview(1);
-	}
-
-    @Override
-    public List<ProductPreview> preview(int page) {
-        int size = 10;
-        int offset = (page-1)*size;
-
-
-
-        return productDao.getPreviewList(size,offset);
-    }
 
     /* 쿠키와 상품 아이디를 비교 후 다르다면 조휘수 증가.*/
     @Override
     public void upHit(HttpServletResponse response, String hitCookie, Long productId) {
         if(validHit(response,hitCookie,productId)) {
-            productDao.plusHit(productId);
+            productDao.updateHit(productId);
         }
     }
 

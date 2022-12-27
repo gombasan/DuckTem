@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/detail.css">
 
 	<script src="/js/wish.js"></script>
+
 </th:block>
 
 
@@ -116,7 +117,7 @@
                 <a class="btn btn-default " th:href="@{|/product/myproduct/${session.nickName}/${product.id}|}">수정</a>
             </div>
             <div th:if="${session.nickName} == ${member.nickName}" class="state-select d-none">
-                <div class="category-supercategory">상품 상태 변경</div>
+                <div class="supercategory-select">상품 상태 변경</div>
                 <img class="exit" src="/image/icon/icon-close.svg" alt="">
                 <div>
                     <input value="0" id="sell" name="subcategory" type="radio" required>
