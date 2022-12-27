@@ -85,4 +85,15 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.findbyLoginInfo(loginInfo);
 	}
+
+	@Override
+	public boolean validNickName(String nickName) {
+		Member byNickName = memberDao.findByNickName(nickName);
+		
+		if(byNickName != null)
+			return false;
+		else 
+			return true;
+		
+	}
 }

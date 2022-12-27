@@ -66,5 +66,12 @@ public class MemberValidationApi {
     	
     	return memberService.validMember(userId);
     }
+    
+    @GetMapping("/api/user/nick/{nickName}")
+    public boolean nickNameValidation(@PathVariable(name = "nickName") String nickName){
+    	
+    	return memberService.validNickName(nickName);
+    }
 
+    
 }

@@ -21,6 +21,10 @@
         select * from Member where nickName = #{memberNickName};
     </select>
 
+    <select id="findByNickName" resultType="com.ducktem.web.entity.Member">
+        select * from Member where nickName = #{memberNickName};
+    </select>
+
     <update id="updateStatus">
         update Member
         set status = 1

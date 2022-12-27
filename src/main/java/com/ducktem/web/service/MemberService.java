@@ -28,6 +28,9 @@ public interface MemberService {
 	void addAutoLogin(String userId, String sessionId);
 
 	Member findByLoginInfo(String loginInfo);
+	
+	/*닉네임 중복 확인*/
+	boolean validNickName(String nickName);
 
 
 }

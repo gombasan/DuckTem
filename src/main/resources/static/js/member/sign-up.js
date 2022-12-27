@@ -25,33 +25,33 @@ window.addEventListener("load",function(){
 	        })
 	});
 	
-//	
-//	const nickNameChk = document.querySelector(".nickName");
-//	const nickNameInput = document.querySelector("#nickNameInput");
-//	const alertNickName = document.querySelector("#nickNameInput .alert");
-//	
-//	
-//	
-//	nickNameInput.addEventListener("input", function () {
-//	
-//	    let nickName = nickNameChk.value;
-//	    
-//	    if(nickName == "") {
-//	        nickName = "default";
-//	    }
-//	
-//	    fetch(`/api/user/${nickName}`)
-//        .then((response) => response.json())
-//        .then((isValid) =>{
-//
-//            alertNickName.classList.add("d-none");
-//
-//            if(!isValid) {
-//                alert.classList.remove("d-none");
-//
-//            }
-//	
-//	        })
-//	});
+	
+	const nickNameChk = document.querySelector(".nickName");
+	const nickNameInput = document.querySelector("#nickNameInput");
+	const alertNickName = document.querySelector("#nickNameInput .alert");
+	
+	
+	
+	nickNameInput.addEventListener("input", function () {
+	
+	    let nickName = nickNameChk.value;
+	    
+	    if(nickName == "") {
+	        nickName = "default";
+	    }
+	
+	    fetch(`/api/user/nick/${nickName}`)
+        .then((response) => response.json())
+        .then((result) =>{
+
+            alertNickName.classList.add("d-none");
+
+            if(!result) {
+                alertNickName.classList.remove("d-none");
+
+            }
+	
+	        })
+	});
 })
 
