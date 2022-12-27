@@ -18,7 +18,7 @@ main {
   color: var(--color-light);
 }
 
-.reservation {
+.img-brightness {
   filter: brightness(0.4);
 }
   
