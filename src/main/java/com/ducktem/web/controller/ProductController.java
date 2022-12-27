@@ -1,11 +1,11 @@
 package com.ducktem.web.controller;
 
-import com.ducktem.web.entity.Category;
+import com.ducktem.web.entity.SuperCategory;
 import com.ducktem.web.entity.Member;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductImg;
 import com.ducktem.web.entity.ProductPreview;
-import com.ducktem.web.entity.SubCategory;
+import com.ducktem.web.entity.Category;
 import com.ducktem.web.service.CategoryService;
 import com.ducktem.web.service.ImgService;
 import com.ducktem.web.service.MemberService;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -90,22 +91,25 @@ public class ProductController {
         return "";
     }
 
+    
+    
+    
     /* 상품 리스트 보기 (변경 예정.)*/
     @GetMapping("/list")
-    public String productList(Model model) {
+    public String productList(Model model, @RequestParam(defaultValue = "1",name="sup") int superCategoryId) {
     	
-    	List<Category> category = categoryService.getList();
-    	List<SubCategory> subcategory = categoryService.getSubList();
+    	List<SuperCategory> supercategory = categoryService.getList();
+    	List<Category> category = categoryService.getSubList(superCategoryId);
     	
-  
+    	model.addAttribute("superCategoryList", supercategory);
+    	model.addAttribute("categoryList", category);
 
-    	model.addAttribute("superCategoryList", category);
-    	model.addAttribute("categoryList", subcategory);
-
-    	
     	
         return "list";
     }
+    
+    
+
 
 
 

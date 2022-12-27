@@ -6,15 +6,22 @@
 
 
 	<select id="findAll"
-		resultType="com.ducktem.web.entity.Category">
-		select * from Category
+		resultType="com.ducktem.web.entity.SuperCategory">
+		select * from SuperCategory
 	</select>
 
 
 	<select id="findSubCategoryAll"
-		resultType="com.ducktem.web.entity.SubCategory">
-		select SubCategory.id categoryId, Category.id superCategoryId, Category.name superCategoryName, SubCategory.name subCategoryName  from SubCategory join Category on SubCategory.CategoryId = Category.id
-
+		resultType="com.ducktem.web.entity.Category">
+		select Category.id categoryId, SuperCategory.id superCategoryId,
+		SuperCategory.name superCategoryName, Category.name categoryName
+		from Category join SuperCategory
+		on Category.superCategoryId = SuperCategory.id
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="superCategoryId != null">
+				SuperCategory.id = #{superCategoryId};
+			</if>
+		</trim>
 	</select>
 
 
