@@ -1,9 +1,11 @@
 package com.ducktem.web.controller;
 
+import com.ducktem.web.entity.Category;
 import com.ducktem.web.entity.Member;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductImg;
 import com.ducktem.web.entity.ProductPreview;
+import com.ducktem.web.entity.SubCategory;
 import com.ducktem.web.service.CategoryService;
 import com.ducktem.web.service.ImgService;
 import com.ducktem.web.service.MemberService;
@@ -91,6 +93,17 @@ public class ProductController {
     /* 상품 리스트 보기 (변경 예정.)*/
     @GetMapping("/list")
     public String productList(Model model) {
+    	
+    	List<Category> category = categoryService.getList();
+    	List<SubCategory> subcategory = categoryService.getSubList();
+    	
+  
+
+    	model.addAttribute("superCategoryList", category);
+    	model.addAttribute("categoryList", subcategory);
+
+    	
+    	
         return "list";
     }
 
