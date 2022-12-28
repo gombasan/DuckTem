@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ducktem.web.dao.WishListDao">
+	<select id="getList" resultType="WishList">
+		SELECT * FROM WishList WHERE memberId = #{memberId}
+	</select>
 	<select id="get" resultType="WishList">
 		SELECT * FROM WishList WHERE memberId=#{memberId} AND productId=#{productId}
 	</select>
@@ -14,4 +17,5 @@
 	<delete id="delete">
 		 DELETE FROM WishList WHERE memberId=#{memberId} AND productId=#{productId}
 	</delete>
+
 </mapper>
