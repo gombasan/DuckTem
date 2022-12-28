@@ -6,10 +6,8 @@ import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductImg;
 import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.entity.Category;
-import com.ducktem.web.service.CategoryService;
-import com.ducktem.web.service.ImgService;
-import com.ducktem.web.service.MemberService;
-import com.ducktem.web.service.ProductService;
+import com.ducktem.web.service.*;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -40,6 +38,9 @@ public class ProductController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ProductPreviewService productPreviewService;
 
 // ===================================================================상품 등록 ==========================================================
 
@@ -81,8 +82,8 @@ public class ProductController {
     /* 내 상품 정보 수정*/
     @PostMapping("/product/myproduct/{memberNickName}/{id}")
     public String myProductUpdate(Product product) {
+        System.out.println("product = " + product);
         productService.update(product);
-
         return "redirect:/product/{id}";
     }
 
@@ -94,22 +95,7 @@ public class ProductController {
     
     
     
-    /* 상품 리스트 보기 (변경 예정.)*/
-    @GetMapping("/list")
-    
-    public String productList(Model model, @RequestParam(defaultValue = "1",name="sup") int superCategoryId) {
-    	
-    	List<SuperCategory> supercategory = categoryService.getList();
-    	List<Category> category = categoryService.getSubList(superCategoryId);
-    	
-    	
-    	model.addAttribute("superCategoryList", supercategory);
-    	model.addAttribute("categoryList", category);
-
-    	
-        return "list";
-    }
-    
+  
     
 
 
@@ -129,7 +115,7 @@ public class ProductController {
         List<ProductImg> productImgs = imgService.getList(productId);
         String regMemberId = product.getRegMemberId();
         Member member = memberService.getMember(regMemberId);
-        List<ProductPreview> memberProducts = productService.myList(member.getUserId());
+        List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId());
 
         model.addAttribute("productImgs", productImgs);
         model.addAttribute("product", product);

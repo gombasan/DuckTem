@@ -2,6 +2,7 @@ package com.ducktem.web.api;
 
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductPreview;
+import com.ducktem.web.service.ProductPreviewService;
 import com.ducktem.web.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +16,14 @@ import java.util.List;
 public class ProductPageApi {
 
     @Autowired
-    ProductService productService;
+    private ProductService productService;
+    @Autowired
+    private ProductPreviewService productPreviewService;
 
 
     @GetMapping("/{page}")
     public List<ProductPreview> homeProductList(@PathVariable(name = "page") int page) {
-        List<ProductPreview> preview = productService.preview(page);
+        List<ProductPreview> preview = productPreviewService.preview(page);
 
         return preview;
     }

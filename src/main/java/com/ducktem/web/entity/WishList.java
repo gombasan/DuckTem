@@ -1,27 +1,8 @@
 package com.ducktem.web.entity;
 
 public class WishList {
-	String memberId;
-	Long productId;
-	int current;
-	
-
-	public WishList(String memberId, Long productId) {
-		this.memberId = memberId;
-		this.productId = productId;
-	}
-	/**
-	 * @return the status
-	 */
-	public int getStatus() {
-		return current;
-	}
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(int status) {
-		this.current = status;
-	}
+	private Long productId;
+	private String memberId;
 	/**
 	 * @return the memberId
 	 */
@@ -46,4 +27,12 @@ public class WishList {
 	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
+	
+	public WishList(Long productId, String memberId) {
+		this.productId = productId;
+		this.memberId = memberId;
+	}
+
+	
+	
 }
