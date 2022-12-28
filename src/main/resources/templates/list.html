@@ -1,105 +1,94 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{inc/layout}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{inc/layout}">
 
 
 
-    <th:block layout:fragment="css">
+<th:block layout:fragment="css">
 
-        <link rel="stylesheet" href="/css/layout.css">
-        <link rel="stylesheet" href="/css/list.css">
-    	<script src="/js/list.js"></script>
-    
-    </th:block>
+	<link rel="stylesheet" href="/css/layout.css">
+	<link rel="stylesheet" href="/css/list.css">
+	<script src="/js/list.js"></script>
 
-
-    <!-- ==============================   메인   ============================== -->
-    <main layout:fragment="content">
+</th:block>
 
 
-        <section >
-            <!-- class=""category"" -->
-            <h1 class="d-none">카테고리</h1>
-            <section class="supercategory">
-                <h1 class="d-none">대분류</h1>
-                <span th:each="superCategory:${superCategoryList}" th:attr="data-id=${superCategory.id}"><a  th:text="${superCategory.name}"  href="/list">공식굿즈 </a></span>
-			<!--<span><a href=""/list"">비공식굿즈</a></span>
-                <span><a href=""/list"">대리티켓팅</a></span> -->
-            </section>
+<!-- ==============================   메인   ============================== -->
+<main layout:fragment="content">
 
-            <section class="subcategory">
-                <h1 class="d-none">소분류</h1>
-                <input type="checkbox" name="" id="selectAll-btn"><label class="btn btn-default aaa"
-                for="selectAll-btn">전체보기</label>
-                
-                <span th:each="category, i :${categoryList}" >
-                <input  type="checkbox" name="" th:id="${i.index}+'-btn'" th:for="${i.index}+'-btn'"  id="2-btn"><label  th:text="${category.categoryName}"   class="btn btn-default aaa"
-                th:for="${i.index}+'-btn'"  for="2-btn">음반/영상물</label>
-                </span>
-                
-                <!-- <input type=""checkbox"" name="""" id=""3-btn""><label class=""btn btn-default aaa""
-                for=""3-btn"">응원도구</label>
-                <input type=""checkbox"" name="""" id=""4-btn""><label class=""btn btn-default aaa""
-                for=""4-btn"">포토카드</label>
-                <input type=""checkbox"" name="""" id=""5-btn""><label class=""btn btn-default aaa""
-                for=""5-btn"">포스터/포토북</label>
-                <input type=""checkbox"" name="""" id=""6-btn""><label class=""btn btn-default aaa""
-                for=""6-btn"">문구류</label>
-                <input type=""checkbox"" name="""" id=""7-btn""><label class=""btn btn-default aaa""
-                for=""7-btn"">기타잡화</label>-->
-            </section>
 
-        </section>
+	<section>
+		<!-- class=""category"" -->
+		<h1 class="d-none">카테고리</h1>
+		<section class="supercategory">
+			<h1 class="d-none">대분류</h1>
+			<span th:each="superCategory:${superCategoryList}"
+				th:attr="data-id=${superCategory.id}"><a
+				th:text="${superCategory.name}" href="/list">공식굿즈 </a></span>
+		</section>
+
+		<section class="subcategory">
+			<h1 class="d-none">소분류</h1>
+			<input type="checkbox" name="" id="selectAll-btn"><label
+				class="btn btn-default aaa" for="selectAll-btn">전체보기</label> <span
+				th:each="category, i :${categoryList}"> <input
+				type="checkbox" name="" th:id="(${i.index}+1)+'-btn'"
+				th:for="(${i.index}+1)+'-btn'" id="2-btn"><label
+				th:attr="data-id=${category.categoryId}"
+				th:text="${category.categoryName}" class="btn btn-default aaa"
+				th:for="(${i.index}+1)+'-btn'" for="2-btn">음반/영상물</label>
+			</span>
+		</section>
+
+	</section>
 
 
 
-        <div class="option">
-        
-            <select>
-                <option value="">최신순</option>
-                <option value="">높은 가격순</option>
-                <option value="">낮은 가격순</option>
-                <option value="">인기상품순</option>
-            </select>
-        </div>
+	<div class="option">
+
+		<select>
+			<option value="">최신순</option>
+			<option value="">높은 가격순</option>
+			<option value="">낮은 가격순</option>
+			<option value="">인기상품순</option>
+		</select>
+	</div>
 
 
 
 
 
-        <section class="product-list">
-            <h1 class="d-none">상품목록</h1>
-       
-        
+	<section class="product-list">
+		<h1 class="d-none">상품목록</h1>
+
+		<div class="product-wrap">
+
+			<div th:each="preview : ${preview}" class="product-container">
+				<a th:href="@{|/product/${preview.productId}|}">
+					<div>
+						<img th:src="${preview.thumbNailImg}" alt="product-img">
+					</div>
+
+					<div class="price-wish">
+						<span th:text="${preview.price}"></span> <img class="wish"
+							src="/image/icon/heart.svg" alt="찜"
+							th:value="${preview.productId}">
+					</div>
+
+					<div th:text="${preview.name}" class="name">러브다이브미공포</div>
+
+					<div th:text="${preview.regDate}" class="time">0일 전</div>
+				</a>
+			</div>
+		</div>
 
 
-            <div class="product-wrap">
+
+	</section>
 
 
-                <div class="product-container">
-                    <div>
-                        <img src="/image/example-image.png" alt="" product-img>
-                    </div>
-
-                    <div class="price-wish">
-                        <span> 80,000원</span>
-                        <img src="/image/icon/heart.svg" alt="찜">
-                    </div>
-
-                    <div class="name">러브다이브미공포</div>
-
-                    <div class="time">0일 전</div>
-                </div>
-
-               
-
-
-            </div>
-
-        </section>
-
-
-    </main>
+</main>
 
 
 </html>

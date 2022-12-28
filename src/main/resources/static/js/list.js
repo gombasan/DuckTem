@@ -9,6 +9,9 @@ window.addEventListener("load", function() {
 	let currentLi = document.querySelector(".supercategory span.selected");
 
 
+
+
+//  =========== 대분류 선택을 위한 함수 ==========
 	superCategoryBox.onclick = function(e) {
 		e.preventDefault();
 
@@ -43,19 +46,18 @@ window.addEventListener("load", function() {
 				console.log(data[0])
 				categoryBox.innerHTML = "";
 
-			
-				let index = 1;
+	
 
 				for (let i of data) {
-
+					
 					let template =
-						`
+			`
 			<span>
-                <input  type="checkbox" name="" id="${index}-btn">
-                <label class="btn btn-default aaa" for="${index}-btn">${i.categoryName}</label>
+                <input  type="checkbox" name="" id="${i.categoryId}-btn">
+                <label data-id="${i.categoryId}" class="btn btn-default aaa" for="${i.categoryId}-btn">${i.categoryName}</label>
             </span>
 			`
-					index++;
+
 					
 					let el = new DOMParser()
 						.parseFromString(template, "text/html")
@@ -67,11 +69,34 @@ window.addEventListener("load", function() {
 
 
 
+			let selectAlltemplate =
+						`
+			<span>
+                <input type="checkbox" name="" id="selectAll-btn">
+                <label class="btn btn-default aaa" for="selectAll-btn">전체보기</label>
+            </span>
+			`
+			
+			
+			categoryBox.insertAdjacentHTML("afterbegin",selectAlltemplate);
 
 			})
-
-
+			
+			
 	}
+	
+	
+//  =========== 소분류 선택을 위한 함수 ==========
+	categoryBox.onclick = function(e) {
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 
 
 

@@ -11,8 +11,6 @@ import java.util.List;
 public interface CategoryService {
 
     List<SuperCategory> getList();
-    
-    List<Category> getSubList();
     List<Category> getSubList(int superCategoryId);
 
 	
