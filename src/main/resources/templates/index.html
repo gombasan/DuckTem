@@ -109,7 +109,7 @@
               <div class="price-wish">
                 <span th:text = "${preview.price}"></span>
                 <img class ="wish" src="/image/icon/heart.svg" alt="찜"
-                th:value = "${preview.productId}">
+                th:data-id = "${preview.productId}">
               </div>
 
               <div th:text="${preview.name}" class="name">
@@ -156,7 +156,7 @@
 
                       <div class="price-wish">
                           <span>${product.price}</span>
-                          <img class ="wish" src="/image/icon/heart.svg" alt="찜" th:value = "${preview.productId}">
+                          <img class ="wish" src="/image/icon/heart.svg" alt="찜" th:data-id = "${product.productId}">
                       </div>
 
                       <div class="name">

@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ducktem.web.dao.WishListDao">
-	<select id="get" resultType="com.ducktem.web.entity.WishList">
-		SELECT current FROM WishList WHERE memberId=(#{memberId}) AND productId = (#{productId});
+	<select id="getList" resultType="WishList">
+		SELECT * FROM WishList WHERE memberId = #{memberId}
 	</select>
-	<insert id="save" parameterType="com.ducktem.web.entity.WishList">
-		INSERT INTO WishList (memberId,productId) VALUES (#{memberId},#{productId});
-	</insert>
-	<update id="delete" parameterType="com.ducktem.web.entity.WishList">
-		UPDATE WishList SET current=0 WHERE memberId=(#{memberId}) AND productId=(#{productId});
-	</update>
+	<select id="get" resultType="WishList">
+		SELECT * FROM WishList WHERE memberId=#{memberId} AND productId=#{productId}
+	</select>
+	<select id="getNums" resultType="int">
+		select count(productId) from WishList where productId=#{productId}
+	</select>
+	
+	<insert id="save" parameterType="WishList">
+		INSERT INTO WishList (memberId,productId) VALUES (#{memberId},#{productId})
+	</insert>	
+	<delete id="delete">
+		 DELETE FROM WishList WHERE memberId=#{memberId} AND productId=#{productId}
+	</delete>
+	
+	
+	
 </mapper>
