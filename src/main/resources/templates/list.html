@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" href="/css/layout.css">
 	<link rel="stylesheet" href="/css/list.css">
+	
 	<script src="/js/list.js"></script>
 
 </th:block>
@@ -30,15 +31,15 @@
 
 		<section class="subcategory">
 			<h1 class="d-none">소분류</h1>
-			<input type="checkbox" name="" id="selectAll-btn"><label
-				class="btn btn-default aaa" for="selectAll-btn">전체보기</label> <span
-				th:each="category, i :${categoryList}"> <input
-				type="checkbox" name="" th:id="(${i.index}+1)+'-btn'"
-				th:for="(${i.index}+1)+'-btn'" id="2-btn"><label
-				th:attr="data-id=${category.categoryId}"
-				th:text="${category.categoryName}" class="btn btn-default aaa"
-				th:for="(${i.index}+1)+'-btn'" for="2-btn">음반/영상물</label>
+			
+			<input type="checkbox" name="" id="selectAll-btn">
+			<label class="btn btn-default aaa" for="selectAll-btn">전체보기</label> 
+			
+			<span th:each="category, i :${categoryList}"> 
+			<input type="checkbox" name="" th:id="${category.categoryId}+'-btn'"  id="2-btn">
+			<label th:attr="data-id=${category.categoryId}" th:text="${category.categoryName}" class="btn btn-default aaa" th:for="${category.categoryId}+'-btn'" for="2-btn">음반/영상물</label>
 			</span>
+			
 		</section>
 
 	</section>

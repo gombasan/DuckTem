@@ -16,19 +16,19 @@ public class Category {
     
     
     
+//    
+//    public Category() {
+//	
+//	}
     
-    public Category() {
-	
-	}
     
-    
-	public Category(int categoryId, int superCategoryId, String superCategoryName, String categoryName) {
-	
-		this.categoryId = categoryId;
-		this.superCategoryId = superCategoryId;
-		this.superCategoryName = superCategoryName;
-		this.categoryName = categoryName;
-	}
+//	public Category(int categoryId, int superCategoryId, String superCategoryName, String categoryName) {
+//	
+//		this.categoryId = categoryId;
+//		this.superCategoryId = superCategoryId;
+//		this.superCategoryName = superCategoryName;
+//		this.categoryName = categoryName;
+//	}
 	
 	public int getCategoryId() {
 		return categoryId;

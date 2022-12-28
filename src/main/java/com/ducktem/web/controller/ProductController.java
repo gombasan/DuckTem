@@ -101,6 +101,8 @@ public class ProductController {
     	
     	List<SuperCategory> supercategory = categoryService.getList();
     	List<Category> category = categoryService.getSubList(superCategoryId);
+
+    	
     	
     	
     	model.addAttribute("superCategoryList", supercategory);
