@@ -6,13 +6,13 @@
 
 
 	<select id="findAll"
-		resultType="com.ducktem.web.entity.SuperCategory">
+		resultType="SuperCategory">
 		select * from SuperCategory
 	</select>
 
 
 	<select id="findSubCategoryAll"
-		resultType="com.ducktem.web.entity.Category">
+		resultType="Category">
 		select Category.id categoryId, SuperCategory.id superCategoryId,
 		SuperCategory.name superCategoryName, Category.name categoryName
 		from Category join SuperCategory

@@ -94,6 +94,21 @@ public class ProductController {
 
     
     
+    /* 상품 리스트 보기 (변경 예정.)*/
+    @GetMapping("/list")
+    
+    public String productList(Model model, @RequestParam(defaultValue = "1",name="sup") int superCategoryId) {
+    	
+    	List<SuperCategory> supercategory = categoryService.getList();
+    	List<Category> category = categoryService.getSubList(superCategoryId);
+    	
+    	
+    	model.addAttribute("superCategoryList", supercategory);
+    	model.addAttribute("categoryList", category);
+
+    	
+        return "list";
+    }
     
   
     

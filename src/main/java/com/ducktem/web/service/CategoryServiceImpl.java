@@ -16,7 +16,8 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public List<SuperCategory> getList() {
-        return categoryDao.findAll();
+//        return categoryDao.findAll();
+    	return null;
     }
 
 	@Override

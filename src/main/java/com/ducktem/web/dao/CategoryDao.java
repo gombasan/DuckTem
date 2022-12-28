@@ -13,6 +13,4 @@ public interface CategoryDao {
     List<SuperCategory> findAll();
     List<Category> findSubCategoryAll(int superCategoryId);
     
-
-
 }

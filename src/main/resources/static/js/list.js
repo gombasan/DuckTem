@@ -33,7 +33,7 @@ window.addEventListener("load", function() {
 		currentLi = li;
 
 
-		let queryString = `?c=${currentLi.dataset.id}`;
+		let queryString = `?sup=${currentLi.dataset.id}`;
 
 		if (currentLi.dataset.id == null)
 			queryString = "";
