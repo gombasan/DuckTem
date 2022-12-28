@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 
 
     <header th:fragment="header">
@@ -13,9 +15,9 @@
     
                 <div class="menu-bar-category">
                     <div class="category-login">
-                        <a th:if="${session.nickName} == null" href="/login">로그인/회원가입</a>
-                        <a th:if="${session.nickName} != null" href="/mypage" th:text="|${session.nickName} 님 환영합니다!|"></a>
-                        <a style="display: block" th:if="${session.nickName} != null" href="/logout">로그아웃</a>
+                        <a sec:authorize="isAnonymous()" href="/login">로그인/회원가입</a>
+                        <a sec:authorize="isAuthenticated()" href="/mypage" th:text="|${session.nickName} 님 환영합니다!|"></a>
+                        <a sec:authorize="isAuthenticated()" style="display: block" href="/logout">로그아웃</a>
                     </div>
     
                     <ul class="my-list">

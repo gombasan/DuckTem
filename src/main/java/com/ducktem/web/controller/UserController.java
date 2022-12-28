@@ -28,47 +28,47 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(@RequestParam("userId") String id,
-                        @RequestParam("pwd") String pwd,
-                        @RequestParam(defaultValue = "false" ,name = "autologin") boolean autoLogin,
-                        HttpSession session,
-                        HttpServletRequest request,
-                        HttpServletResponse response
-    ) {
-        Member user = memberService.getMember(id);
-        
-        //탈퇴 회원 확인
-        if(user.getStatus() == 1) {
-            //아이디/비번 유효하지 않습니다 -> 메시지 띄울건지? (띄운다면) html 수정해야.
-            System.out.println("없는 계정입니다.");
-
-            return "/login";
-        }
-        	
-        //일반로그인
-        if(user != null && user.getPwd().equals(pwd)) {
-            session.setAttribute("nickName",user.getNickName());
-            session.setAttribute("userId",user.getUserId());
-            String sessionId = session.getId();
-            System.out.println(sessionId);
-
-            //자동로그인 체크되었을 때 세션 저장
-            if(autoLogin == true) {
-                Cookie cookie = new Cookie("loginInfo",sessionId);
-                cookie.setPath("/");
-                cookie.setMaxAge(60*60*24*7);
-                response.addCookie(cookie);
-                memberService.addAutoLogin(id, sessionId);
-               
-            }
-            return "redirect:/";
-        }
-        else {
-            System.out.println("없는 계정입니다.");
-            return "/login";
-        }
-    }
+//    @PostMapping("/login")
+//    public String login(@RequestParam("userId") String id,
+//                        @RequestParam("pwd") String pwd,
+//                        @RequestParam(defaultValue = "false" ,name = "autologin") boolean autoLogin,
+//                        HttpSession session,
+//                        HttpServletRequest request,
+//                        HttpServletResponse response
+//    ) {
+//        Member user = memberService.getMember(id);
+//        
+//        //탈퇴 회원 확인
+//        if(user.getStatus() == 1) {
+//            //아이디/비번 유효하지 않습니다 -> 메시지 띄울건지? (띄운다면) html 수정해야.
+//            System.out.println("없는 계정입니다.");
+//
+//            return "/login";
+//        }
+//        	
+//        //일반로그인
+//        if(user != null && user.getPwd().equals(pwd)) {
+//            session.setAttribute("nickName",user.getNickName());
+//            session.setAttribute("userId",user.getUserId());
+//            String sessionId = session.getId();
+//            System.out.println(sessionId);
+//
+//            //자동로그인 체크되었을 때 세션 저장
+//            if(autoLogin == true) {
+//                Cookie cookie = new Cookie("loginInfo",sessionId);
+//                cookie.setPath("/");
+//                cookie.setMaxAge(60*60*24*7);
+//                response.addCookie(cookie);
+//                memberService.addAutoLogin(id, sessionId);
+//               
+//            }
+//            return "redirect:/";
+//        }
+//        else {
+//            System.out.println("없는 계정입니다.");
+//            return "/login";
+//        }
+//    }
 
     @GetMapping("/logout")
     public String logout(HttpSession session, HttpServletResponse response, HttpServletRequest request) {
