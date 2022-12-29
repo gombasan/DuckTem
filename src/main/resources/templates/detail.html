@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/detail.css">
 
 	<script src="/js/wish.js"></script>
+    <script src="/js/productDetail.js"></script>
     <style>
         .state-select {
             background-color: var(--color-light);
@@ -61,7 +62,7 @@
         <div class="detail-container-title">
             <h1 th:text="${product.name}">뉴진스 비공굿 판매(포카, 떡메)</h1>
             <span class="detail-category">비공식 굿즈 > 문구류</span>
-            <span th:text="${product.regDate}">1분전</span>
+            <span th:text="${product.nTimeAgo}">1분전</span>
         </div>
         <div class="detail-icon">
             <div class="">
@@ -129,8 +130,8 @@
             <div>
                 <span th:text="|${product.price}원|"></span>
             </div>
-            <div th:if="${session.nickName} != ${member.nickName}">
-                <a class="btn btn-default " href="">덕템톡</a>
+            <div id="duck-talk" th:if="${session.nickName} != ${member.nickName}" th:attr="data-id=|${product.regMemberId}/${session.nickName}/${product.id}|">
+                <a class="btn btn-default " href="/chatting">덕템톡</a>
             </div>
             <div th:if="${session.nickName} == ${member.nickName}" class="state-btn">
                 <a class="btn btn-default " href="">상태변경</a>
@@ -179,8 +180,6 @@
 
                 let productId = submitBtn.dataset.id;
 
-                // let url = window.location.pathname.split("/");
-                // let productId = url[2];
                 fetch(`/product/myproduct/sellStatesChange/${productId}/${selectState}`,{method:'POST'})
                     .then(() => {
                         location.reload();

@@ -33,4 +33,9 @@ public class ProductPreviewServiceImpl implements ProductPreviewService {
 
         return productPreviewDao.getPreviewList(size,offset);
     }
+
+    @Override
+    public ProductPreview get(Long productId) {
+        return productPreviewDao.findByProductId(productId);
+    }
 }

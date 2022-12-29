@@ -17,9 +17,8 @@ public class Product {
     private int salesStatusId;
 
     private String deliveryType;
-
     private int hit;
-
+    private String nTimeAgo;
     public Long getId() {
         return id;
     }
@@ -107,6 +106,14 @@ public class Product {
 
     public void setSalesStatusId(int salesStatusId) {
         this.salesStatusId = salesStatusId;
+    }
+
+    public String getNTimeAgo() {
+        return nTimeAgo;
+    }
+
+    public void setNTimeAgo(String nTimeAgo) {
+        this.nTimeAgo = nTimeAgo;
     }
 
     @Override

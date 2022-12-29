@@ -5,7 +5,7 @@
 
 <!--  공통 css 제외한 나머지 css&js  -->
 <th:block layout:fragment="css">
-
+    <script src="/js/chatting.js"></script>
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/member/chatting/detail.css">
 
@@ -105,6 +105,14 @@
     </div>
 
 
+<script>
+  let ws = new WebSocket("ws://localhost:8080/chatting/start");
+  let test = document.querySelector(".category-login");
+
+  console.log(test);
+
+</script>
+
 
 
 
@@ -112,8 +120,6 @@
 
 
   </main>
-
-
 
 
 

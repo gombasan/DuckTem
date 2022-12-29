@@ -18,4 +18,10 @@
         select * from ProductPreview
         order by regDate desc LIMIT #{size} OFFSET #{offset};
     </select>
+
+    <select id="findByProductId" resultType="ProductPreview">
+        select * from ProductPreview
+        where productId = #{prodcutId}
+        order by regDate desc ;
+    </select>
 </mapper>

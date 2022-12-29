@@ -11,4 +11,6 @@ public interface ProductPreviewService {
     List<ProductPreview> preview();
 
     List<ProductPreview> preview(int page);
+
+    ProductPreview get(Long productId);
 }

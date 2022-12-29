@@ -14,4 +14,6 @@ public interface ProductPreviewDao {
     List<ProductPreview> findMemberProductList(String memberId);
 
     List<ProductPreview> getPreviewList(int size, int offset);
+
+    ProductPreview findByProductId(Long productId);
 }
