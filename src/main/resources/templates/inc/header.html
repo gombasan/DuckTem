@@ -3,7 +3,6 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 
-
     <header th:fragment="header">
 
         <section class="header-wrap">
@@ -16,7 +15,7 @@
                 <div class="menu-bar-category">
                     <div class="category-login">
                         <a sec:authorize="isAnonymous()" href="/login">로그인/회원가입</a>
-                        <a sec:authorize="isAuthenticated()" href="/mypage" th:text="|${session.nickName} 님 환영합니다!|"></a>
+                        <a sec:authorize="isAuthenticated()" href="/mypage" th:text="|${#authentication.name} 님 환영합니다!|"></a>
                         <a sec:authorize="isAuthenticated()" style="display: block" href="/logout">로그아웃</a>
                     </div>
     
@@ -77,11 +76,13 @@
         <!-- 검색 창 -->
         <section class="d-none search-wrap">
     
+    	<form action="search" method="get">
           <div class="search-input-wrap">
             <img class="search-input-back" src="/image/icon/icon-right.svg" alt="뒤로가기">
-            <input class="search-input-text" type="text" placeholder="어떤 상품을 찾으시나요?">
-            <img class="search-input-icon" src="/image/icon/search.svg" alt="검색">
+            <input class="search-input-text" name="keyword" type="text" placeholder="어떤 상품을 찾으시나요?">
+            <input type="image" class="search-input-icon " src="/image/icon/search.svg" alt="검색">
           </div>
+    	</form>
     
     
           <section class="latest-world-list-wrap">
