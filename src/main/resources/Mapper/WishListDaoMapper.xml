@@ -10,12 +10,13 @@
 	<select id="getNums" resultType="int">
 		select count(productId) from WishList where productId=#{productId}
 	</select>
-	
+	<select id="getMyWishNum" resultType="int">
+		select count(productId) from WishList where memberId=#{memberId}
+	</select>
 	<insert id="save" parameterType="WishList">
 		INSERT INTO WishList (memberId,productId) VALUES (#{memberId},#{productId})
 	</insert>	
 	<delete id="delete">
 		 DELETE FROM WishList WHERE memberId=#{memberId} AND productId=#{productId}
 	</delete>
-
 </mapper>

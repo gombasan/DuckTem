@@ -1,14 +1,19 @@
 package com.ducktem.web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ducktem.web.dao.ImgDao;
 import com.ducktem.web.dao.MemberDao;
 import com.ducktem.web.dao.ProductDao;
 import com.ducktem.web.dao.WishListDao;
 import com.ducktem.web.entity.Member;
+import com.ducktem.web.entity.Product;
+import com.ducktem.web.entity.ProductImg;
+import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.entity.WishList;
 
 @Service
@@ -20,6 +25,9 @@ public class WishListServiceImpl implements WishListService{
     private MemberDao memberDao;
     @Autowired
     private WishListDao wishListDao;
+    
+    @Autowired
+    private ImgDao imgDao;
     
 //    my wishList 불러오기
     @Override
@@ -47,7 +55,7 @@ public class WishListServiceImpl implements WishListService{
 		
 		
 	}
-
+//	위시 있는지 확인하는 것
 	@Override
 	public boolean confirmWish(String userId, Long productId) {
 		
@@ -59,11 +67,37 @@ public class WishListServiceImpl implements WishListService{
 		else
 			return true;
 	}
-
+// 프로덕트 아이디로 불러오기
 	@Override
-	public int getWIshNums(Long productId) {
+	public int getWIshNumsbyPId(Long productId) {
 		int nums = wishListDao.getNums(productId);
 		return nums;
+	}
+
+	@Override
+	public ArrayList<ProductPreview> getmyWishList(List<WishList> wishList) {
+		ArrayList<ProductPreview> myWishList = new ArrayList<>(wishList.size());
+		
+		for(int i=0; i<wishList.size() ; i++) {
+			Long tempProdcutId = wishList.get(i).getProductId();
+			Product tempProduct = productDao.findById(tempProdcutId);
+			List<ProductImg> tempProductImgList = imgDao.findByProductId(tempProdcutId);
+			
+			ProductPreview tempPreview = new ProductPreview(
+												tempProductImgList.get(0).getName(),
+												tempProduct.getPrice(),
+												tempProduct.getName(),
+												tempProduct.getRegDate().toString()); 
+			
+			tempPreview.setProductId(tempProdcutId);
+			myWishList.add(i,tempPreview);
+		}
+		return myWishList;
+	}
+
+	@Override
+	public int getMyWishNum(String userId) {
+		return wishListDao.getMyWishNum(userId);
 	}
 
 

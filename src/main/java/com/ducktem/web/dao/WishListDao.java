@@ -17,5 +17,7 @@ public interface WishListDao {
 	void delete(WishList wishList);
 
 	int getNums(Long productId);
+
+	int getMyWishNum(String userId);
 	
 }
