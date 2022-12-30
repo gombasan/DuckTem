@@ -53,22 +53,20 @@ window.addEventListener("load", function () {
 				let temp = `
 				    <section class="product-wrap">		
 			            <div class="product-container">
-			                <a href="/product/${myProducts[i].productId}">
-			                    <div><img src="${myProducts[i].thumbNailImg}" alt="product-img"></div>
-			
-			                    <div class="price-wish">
-			                        <span text="">${myProducts[i].price}원</span>	
-			                        <img class ="wish" src="/image/icon/heart.svg" alt="찜" data-id = "${myProducts[i].productId}">
-			                    </div>
-			
-			                    <div text="" class="name">
-			                        ${myProducts[i].name}
-			                    </div>
-			
-			                    <div text="" class="time">
-			                        ${myProducts[i].regDate}
-			                    </div>
-			                </a>
+		                    <div><img src="${myProducts[i].thumbNailImg}" alt="product-img"></div>
+		
+		                    <div class="price-wish">
+		                        <span text="">${myProducts[i].price}원</span>	
+		                        <img class ="wish" src="/image/icon/heart.svg" alt="찜" data-id = "${myProducts[i].productId}">
+		                    </div>
+		
+		                    <div text="" class="name">
+		                        ${myProducts[i].name}
+		                    </div>
+		
+		                    <div text="" class="time">
+		                        ${myProducts[i].regDate}
+		                    </div>
 			            </div>
 			        </section>`;
 			        if(i==0)
@@ -132,22 +130,20 @@ window.addEventListener("load", function () {
 				let temp = `
 				    <section class="product-wrap">		
 			            <div class="product-container">
-			                <a href="/product/${wishProducts[i].productId}">
-			                    <div><img src="${wishProducts[i].thumbNailImg}" alt="product-img"></div>
-			
-			                    <div class="price-wish">
-			                        <span text="">${wishProducts[i].price}원</span>	
-			                        <img class ="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" data-id = "${wishProducts[i].productId}">
-			                    </div>
-			
-			                    <div text="" class="name">
-			                        ${wishProducts[i].name}
-			                    </div>
-			
-			                    <div text="" class="time">
-			                        ${wishProducts[i].regDate}
-			                    </div>
-			                </a>
+		                    <div><img src="${wishProducts[i].thumbNailImg}" alt="product-img"></div>
+		
+		                    <div class="price-wish">
+		                        <span text="">${wishProducts[i].price}원</span>	
+		                        <img class ="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" data-id = "${wishProducts[i].productId}">
+		                    </div>
+		
+		                    <div text="" class="name">
+		                        ${wishProducts[i].name}
+		                    </div>
+		
+		                    <div text="" class="time">
+		                        ${wishProducts[i].regDate}
+		                    </div>
 			            </div>
 			        </section>`;
 			        if(i==0)

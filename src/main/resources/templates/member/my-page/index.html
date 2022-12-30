@@ -21,16 +21,17 @@
 
             <section class="profile">
                 <div>
-                    <img src="/image/profile-img.png" alt="">
+                    <img th:if="${member.profileImg == null}" src="/image/profile-img.png" alt="">
+                    <img th:if="${member.profileImg != null}" th:src="${member.profileImg}" alt="">
                 </div>
                 <div>
-                    <span>Nickname</span>
+                    <span th:text="${member.nickName}">Nickname</span>
                 </div>
                 <div>
                     <a class="btn btn-default" href="">내 정보</a>
                 </div>
                 <div>
-                    <span>소개말</span>
+                    <span th:text="${member.intro}">소개말</span>
                 </div>
                 <div>
                     <a class="btn btn-default keyword-alert-btn" href="">키워드 알림</a>
