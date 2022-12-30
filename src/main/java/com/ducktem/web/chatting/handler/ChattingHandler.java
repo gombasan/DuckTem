@@ -59,14 +59,7 @@ public class ChattingHandler extends TextWebSocketHandler {
         String customerId = chatRequest[1];
         Long productId = Long.parseLong(chatRequest[2]);
 
-        ChatRoom chatRoom = chatRoomDao.findBySellerAndCustomer(sellerId, customerId);
-
-//        if (chatRoom == null) {
-//            ChatRoom newChatRoom = new ChatRoom(sellerId,customerId,productId);
-//            chatRoomDao.save(newChatRoom);
-//            chatRoom = newChatRoom;
-//        }
-
+        ChatRoom chatRoom = chatRoomDao.findOne(sellerId, customerId,productId);
         Long chatRoomId = chatRoom.getId();
         String chatMsg = chatRequest[3];
         if(chatMsg != null) {

@@ -1,4 +1,6 @@
 let chatting = function () {
+
+
     let duckTalk = document.querySelector("#duck-talk");
     let query = duckTalk.dataset.id
     let sellerId = query.split("/").at(0);
@@ -8,6 +10,7 @@ let chatting = function () {
     if(sellerId != "null"){
         duckTalk.onclick = function (e) {
             e.preventDefault();
+            console.log("/chatting?sellerId="+sellerId+"&&customerId="+customerId+"&&productId="+productId);
           window.location.href = "/chatting?sellerId="+sellerId+"&&customerId="+customerId+"&&productId="+productId;
         };
     }

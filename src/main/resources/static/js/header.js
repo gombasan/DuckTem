@@ -1,7 +1,10 @@
 
+// 웹 소켓은 어느페이지에 있던 항상 열려있게 하기 위해 var 함수로 전역스코프로 설정.
+var socket = new WebSocket("ws://localhost:8080/chatting/start");
+
+
 window.addEventListener("load",function(){
     let main = document.querySelector("main");
-    
     let section = document.querySelector(".header-wrap");
     let burger = section.querySelector(".burger-icon");
     let menuBarCategory = section.querySelector(".menu-bar-category");

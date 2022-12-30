@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ChatRoomDao {
     void save(ChatRoom chatRoom);
-    ChatRoom findBySellerAndCustomer(String sellerId, String customerId);
+    ChatRoom findOne(String sellerId, String customerId,Long productId);
 }

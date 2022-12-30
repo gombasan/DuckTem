@@ -4,18 +4,36 @@ package com.ducktem.web.entity;
 import java.util.Date;
 
 public class Chat {
+    private Long id;
     private Long chatRoomId;
-    private String chat;
+    private String content;
 
+    private int readChat;
     private Date regDate;
 
     public Chat() {
         this(null, null);
     }
 
-    public Chat(Long chatRoomId, String chat) {
+    public Chat(Long chatRoomId, String content) {
         this.chatRoomId = chatRoomId;
-        this.chat = chat;
+        this.content = content;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getReadChat() {
+        return readChat;
+    }
+
+    public void setReadChat(int readChat) {
+        this.readChat = readChat;
     }
 
     public Long getChatRoomId() {
@@ -27,11 +45,11 @@ public class Chat {
     }
 
     public String getChat() {
-        return chat;
+        return content;
     }
 
     public void setChat(String chat) {
-        this.chat = chat;
+        this.content = chat;
     }
 
     public Date getRegDate() {

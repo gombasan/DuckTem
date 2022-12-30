@@ -10,6 +10,7 @@ import com.ducktem.web.service.MemberService;
 import com.ducktem.web.service.ProductPreviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
@@ -27,15 +28,19 @@ public class ChattingApi {
     private MemberService memberService;
 
     @GetMapping("/chatting")
-    public String chatting(ChatRoom chatRoom) {
+    public String chatting(Model model, ChatRoom chatRoom) {
         ProductPreview productPreview = productPreviewService.get(chatRoom.getProductId());
-        Member Seller = memberService.getMember(chatRoom.getCustomerId());
-        Member customer = memberService.getMember(chatRoom.getSellerId());
-
+        Member seller = memberService.getMember(chatRoom.getSellerId());
+        Member customer = memberService.getMember(chatRoom.getCustomerId());
         List<Chat> chattingList = chattingService.getChattingList(chatRoom);
+
+        model.addAttribute("productPreview" , productPreview);
+        model.addAttribute("seller", seller);
+        model.addAttribute("customer", customer);
+        model.addAttribute("chattingList", chattingList);
+
 
         return "member/chatting/detail";
     }
-
 
 }

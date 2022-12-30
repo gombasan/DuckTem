@@ -83,10 +83,6 @@ public class ProductController {
         return "redirect:/product/{id}";
     }
 
-    @PostMapping("/product/{id}")
-    public String productStateUpdate() {
-        return "";
-    }
 
     /* 상품 리스트 보기 (변경 예정.)*/
     @GetMapping("/list")

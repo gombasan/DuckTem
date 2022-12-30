@@ -13,16 +13,22 @@ import java.util.List;
 public class ChattingServiceImpl implements ChattingService{
 
     @Autowired
-    private ChatDao chat;
+    private ChatDao chatDao;
 
     @Autowired
     private ChatRoomDao chatRoomDao;
 
     @Override
     public List<Chat> getChattingList(ChatRoom chatRoom) {
-        chatRoomDao.findBySellerAndCustomer(chatRoom.getSellerId(), chatRoom.getCustomerId());
+        Long roomId = 0L;
+        ChatRoom existingChatRoom = chatRoomDao.findOne(chatRoom.getSellerId(), chatRoom.getCustomerId(),chatRoom.getProductId());
+        if(existingChatRoom == null) {
+            chatRoomDao.save(chatRoom);
+            roomId = chatRoom.getId();
+            return chatDao.findByChatRoomId(roomId);
+        }
 
-
-        return null;
+        roomId = existingChatRoom.getId();
+        return chatDao.findByChatRoomId(roomId);
     }
 }
