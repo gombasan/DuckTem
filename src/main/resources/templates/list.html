@@ -33,7 +33,7 @@
 			<h1 class="d-none">소분류</h1>
 			
 			<input type="checkbox" name="" id="selectAll-btn">
-			<label class="btn btn-default aaa" for="selectAll-btn">전체보기</label> 
+			<label class="btn btn-default aaa selectAll" data-id="-1" for="selectAll-btn">전체보기</label> 
 			
 			<span th:each="category, i :${categoryList}"> 
 			<input type="checkbox" name="" th:id="${category.categoryId}+'-btn'"  id="2-btn">
@@ -62,6 +62,10 @@
 
 	<section class="product-list">
 		<h1 class="d-none">상품목록</h1>
+
+
+
+
 
 		<div class="product-wrap">
 

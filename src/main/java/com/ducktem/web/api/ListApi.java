@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import com.ducktem.web.entity.Category;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.service.CategoryService;
+import com.ducktem.web.service.ProductPreviewService;
 import com.ducktem.web.service.ProductService;
 
 @RestController
@@ -22,37 +24,33 @@ public class ListApi {
 
 	@Autowired
 	private CategoryService categoryService;
+	
 	@Autowired
-	private ProductService productService;
+    private ProductPreviewService productPreviewService;
 
-//	@GetMapping("lists")
-//	public Map<String, Object> List(@RequestParam("c") Integer superCategoryId,
-//			@RequestParam("sub") Integer subCategoryId) {
-//
-//		Map<String, Object> listDto = new HashMap<>();
-//
-//		List<Category> categoryList = categoryService.getSubList(superCategoryId);
-//		listDto.put("categoryList", categoryList);
-//
-//		if (subCategoryId != null) {
-//			List<Product> ProductList = productService.list(subCategoryId, superCategoryId);
-//			listDto.put("ProductList", ProductList);
-//		}
-//		
-//		
-//		
-//
-//		return listDto;
-//	}
+
+	
+
+	
+	
+	
 	
 	
 	
 	@GetMapping("lists")
-	public List<Category> categoryList(@RequestParam("c") Integer superCategoryId) {
+	public Map<String, Object> ListByCategory(@RequestParam(name="super") Integer superCategoryId, @RequestParam(defaultValue="-1", name="cate") Integer categoryId) {
 
-		List<Category> categoryList = categoryService.getSubList(superCategoryId);
+		Map<String, Object> listByCategoryDto = new HashMap<>();
+
 		
-		return categoryList;
+		List<Category> categoryList = categoryService.getSubList(superCategoryId);
+		List<ProductPreview> preview = productPreviewService.previewByCategory(superCategoryId, categoryId);
+		
+		listByCategoryDto.put("categoryList", categoryList);
+		listByCategoryDto.put("productPreviewByCategory", preview);
+		
+
+		return listByCategoryDto;
 	}
 
 };

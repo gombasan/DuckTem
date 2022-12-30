@@ -1,7 +1,6 @@
 package com.ducktem.web.dao;
 
 import com.ducktem.web.entity.Product;
-import com.ducktem.web.entity.ProductPreview;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,7 +15,6 @@ public interface ProductDao {
     /* 전체 상품 리스트 찾기 */
     List<Product> findAll();
 
-
     /* 상품 찾기 */
     Product findById(Long productId);
 
@@ -25,4 +23,5 @@ public interface ProductDao {
 
 
     void update(Product product);
+
 }

@@ -13,6 +13,8 @@ public class ProductPreviewServiceImpl implements ProductPreviewService {
 
     @Autowired
     private ProductPreviewDao productPreviewDao;
+    
+
 
     @Override
     public List<ProductPreview> myList(String memberId) {
@@ -29,8 +31,14 @@ public class ProductPreviewServiceImpl implements ProductPreviewService {
         int size = 10;
         int offset = (page-1)*size;
 
-
-
         return productPreviewDao.getPreviewList(size,offset);
     }
+
+	@Override
+	public List<ProductPreview> previewByCategory(Integer superCategoryId, Integer categoryId) {
+		
+		return productPreviewDao.findPreviewListByCategory(superCategoryId, categoryId);
+	}
+
+	
 }

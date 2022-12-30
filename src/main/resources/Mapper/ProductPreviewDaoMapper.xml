@@ -18,4 +18,25 @@
         select * from ProductPreview
         order by regDate desc LIMIT #{size} OFFSET #{offset};
     </select>
+    
+    
+    
+<select id="findPreviewListByCategory" resultType="ProductPreview" parameterType="Int">
+        select * from ProductPreview 
+		left join Product 
+		on ProductPreview.productId=Product.id 
+		left join Category
+		on Product.categoryId = Category.id
+		 <trim prefix="WHERE" prefixOverrides="AND |OR "> 
+			<if test="superCategoryId != null and categoryId == -1">	
+		    	 Category.superCategoryId=#{superCategoryId}
+		    </if>
+		    <if test="categoryId != -1">	
+		    	 Category.id=#{categoryId}
+		    </if>
+	     </trim> 
+
+    </select>
+
+    
 </mapper>

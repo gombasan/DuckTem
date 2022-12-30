@@ -10,6 +10,7 @@ public class ProductPreview {
     private String name;
     private String regDate;
 
+
     public ProductPreview(String thumbNailImg, String price, String name, String regDate) {
         this.thumbNailImg = thumbNailImg;
         this.price = price;
@@ -66,4 +67,6 @@ public class ProductPreview {
                 ", regDate='" + regDate + '\'' +
                 '}';
     }
+
+	
 }

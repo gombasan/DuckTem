@@ -8,6 +8,7 @@ import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.entity.Category;
 import com.ducktem.web.service.*;
 
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -82,7 +83,7 @@ public class ProductController {
     /* 내 상품 정보 수정*/
     @PostMapping("/product/myproduct/{memberNickName}/{id}")
     public String myProductUpdate(Product product) {
-        System.out.println("product = " + product);
+    
         productService.update(product);
         return "redirect:/product/{id}";
     }
@@ -97,20 +98,24 @@ public class ProductController {
     /* 상품 리스트 보기 (변경 예정.)*/
     @GetMapping("/list")
     
-    public String productList(Model model, @RequestParam(defaultValue = "1",name="sup") int superCategoryId) {
+    public String productList(Model model, @RequestParam(defaultValue="1", name="super") Integer superCategoryId, @RequestParam(defaultValue="-1", name="cate") Integer categoryId) {
+    	
     	
     	List<SuperCategory> supercategory = categoryService.getList();
     	List<Category> category = categoryService.getSubList(superCategoryId);
-
-    	
+    	List<ProductPreview> preview = productPreviewService.previewByCategory(superCategoryId, categoryId);
     	
     	
     	model.addAttribute("superCategoryList", supercategory);
     	model.addAttribute("categoryList", category);
+    	model.addAttribute("preview", preview);
 
     	
         return "list";
     }
+    
+    
+
     
   
     
