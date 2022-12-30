@@ -1,10 +1,23 @@
 window.addEventListener("load",function(){
 	let main = document.querySelector("main");
+//	my page 빼고 적용,load와 동시에 만들어야 함
+	let wishes = main.querySelectorAll(".wish");		
+	
+//	detail page 특수 기능
 	let bottomWrap = document.querySelector(".bottom-bar-wrap");
-	let wishes = main.querySelectorAll(".wish");
 	let nums = main.querySelector(".nums");
 	let id = null;
-	
+		
+//	찜 상품 넘어갈 때 새로고침
+	let openWithWish = main.querySelector(".open-with-wish");
+	if(openWithWish){
+		openWithWish.onclick = function(){
+			wishes.init();
+			
+		};
+	};		
+		
+// bottom 있을 때만 실행하고, 만들어 주기 위한 코드	
 	if(bottomWrap){
 	// nums 초기화
 		nums.init = function(){
@@ -17,14 +30,14 @@ window.addEventListener("load",function(){
 				nums.innerText = String(result);
 				
 			})
-			.catch(()=>console.log('에러발생'))
-		}
+			.catch(()=>console.log('에러발생'));
+		};
 	
 		nums.init();
-	}
+	};
 		
 
-//	wishes 초기화
+//	wishes 초기화, 공통, 새로고침할 때 실행
 	wishes.init = function(){
 		
 		fetch(`/wish`,{
@@ -39,24 +52,23 @@ window.addEventListener("load",function(){
 				console.log("오프라인 이므로 실행하지 않습니다.");
 				
 			if(result != null){
-			for(let i = 0; i<wishes.length;i++){
-				for(let j=0; j<result.length; j++){
-					if(wishes[i].dataset.id == result[j].productId){
-						wishes[i].src = "/image/icon/icon-heart-red.svg";
-						wishes[i].classList.add("checked");
-					}
-				}
-			}	
+				for(let i = 0; i<wishes.length;i++){
+					for(let j=0; j<result.length; j++){
+						if(wishes[i].dataset.id == result[j].productId){
+							wishes[i].src = "/image/icon/icon-heart-red.svg";
+							wishes[i].classList.add("checked");
+						};
+					};
+				};	
 				
-			}		
-		})
+			};		
+		});
 		
-	}	
-	
+	};	
+
 	wishes.init();
 
-	
-// wishList check
+// wishList check, 공통
 	main.onclick = function(e){
 		
 		if(e.target.classList.contains("wish"))	{
@@ -75,7 +87,7 @@ window.addEventListener("load",function(){
 						location.href = result;
 					else if(result == "ok"){
 						e.target.classList.add("checked");
-						e.target.src = "/image/icon/icon-heart-red.svg";	
+						e.target.src = "/image/icon/icon-heart-red.svg";								
 					}
 											
 				})
@@ -85,8 +97,9 @@ window.addEventListener("load",function(){
 				})                              			
 				.catch(()=>{
 					console.log('에러발생');
-				})
-				}
+				});
+				};
+				
 			if(e.target.classList.contains("checked")){
 		        // fetch api
 		        id = e.target.dataset.id;
@@ -107,14 +120,13 @@ window.addEventListener("load",function(){
 				.then(()=>{	
 					if(e.target.classList.contains("bottom"))
 						nums.init();
-				})
-				}
-				
+				});
+			};
 
-		}
-	}
-	
-	
+		};
+	};
+		
+
 	
 	
 })

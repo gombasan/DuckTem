@@ -5,7 +5,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
+    z-index: 498;
     background-color: var(--color-light);
 }
 
@@ -98,14 +98,15 @@ header {
 /* ===================메뉴 바=================== */
 
 .menu-bar-category {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     z-index: 1;
     background-color: rgb(255, 255, 255);
     padding: 60px 40px;
+    overflow: scroll;
 }
 
 .burger-icon {
@@ -152,11 +153,11 @@ header {
 }
 
 /* active */
-.menu-bar-category.active{
+.menu-bar-category.active {
     visibility: visible;
 }
 
-.burger-icon.active{
+.burger-icon.active {
     max-width: 100%;
     visibility: visible;
 }
@@ -172,14 +173,14 @@ header {
         width: 35%;
     }
 }
+
 /* ===================메뉴 바 카테고리=================== */
 
 .category-login {
     margin-bottom: 70px;
-    /* display: inline-block; */
 }
 
-.category-login a::after {
+.category-login .menu-bar-login-btn::after {
     content: '123';
     position: absolute;
     right: 20%;
@@ -316,6 +317,7 @@ header {
     z-index: 9999;
     background-color: white;
     height: 300px;
+    overflow: scroll;
 }
 
 .search-input-wrap {
@@ -384,24 +386,32 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 380px;
+    min-width: 360px;
+    overflow: scroll;
 }
-
 
 .alarm-title-wrap {
     display: flex;
     justify-content: center;
     padding-top: 10px;
-    padding-left: 180px;
+    padding-left: 170px;
+    position: fixed;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+}
+
+.date-top-margin {
+    margin-top: 50px;
 }
 
 .alarm-title-wrap div {
-    padding-left: 130px;
+    padding-left: 110px;
 }
 
 
 .alarm-title-wrap>h1 {
     font-size: var(--font-5);
+    width: 50px;
 }
 
 .alarm-close {
@@ -409,9 +419,11 @@ header {
     height: 30px;
 }
 
+
+
 .alarm-update-date {
     font-size: var(--font-4);
-    padding-right: 230px;
+    padding-right: 200px;
 }
 
 .alarm-list-delete-all {
@@ -429,6 +441,7 @@ header {
 
     padding-bottom: 10px;
     border-bottom: 1px solid gray;
+    width: 360px;
 }
 
 .member-profile {
@@ -464,6 +477,165 @@ header {
 .alarm-img {
     width: 55px;
     height: 55px;
+}
+
+@media(min-width:768px) {
+    .alarm-container {
+        position: absolute;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        right: 10px;
+        top: 50px;
+        height: 50vh;
+        width: 390px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 360px;
+        overflow: scroll;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+}
+
+/* ================덕템톡 알람 ====================== */
+.chatting-alarm-container {
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 360px;
+    overflow: scroll;
+}
+
+
+
+.chatting-alarm-title-wrap {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-left: 155px;
+    position: fixed;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+}
+
+.chatting-alarm-title-wrap>div img {
+    padding-left: 105px;
+}
+
+
+.chatting-alarm-title-wrap>h1 {
+    font-size: var(--font-5);
+    min-width: 65px;
+}
+
+.chatting-alarm-close {
+    width: 30px;
+    height: 30px;
+}
+
+.chatting-alarm-update-date {
+    font-size: var(--font-4);
+    padding-right: 200px;
+}
+
+.chatting-alarm-list-delete-all {
+    font-size: var(--font-1);
+}
+
+.chatting-alarm-list {
+
+    margin-top: 10px;
+    display: grid;
+    grid-template:
+        "img username time" 1fr
+        "img description amount" 1fr
+        / .3fr 1fr .3fr;
+
+    padding-bottom: 10px;
+    border-bottom: 1px solid gray;
+    width: 360px;
+}
+
+.img-wrap {
+    grid-area: img;
+    align-self: center;
+    justify-self: center;
+}
+
+.chatting-member-profile {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chatting-alarm-username {
+    grid-area: username;
+    align-self: center;
+    font-size: var(--font-4);
+}
+
+.chatting-alarm-description {
+    grid-area: description;
+    align-self: center;
+    font-size: var(--font-3);
+    color: #8B898E;
+}
+
+.chatting-alarm-time {
+    grid-area: time;
+    font-size: var(--font-1);
+    color: #8B898E;
+
+    margin-top: 7px;
+
+}
+
+.amount-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatting-alarm-amount-wrap {
+    grid-area: amount;
+    width: 15px;
+    height: 15px;
+    background-size: 10px;
+    background-color: blueviolet;
+    border-radius: 50%;
+    position: relative;
+}
+
+.chatting-alarm-amount {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--font-1);
+    color: white;
+}
+
+@media(min-width:768px) {
+
+    .chatting-alarm-container {
+        position: absolute;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        right: 10px;
+        top: 50px;
+        width: 390px;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 360px;
+        overflow: scroll;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+    }
 
 }
 

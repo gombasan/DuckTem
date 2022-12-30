@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{inc/layout}">
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{inc/layout}">
 
 
 <!--  공통 css 제외한 나머지 css&js  -->
 <th:block layout:fragment="css">
 
-	<link rel="stylesheet" href="/css/layout.css">
-	<link rel="stylesheet" href="/css/member/sell/index.css">
-	<script src="/js/sell-wizard.js"></script>
-	<title>sell-index</title>
+   <link rel="stylesheet" href="/css/layout.css">
+   <link rel="stylesheet" href="/css/member/sell/index.css">
+   <script src="/js/sell-wizard.js"></script>
+   <title>sell-index</title>
 
 </th:block>
 
@@ -19,114 +19,114 @@
 <!-- ==================================================     메인   ================================================== -->
 <main class="main" layout:fragment="content">
 
-	<div class="background">
+   <div class="background">
 
 
 
-		<section class="wizard-header">
-			<h1 class="d-none">위자드 인덱스</h1>
-			<span class="line"></span> <span class="wizard first"><span
-				class="wizard-index">1</span></span> <span class="wizard "><span
-				class="wizard-index">2</span></span> <span class="wizard "><span
-				class="wizard-index">3</span></span> <span class="wizard "><span
-				class="wizard-index">4</span></span>
-		</section>
+      <section class="wizard-header">
+         <h1 class="d-none">위자드 인덱스</h1>
+         <span class="line"></span> <span class="wizard first"><span
+            class="wizard-index">1</span></span> <span class="wizard "><span
+            class="wizard-index">2</span></span> <span class="wizard "><span
+            class="wizard-index">3</span></span> <span class="wizard "><span
+            class="wizard-index">4</span></span>
+      </section>
 
 
-		<section class="main-wrap">
-			<h1 class="d-none">상품 등록 form</h1>
+      <section class="main-wrap">
+         <h1 class="d-none">상품 등록 form</h1>
 
 
-			<!-- ==================================================     폼시작   ================================================== -->
-			<form class="reg-form" method="post" enctype="multipart/form-data">
+         <!-- ==================================================     폼시작   ================================================== -->
+         <form class="reg-form" method="post" enctype="multipart/form-data">
 
-				<!-- ==========     1번 페이지    ========== -->
-				<section id="one" class="reg">
-					<h1 class="d-none">상품 정보 form</h1>
-					<div class="reg1">
+            <!-- ==========     1번 페이지    ========== -->
+            <section id="one" class="reg">
+               <h1 class="d-none">상품 정보 form</h1>
+               <div class="reg1">
 
-						<div class="title">상품 정보를 입력해주세요</div>
+                  <div class="title">상품 정보를 입력해주세요</div>
 
-						<div class="input-container">
-							<div class="input-title">상품 이미지</div>
-							<div class="input-box">
-								<input value="img" class="d-none file-input" id="img"
-									name="file" type="file" required> <img
-									class="img-input" src="/image/빈-상품이미지.png" alt=""> <img
-									class="img-input-after d-none" src="" alt="">
-							</div>
-							<div class="img-count">
-								<span class="img-num"></span> <span>/4</span>
-							</div>
-						</div>
+                  <div class="input-container">
+                     <div class="input-title">상품 이미지</div>
+                     <div class="input-box">
+                        <input value="img" class="d-none file-input" id="img"
+                           name="file" type="file" required> <img
+                           class="img-input" src="/image/빈-상품이미지.png" alt=""> <img
+                           class="img-input-after d-none" src="" alt="">
+                     </div>
+                     <div class="img-count">
+                        <span class="img-num"></span> <span>/4</span>
+                     </div>
+                  </div>
 
-						<div>
-							<label class="input-title" for="title">상품 제목</label> <input
-								value="" class="input-default" id="title" name="name"
-								type="text" required placeholder="제목을 입력해 주세요.">
-						</div>
+                  <div>
+                     <label class="input-title" for="title">상품 제목</label> <input
+                        value="" class="input-default" id="title" name="name"
+                        type="text" required placeholder="제목을 입력해 주세요.">
+                  </div>
 
-						<div class="price-container">
-							<label class="input-title" for="price">상품 가격</label> <input
-								value="" class="input-default inline" id="price" name="price"
-								type="number" required placeholder="가격을 입력해 주세요."><span
-								class="input-detail">원</span>
-						</div>
+                  <div class="price-container">
+                     <label class="input-title" for="price">상품 가격</label> <input
+                        value="" class="input-default inline" id="price" name="price"
+                        type="number" required placeholder="가격을 입력해 주세요."><span
+                        class="input-detail">원</span>
+                  </div>
 
-						<div class="btn-container">
-							<div id="quit-reg" class="btn btn-cancel" href="index.html">취소</div>
-							<div id="first-click" class="btn btn-default">다음</div>
-						</div>
-
-
-					</div>
-				</section>
+                  <div class="btn-container">
+                     <div id="quit-reg" class="btn btn-cancel" href="index.html">취소</div>
+                     <div id="first-click" class="btn btn-default">다음</div>
+                  </div>
 
 
-
-
+               </div>
+            </section>
 
 
 
 
 
-				<!-- ==========     2번 페이지    ========== -->
-				<section id="two" class="d-none reg">
-					<h1 class="d-none">상품 설명 form</h1>
-					<div class="reg2">
 
 
-						<div class="title">상품 설명을 입력해주세요</div>
 
 
-						<div>
-							<label for="category" class="input-title">카테고리</label>
-							<input class="input-default category-select" id="category" name="category" type="text" required placeholder="카테고리 선택">
+            <!-- ==========     2번 페이지    ========== -->
+            <section id="two" class="d-none reg">
+               <h1 class="d-none">상품 설명 form</h1>
+               <div class="reg2">
 
-	
-							
-							<!-- =====   대분류   ====== -->
-							<div class="supercategory-select d-none">
-								<div class="category-title">카테고리 선택</div>
-								<img class="exit" src="/image/icon/icon-close.svg" alt="">
-								
-								<div>
-									<input value="공식굿즈" id="공식굿즈" name="supercategory" type="radio" required> 
-									<label class="category-select" for="공식굿즈">공식굿즈</label>
-								</div>
-								
-								<div>
-									<input value="비공식굿즈" id="비공식굿즈" name="supercategory" type="radio" required> 
-									<label class="category-select" for="비공식굿즈">비공식굿즈</label>
-								</div>
-								
-								<div>
-									<input value="대리티켓팅" id="대리티켓팅" name="supercategory" type="radio" required> 
-									<label class="category-select" for="대리티켓팅">대리티켓팅</label>
-								</div>
-								
-								<div class="btn btn-default next-btn">다음</div>
-							</div>
+
+                  <div class="title">상품 설명을 입력해주세요</div>
+
+
+                  <div>
+                     <label for="category" class="input-title">카테고리</label>
+                     <input class="input-default category-select" id="category" name="category" type="text" required placeholder="카테고리 선택">
+
+   
+                     
+                     <!-- =====   대분류   ====== -->
+                     <div class="supercategory-select d-none">
+                        <div class="category-title">카테고리 선택</div>
+                        <img class="exit" src="/image/icon/icon-close.svg" alt="">
+                        
+                        <div>
+                           <input value="공식굿즈" id="공식굿즈" name="supercategory" type="radio" required> 
+                           <label class="category-select" for="공식굿즈">공식굿즈</label>
+                        </div>
+                        
+                        <div>
+                           <input value="비공식굿즈" id="비공식굿즈" name="supercategory" type="radio" required> 
+                           <label class="category-select" for="비공식굿즈">비공식굿즈</label>
+                        </div>
+                        
+                        <div>
+                           <input value="대리티켓팅" id="대리티켓팅" name="supercategory" type="radio" required> 
+                           <label class="category-select" for="대리티켓팅">대리티켓팅</label>
+                        </div>
+                        
+                        <div class="btn btn-default next-btn">다음</div>
+                     </div>
 
                             <!-- =====   공식굿즈   ====== -->
                             <div class="subcategory-select d-none">
@@ -165,7 +165,7 @@
                                 </div>
                                 
                                 <div class="btn btn-default next-btn final">선택완료</div>
-							</div>
+                     </div>
 
 
                             <!-- =====   비공식굿즈   ====== -->
@@ -256,16 +256,16 @@
 
 
 
-				<!-- ==========     3번 페이지    ========== -->
-				<section id="third" class="d-none reg">
-					<h1 class="d-none">컨디션&태그 form</h1>
-					<div class="reg3">
+            <!-- ==========     3번 페이지    ========== -->
+            <section id="third" class="d-none reg">
+               <h1 class="d-none">컨디션&태그 form</h1>
+               <div class="reg3">
 
 
-						<div class="title">컨디션과 태그를 입력해주세요</div>
+                  <div class="title">컨디션과 태그를 입력해주세요</div>
 
 
-						<div class="reg3-condition-container">
+                  <div class="reg3-condition-container">
                                 <div class="input-title">상품 컨디션</div>
 
                                 <input value="tag-미개봉" id="tag-미개봉" name="condition" type="radio" required>
@@ -287,7 +287,7 @@
                             </div>
 
 
-						   <div class="reg3-tag-container">
+                     <div class="reg3-tag-container">
                                 <label for="tag" class="input-title">상품 태그</label>
                                 <div>
                                     <input value="" class="input-default tag-input" id="tag" name="tag" type="text"
@@ -304,72 +304,72 @@
 
 
 
-						<div class="btn-container">
-							<div id="third-back" class="btn btn-cancel" href="">취소</div>
-							<div id="third-click" class="btn btn-default">다음</div>
-						</div>
+                  <div class="btn-container">
+                     <div id="third-back" class="btn btn-cancel" href="">취소</div>
+                     <div id="third-click" class="btn btn-default">다음</div>
+                  </div>
 
 
-					</div>
-				</section>
-
-
-
-
-
-				<div class="black"></div>
+               </div>
+            </section>
 
 
 
 
-				<!-- ==========     4번 페이지    ========== -->
-				<section id="four" class="d-none reg">
-					<h1 class="d-none">배송 방법 form</h1>
-					<div class="reg4">
 
-
-						<div class="title">상품 배송 방법을 선택해주세요.</div>
-
-
-						<div>
-							<div>
-								<input value="일반우편" class="" id="delivery-일반우편"
-									name="deliveryType" type="radio" required> <label
-									for="delivery-일반우편" class="delivery-label general-mail"><span>일반우편</span></label>
-							</div>
-
-							<div>
-								<input value="준등기" class="" id="delivery-준등기"
-									name="deliveryType" type="radio" required> <label
-									for="delivery-준등기" class="delivery-label semi-post"><span>준등기</span></label>
-							</div>
-
-							<div>
-								<input value="택배" class="" id="delivery-택배" name="deliveryType"
-									type="radio" required> <label for="delivery-택배"
-									class="delivery-label parcel"><span>택배</span></label>
-							</div>
-
-						</div>
+            <div class="black"></div>
 
 
 
-						<div class="btn-container">
-							<div id="fourth-back" class="btn btn-cancel" href="">취소</div>
-							<button class="btn btn-default sell-btn">등록 완료</button>
-						</div>
 
-						<!-- ==================================================     폼 끝   ================================================== -->
-
-					</div>
-				</section>
+            <!-- ==========     4번 페이지    ========== -->
+            <section id="four" class="d-none reg">
+               <h1 class="d-none">배송 방법 form</h1>
+               <div class="reg4">
 
 
-			</form>
+                  <div class="title">상품 배송 방법을 선택해주세요.</div>
 
 
-		</section>
-		</div>
+                  <div>
+                     <div>
+                        <input value="일반우편" class="" id="delivery-일반우편"
+                           name="deliveryType" type="radio" required> <label
+                           for="delivery-일반우편" class="delivery-label general-mail"><span>일반우편</span></label>
+                     </div>
+
+                     <div>
+                        <input value="준등기" class="" id="delivery-준등기"
+                           name="deliveryType" type="radio" required> <label
+                           for="delivery-준등기" class="delivery-label semi-post"><span>준등기</span></label>
+                     </div>
+
+                     <div>
+                        <input value="택배" class="" id="delivery-택배" name="deliveryType"
+                           type="radio" required> <label for="delivery-택배"
+                           class="delivery-label parcel"><span>택배</span></label>
+                     </div>
+
+                  </div>
+
+
+
+                  <div class="btn-container">
+                     <div id="fourth-back" class="btn btn-cancel" href="">취소</div>
+                     <button class="btn btn-default sell-btn">등록 완료</button>
+                  </div>
+
+                  <!-- ==================================================     폼 끝   ================================================== -->
+
+               </div>
+            </section>
+
+
+         </form>
+
+
+      </section>
+      </div>
 </main>
 
 

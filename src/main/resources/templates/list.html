@@ -70,7 +70,7 @@
 		<div class="product-wrap">
 
 			<div th:each="preview : ${preview}" class="product-container">
-				<a th:href="@{|/product/${preview.productId}|}">
+				
 					<div>
 						<img th:src="${preview.thumbNailImg}" alt="product-img">
 					</div>
@@ -84,7 +84,7 @@
 					<div th:text="${preview.name}" class="name">러브다이브미공포</div>
 
 					<div th:text="${preview.regDate}" class="time">0일 전</div>
-				</a>
+				
 			</div>
 		</div>
 

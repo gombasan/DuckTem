@@ -1,5 +1,6 @@
 package com.ducktem.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ducktem.web.entity.Product;
+import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.entity.WishList;
 import com.ducktem.web.service.ImgService;
 import com.ducktem.web.service.MemberService;
@@ -95,18 +98,34 @@ public class WishListController {
 	}
     
 
-//	멤버	아이디로 불러오기
-	
-	
-	
 	
 //	프로덕트 아이디로 불러오기
     @GetMapping("{id}/nums")
 	@ResponseBody
-	public int productWishNums(Model model, @PathVariable("id") Long productId) {
-		System.out.print(productId);
-    	return wishListService.getWIshNums(productId);
+	public int productWishNums(@PathVariable("id") Long productId) {
+    	return wishListService.getWIshNumsbyPId(productId);
 	}
-	
+
+    
+
+//	멤버	아이디로 불러오기 wish 프로덕트 불러오기 
+    @GetMapping("myWishList")
+	@ResponseBody
+	public ArrayList<ProductPreview> myWishList(HttpSession session) {
+    	String userId = (String)session.getAttribute("userId");
+    	List<WishList> wishList = null;    	
+		if(userId != null)
+			wishList = wishListService.findWish(userId); 
+    	return wishListService.getmyWishList(wishList);
+	}
+    
+    
+//	나의 찜 개수 불러오기
+    @GetMapping("myPageWishNum")
+	@ResponseBody
+	public int findMyWishNum(HttpSession session) {
+    	String userId = (String)session.getAttribute("userId");
+		return wishListService.getMyWishNum(userId);
+	}	
 	
 }

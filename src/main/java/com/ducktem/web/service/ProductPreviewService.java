@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProductPreviewService {
 
     List<ProductPreview> myList(String memberId);
-
+    
     List<ProductPreview> preview();
 
     List<ProductPreview> preview(int page);

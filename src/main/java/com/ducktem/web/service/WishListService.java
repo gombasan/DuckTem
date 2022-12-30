@@ -1,7 +1,10 @@
 package com.ducktem.web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.ducktem.web.entity.Product;
+import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.entity.WishList;
 
 public interface WishListService {
@@ -14,6 +17,11 @@ public interface WishListService {
 
 	void deleteWish(String userId, Long productId);
 
-	int getWIshNums(Long productId);
+	int getWIshNumsbyPId(Long productId);
+
+	ArrayList<ProductPreview> getmyWishList(List<WishList> wishList);
+
+	int getMyWishNum(String userId);
+
 	
 }
