@@ -109,7 +109,7 @@ public class WishListController {
     
 
 //	멤버	아이디로 불러오기 wish 프로덕트 불러오기 
-    @PostMapping("myWishList")
+    @GetMapping("myWishList")
 	@ResponseBody
 	public ArrayList<ProductPreview> myWishList(HttpSession session) {
     	String userId = (String)session.getAttribute("userId");
