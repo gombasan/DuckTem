@@ -8,8 +8,10 @@ window.addEventListener("load", function() {
 	let superCategoryId = 1;
 	superCategory[0].classList.add("selected");
 
-
-
+	const URLSearch = new URLSearchParams(location.search);
+	let supercate = URLSearch.get('super');
+	superCategory[0].classList.remove("selected");
+	superCategory[supercate-1].classList.add("selected");
 
 
 	//  =========== 대분류 선택을 위한 함수 ==========
