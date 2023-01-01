@@ -59,19 +59,19 @@
         <h1 id="chat-title" class="d-none" th:attr="data-id=${customer.userId}">대화창</h1>
         <div class="chat-start-date">2022년 11월 30일</div>
 
+        <div id="chat-box" th:each="chatMsg : ${chattingList}">
+          <div th:if="${chatMsg.senderId} != ${session.userId}" class="chat-receive">
+            <img class="member-profile-img" src="/image/example-image0.png" alt="프로필이미지">
+            <span th:text="${chatMsg.chatMsg}" class="chat-text">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</span>
+            <span class="chat-time">오후 16:08</span>
+          </div>
 
-        <div class="chat-receive">
-          <img class="member-profile-img" src="/image/example-image0.png" alt="프로필이미지">
-          <span class="chat-text">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</span>
-          <span class="chat-time">오후 16:08</span>
+          <div th:if="${chatMsg.senderId} == ${session.userId}" class="chat-send">
+            <img class="my-profile-img" src="/image/example-image2.png" alt="나의프로필이미지">
+            <span th:text="${chatMsg.chatMsg}" class="chat-text send">아니요.</span>
+            <span class="chat-time">오전 08:10</span>
+          </div>
         </div>
-
-        <div class="chat-send">
-          <img class="my-profile-img" src="/image/example-image2.png" alt="나의프로필이미지">
-          <span class="chat-text send">아니요.</span>
-          <span class="chat-time">오전 08:10</span>
-        </div>
-
        
 
 
@@ -103,19 +103,6 @@
       </section>
 
     </div>
-
-
-<script>
-  let ws = new WebSocket("ws://localhost:8080/chatting/start");
-  let test = document.querySelector(".category-login");
-
-  console.log(test);
-
-</script>
-
-
-
-
 
 
 

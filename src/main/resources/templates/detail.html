@@ -130,7 +130,7 @@
             <div>
                 <span th:text="|${product.price}원|"></span>
             </div>
-            <div id="duck-talk" th:if="${session.nickName} != ${member.nickName}" th:attr="data-id=|${product.regMemberId}/${session.nickName}/${product.id}|">
+            <div id="duck-talk" th:if="${session.nickName} != ${member.nickName}" th:attr="data-id=|${product.regMemberId}/${session.userId}/${product.id}|">
                 <a class="btn btn-default " href="/chatting">덕템톡</a>
             </div>
             <div th:if="${session.nickName} == ${member.nickName}" class="state-btn">

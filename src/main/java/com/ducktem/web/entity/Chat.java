@@ -4,59 +4,41 @@ package com.ducktem.web.entity;
 import java.util.Date;
 
 public class Chat {
-    private Long id;
-    private Long chatRoomId;
-    private String content;
+    private String senderId;
 
-    private int readChat;
-    private Date regDate;
+    private String chatMsg;
+    private String regDate;
 
     public Chat() {
-        this(null, null);
+
     }
 
-    public Chat(Long chatRoomId, String content) {
-        this.chatRoomId = chatRoomId;
-        this.content = content;
+    public Chat(String senderId, String chatMsg, String regDate) {
+        this.chatMsg = chatMsg;
+        this.senderId = senderId;
+        this.regDate = regDate;
     }
 
-    public Long getId() {
-        return id;
+    public String getChatMsg() {
+        return chatMsg;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setChatMsg(String chatMsg) {
+        this.chatMsg = chatMsg;
     }
 
-    public int getReadChat() {
-        return readChat;
+    public String getSenderId() {
+        return senderId;
+    }
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
     }
 
-    public void setReadChat(int readChat) {
-        this.readChat = readChat;
-    }
-
-    public Long getChatRoomId() {
-        return chatRoomId;
-    }
-
-    public void setChatRoomId(Long chatRoomId) {
-        this.chatRoomId = chatRoomId;
-    }
-
-    public String getChat() {
-        return content;
-    }
-
-    public void setChat(String chat) {
-        this.content = chat;
-    }
-
-    public Date getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 }

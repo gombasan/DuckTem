@@ -77,3 +77,8 @@ window.addEventListener("load",function(){
 
 
 })
+
+// 덕톡 알람.
+socket.onmessage = function(e) {
+    alert(`${e.data}`);
+}

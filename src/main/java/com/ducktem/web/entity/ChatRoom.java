@@ -4,17 +4,8 @@ public class ChatRoom {
     private Long id;
     private String sellerId;
     private String customerId;
+    private String chatting;
     private Long productId;
-
-    public ChatRoom() {
-        this(null, null, null);
-    }
-
-    public ChatRoom(String sellerId, String customerId, Long productId) {
-        this.sellerId = sellerId;
-        this.customerId = customerId;
-        this.productId = productId;
-    }
 
     public Long getId() {
         return id;
@@ -46,6 +37,14 @@ public class ChatRoom {
 
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+
+    public String getChatting() {
+        return chatting;
+    }
+
+    public void setChatting(String chatting) {
+        this.chatting = chatting;
     }
 
     @Override

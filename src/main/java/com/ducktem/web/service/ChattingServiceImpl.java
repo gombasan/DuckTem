@@ -1,34 +1,54 @@
 package com.ducktem.web.service;
 
-import com.ducktem.web.dao.ChatDao;
 import com.ducktem.web.dao.ChatRoomDao;
 import com.ducktem.web.entity.Chat;
 import com.ducktem.web.entity.ChatRoom;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
 public class ChattingServiceImpl implements ChattingService{
 
-    @Autowired
-    private ChatDao chatDao;
 
     @Autowired
     private ChatRoomDao chatRoomDao;
 
     @Override
-    public List<Chat> getChattingList(ChatRoom chatRoom) {
+    public List<Chat> getChattingList(ChatRoom chatRoom, HttpServletRequest request) {
         Long roomId = 0L;
-        ChatRoom existingChatRoom = chatRoomDao.findOne(chatRoom.getSellerId(), chatRoom.getCustomerId(),chatRoom.getProductId());
-        if(existingChatRoom == null) {
+        String sellerId = chatRoom.getSellerId();
+        String customerId = chatRoom.getCustomerId();
+        Long productId = chatRoom.getProductId();
+        String chatting = chatRoom.getChatting();
+        ObjectMapper mapper = new ObjectMapper();
+
+        ChatRoom existingChatRoom = chatRoomDao.findOne(sellerId, customerId, productId);
+
+        if (existingChatRoom == null) {
+            chatting = request.getServletContext().getRealPath("/chattings") + File.separator + "chatting" + "_" + sellerId + "_" + customerId + "_" + productId;
+            chatRoom.setChatting(chatting);
             chatRoomDao.save(chatRoom);
-            roomId = chatRoom.getId();
-            return chatDao.findByChatRoomId(roomId);
+            existingChatRoom = chatRoom;
         }
 
-        roomId = existingChatRoom.getId();
-        return chatDao.findByChatRoomId(roomId);
+        List<Chat> chats = null;
+        try {
+            File file = new File(existingChatRoom.getChatting());
+            chats = mapper.readValue(file, new TypeReference<List<Chat>>() {});
+        } catch (Exception e) {
+
+        }
+        return chats;
     }
+
 }

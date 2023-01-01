@@ -78,7 +78,6 @@ public class ProductController {
     /* 내 상품 정보 수정*/
     @PostMapping("/product/myproduct/{memberNickName}/{id}")
     public String myProductUpdate(Product product) {
-        System.out.println("product = " + product);
         productService.update(product);
         return "redirect:/product/{id}";
     }
