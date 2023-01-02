@@ -6,32 +6,27 @@
 <!--  공통 css 제외한 나머지 css&js  -->
 <th:block layout:fragment="css">
 
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/detail.css">
+	<link rel="stylesheet" href="/css/layout.css">
+	<link rel="stylesheet" href="/css/detail.css">
 
 	<script src="/js/wish.js"></script>
-    <script src="/js/productDetail.js"></script>
-    <style>
-        .state-select {
-            background-color: var(--color-light);
-            width: 95%;
-            /* height: 500px; */
-
-
-            border: 3px solid black;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 1000;
-
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-    </style>
+	<style>
+.state-select {
+	background-color: var(- -color-light);
+	width: 95%;
+	/* height: 500px; */
+	border: 3px solid black;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+</style>
 
 </th:block>
 
@@ -45,38 +40,40 @@
 
 
 <main layout:fragment="content">
-    <div class="image-wrap">
-        <img th:src="${productImgs[0].name}" class="product-img" th:classappend="${product.salesStatusId != 1 ? 'img-brightness':''}" src="/image/product-img.jpg" alt="">
-        <span th:if="${product.salesStatusId == 2 }">판매 완료</span>
-        <span th:if="${product.salesStatusId == 3 }">예약중</span>
-    </div>
-    <section class="profile-container">
-        <img class="profile-img" th:src="${member.profileImg}" alt="">
-        <h1 th:text="${member.nickName}">미지123</h1>
-        <span class="product-count">판매상품 <span th:text="${#lists.size(memberProducts)}"></span></span>
-
-        <span class="review-info">★★★★★(2)</span>
-    </section>
-    <hr>
-    <section class="detail-container">
-        <div class="detail-container-title">
-            <h1 th:text="${product.name}">뉴진스 비공굿 판매(포카, 떡메)</h1>
-            <span class="detail-category">비공식 굿즈 > 문구류</span>
-            <span th:text="${product.nTimeAgo}">1분전</span>
-        </div>
-        <div class="detail-icon">
-            <div class="">
-                <img src="/image/icon/icon-eye-fill.svg" alt="">
-                <span th:text="${product.hit}">6</span>
-            </div>
-            <div>
-                <img src="/image/icon/icon-alert.svg" alt="">
-            </div>
-            <div>
-                <img src="/image/icon/icon-share.svg" alt="">
-            </div>
-        </div>
-        <p th:text="${product.description}">다니엘해린눌린자국있으나나머지멤찍힘스크래치없슴니다빛번짐인증가넝</p>
+	<div class="image-wrap">
+		<img th:src="${productImgs[0].name}" class="product-img"
+			th:classappend="${product.salesStatusId != 1 ? 'img-brightness':''}"
+			src="/image/product-img.jpg" alt=""> <span
+			th:if="${product.salesStatusId == 2 }">판매 완료</span> <span
+			th:if="${product.salesStatusId == 3 }">예약중</span>
+	</div>
+	<section class="profile-container">
+		<img class="profile-img" th:src="${member.profileImg}" alt="">
+		<h1 th:text="${member.nickName}">미지123</h1>
+		<span class="product-count">판매상품 <span
+			th:text="${#lists.size(memberProducts)}"></span></span> <span
+			class="review-info">★★★★★(2)</span>
+	</section>
+	<hr>
+	<section class="detail-container">
+		<div class="detail-container-title">
+			<h1 th:text="${product.name}">뉴진스 비공굿 판매(포카, 떡메)</h1>
+			<span class="detail-category">비공식 굿즈 > 문구류</span> <span
+                th:text="${product.nTimeAgo}">1분전</span>
+		</div>
+		<div class="detail-icon">
+			<div class="">
+				<img src="/image/icon/icon-eye-fill.svg" alt=""> <span
+					th:text="${product.hit}">6</span>
+			</div>
+			<div>
+				<img src="/image/icon/icon-alert.svg" alt="">
+			</div>
+			<div>
+				<img src="/image/icon/icon-share.svg" alt="">
+			</div>
+		</div>
+		<p th:text="${product.description}">다니엘해린눌린자국있으나나머지멤찍힘스크래치없슴니다빛번짐인증가넝</p>
 
     </section>
     <hr>
@@ -113,51 +110,61 @@
                         러브다이브 미공포
                     </div>
 
-                    <div th:text="${memberProducts.regDate}" class="time">
-                        0일 전
-                    </div>
-                </a>
-            </div>
-        </section>
-    </section>
+				<div class="price-wish">
+					<span th:text="${memberProducts.price}"> 80,000원</span> <img
+						class="wish" src="/image/icon/heart.svg" alt="찜"
+						th:data-id="${memberProducts.productId}">
+				</div>
 
-    <section class="bottom-bar-wrap">
-        <div class="bottom-bar">
-            <div>
-<!--             <img class ="wish" src="/image/icon/heart.svg" alt=""><label th:src="${wishList.totalNumber}" for="">2</label> -->
-                <img class ="wish" src="/image/icon/heart.svg" alt=""><label for="">2</label>
-            </div>
-            <div>
-                <span th:text="|${product.price}원|"></span>
-            </div>
-            <div id="duck-talk" th:if="${session.nickName} != ${member.nickName}" th:attr="data-id=|${product.regMemberId}/${session.userId}/${product.id}|">
-                <a class="btn btn-default " href="/chatting">덕템톡</a>
-            </div>
-            <div th:if="${session.nickName} == ${member.nickName}" class="state-btn">
-                <a class="btn btn-default " href="">상태변경</a>
-            </div>
-            <div th:if="${session.nickName} == ${member.nickName}">
-                <a class="btn btn-default " th:href="@{|/product/myproduct/${session.nickName}/${product.id}|}">수정</a>
-            </div>
-            <div th:if="${session.nickName} == ${member.nickName}" class="state-select d-none">
-                <div class="supercategory-select">상품 상태 변경</div>
-                <img class="exit" src="/image/icon/icon-close.svg" alt="">
-                <div>
-                    <input value="1" id="sell" name="subcategory" type="radio" required>
-                    <label class="category-select" for="sell">판매중</label>
-                </div>
-                <div>
-                    <input value="2" id="Completion" name="subcategory" type="radio" required>
-                    <label class="category-select" for="Completion">판매 완료</label>
-                </div>
-                <div>
-                    <input value="3" id="Reservation" name="subcategory" type="radio" required>
-                    <label class="category-select" for="Reservation">예약중</label>
-                </div>
-                <div class="btn btn-default"  id="submit-btn" onclick="stateChange()" th:attr="data-id=${product.id}">선택완료</div>
-            </div>
-        </div>
-        <script th:if="${session.nickName} == ${member.nickName}">
+				<div th:text="${memberProducts.name}" class="name">러브다이브 미공포</div>
+
+				<div th:text="${memberProducts.regDate}" class="time">0일 전</div>
+			</div>
+		</section>
+	</section>
+
+	<section class="bottom-bar-wrap">
+		<div class="bottom-bar">
+			<div>
+				<img class="wish bottom" src="/image/icon/heart.svg" alt="찜"
+					th:data-id="${product.id}"> <label class="nums">2</label>
+			</div>
+			<div>
+				<span th:text="|${product.price}원|"></span>
+			</div>
+			<div th:if="${session.nickName} != ${member.nickName}">
+				<a class="btn btn-default " href="">덕템톡</a>
+			</div>
+			<div th:if="${session.nickName} == ${member.nickName}"
+				class="state-btn">
+				<a class="btn btn-default " href="">상태변경</a>
+			</div>
+			<div th:if="${session.nickName} == ${member.nickName}">
+				<a class="btn btn-default "
+					th:href="@{|/product/myproduct/${session.nickName}/${product.id}|}">수정</a>
+			</div>
+			<div th:if="${session.nickName} == ${member.nickName}"
+				class="state-select d-none">
+				<div class="supercategory-select">상품 상태 변경</div>
+				<img class="exit" src="/image/icon/icon-close.svg" alt="">
+				<div>
+					<input value="1" id="sell" name="subcategory" type="radio" required>
+					<label class="category-select" for="sell">판매중</label>
+				</div>
+				<div>
+					<input value="2" id="Completion" name="subcategory" type="radio"
+						required> <label class="category-select" for="Completion">판매
+						완료</label>
+				</div>
+				<div>
+					<input value="3" id="Reservation" name="subcategory" type="radio"
+						required> <label class="category-select" for="Reservation">예약중</label>
+				</div>
+				<div class="btn btn-default" id="submit-btn" onclick="stateChange()"
+					th:attr="data-id=${product.id}">선택완료</div>
+			</div>
+		</div>
+		<script th:if="${session.nickName} == ${member.nickName}">
             let stateBtn = document.querySelector(".state-btn");
             let stateSelect = document.querySelector(".state-select");
             let main = document.querySelector("main");
@@ -180,6 +187,8 @@
 
                 let productId = submitBtn.dataset.id;
 
+                // let url = window.location.pathname.split("/");
+                // let productId = url[2];
                 fetch(`/product/myproduct/sellStatesChange/${productId}/${selectState}`,{method:'POST'})
                     .then(() => {
                         location.reload();

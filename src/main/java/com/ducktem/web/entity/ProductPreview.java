@@ -11,6 +11,7 @@ public class ProductPreview {
     private String regDate;
     private int salesStatusId;
 
+
     public ProductPreview(String thumbNailImg, String price, String name, String regDate) {
         this.thumbNailImg = thumbNailImg;
         this.price = price;
@@ -75,4 +76,6 @@ public class ProductPreview {
                 ", regDate='" + regDate + '\'' +
                 '}';
     }
+
+	
 }

@@ -1,74 +1,72 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{inc/layout}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{inc/layout}">
 
 
 <!--  공통 css 제외한 나머지 css&js  -->
 <th:block layout:fragment="css">
 
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/index.css">
+	<link rel="stylesheet" href="/css/layout.css">
+	<link rel="stylesheet" href="/css/index.css">
 
 
-    <script src="/js/rolling-banner.js"></script>
-   	<script src="/js/wish.js"></script>
+	<script src="/js/rolling-banner.js"></script>
+	<script src="/js/wish.js"></script>
 
 </th:block>
 
 
-  <main layout:fragment="content">
+<main layout:fragment="content">
 
-    <section class="main-wrap">
-      <div class="banner-container">
-        <div class="banner-wrap">
-          <div class="inner">
-            <img class="banner1" src="/image/big-banner.png" alt="banner">
-          </div>
-          <div class="inner">
-            <img class="banner2" src="/image/big-banner1.png" alt="banner">
-          </div>
-          <div class="inner">
-            <img class="banner3" src="/image/big-banner2.png" alt="banner">
-          </div>
-        </div>
-        <img class="vector-left" src="/image/icon/꺽쇠.svg" alt="">
-        <img class="vector-right" src="/image/icon/꺽쇠.svg" alt="">
-      </div>
+	<section class="main-wrap">
+		<div class="banner-container">
+			<div class="banner-wrap">
+				<div class="inner">
+					<img class="banner1" src="/image/big-banner.png" alt="banner">
+				</div>
+				<div class="inner">
+					<img class="banner2" src="/image/big-banner1.png" alt="banner">
+				</div>
+				<div class="inner">
+					<img class="banner3" src="/image/big-banner2.png" alt="banner">
+				</div>
+			</div>
+			<img class="vector-left" src="/image/icon/꺽쇠.svg" alt=""> <img
+				class="vector-right" src="/image/icon/꺽쇠.svg" alt="">
+		</div>
 
-      <section>
-        <div class="category-image-wrap">
+		<section>
+			<div class="category-image-wrap">
 
-          <div class="category-image">
-            <img class="gong" src="/image/categ-gong-goods.jpg" >
-          <div class=" category-text">
-            <span>공식 굿즈</span>
-            <span>shop Now --></span>
-          </div>
-        </div>
+				<div class="category-image">
+					<img class="gong" src="/image/categ-gong-goods.jpg">
+					<div class=" category-text">
+						<span>공식 굿즈</span> <span>shop Now --></span>
+					</div>
+				</div>
 
-        <div class="category-image">
-          <img class="bigong" src="/image/categ-bigong-goods.jpg" >
-          <div class=" category-text">
-          <span>비공식 굿즈</span>
-          <span>shop Now --></span>
-        </div>
-        </div>
+				<div class="category-image">
+					<img class="bigong" src="/image/categ-bigong-goods.jpg">
+					<div class=" category-text">
+						<span>비공식 굿즈</span> <span>shop Now --></span>
+					</div>
+				</div>
 
-        <div class="category-image">
-          <img class="dari" src="/image/categ-dari.jpg" >
-          <div class=" category-text">
-          <span>대리 티켓팅</span>
-          <span>shop Now --></span>
-        </div>
-        </div>
-        </div>
+				<div class="category-image">
+					<img class="dari" src="/image/categ-dari.jpg">
+					<div class=" category-text">
+						<span>대리 티켓팅</span> <span>shop Now --></span>
+					</div>
+				</div>
+			</div>
 
-      </section>
+		</section>
 
-      <section>
-        <h3 id="title1">최근 인기 키워드</h3>
-        <ul class="tag-sort">
-          <!-- <a class="btn btn-tag" href="">테스트</a>
+		<section>
+			<h3 id="title1">최근 인기 키워드</h3>
+			<ul class="tag-sort">
+				<!-- <a class="btn btn-tag" href="">테스트</a>
           <a class="btn btn-tag" href="">테스트</a>
           <a class="btn btn-tag" href="">테스트</a>
           <a class="btn btn-tag" href="">테스트</a>
@@ -77,56 +75,54 @@
           <a class="btn btn-tag" href="">테스트</a>
           <a class="btn btn-tag" href="">테스트</a> -->
 
-          <div>
-            <img src="/image/아이브.webp" alt=""><span>아이브</span>
-          </div>
+				<div>
+					<img src="/image/아이브.webp" alt=""><span>아이브</span>
+				</div>
 
-          <div>
-            <img src="/image/방탄소년단.jpg" alt=""><span>BTS</span>
-          </div>
+				<div>
+					<img src="/image/방탄소년단.jpg" alt=""><span>BTS</span>
+				</div>
 
-          <div>
-            <img src="/image/르세라핌.jpg" alt=""><span>르세라핌</span>
-          </div>
+				<div>
+					<img src="/image/르세라핌.jpg" alt=""><span>르세라핌</span>
+				</div>
 
-          <div>
-            <img src="/image/뉴진스.jpg" alt=""><span>뉴진스</span>
-          </div>
+				<div>
+					<img src="/image/뉴진스.jpg" alt=""><span>뉴진스</span>
+				</div>
 
-        </ul>
-      </section>
+			</ul>
+		</section>
 
 
-      <section>
-        <h3 id="title2">최근 등록된 상품</h3>
+		<section>
+			<h3 id="title2">최근 등록된 상품</h3>
+			<div class="product-flex">
+				<div class="product-wrap">
 
-        <div class="product-wrap">
+					<div th:each="preview : ${preview}" class="product-container">
+						<div>
+							<img th:src="${preview.thumbNailImg}" alt="product-img">
+						</div>
 
-          <div th:each="preview : ${preview}" class="product-container">
-            <a th:href="@{|/product/${preview.productId}|}">
-              <div><img th:src="${preview.thumbNailImg}" alt="product-img" ></div>
+						<div class="price-wish">
+							<span th:text="${preview.price}"></span> <img class="wish"
+								src="/image/icon/heart.svg" alt="찜"
+								th:data-id="${preview.productId}">
+						</div>
 
-              <div class="price-wish">
-                <span th:text = "${preview.price}"></span>
-                <img class ="wish" src="/image/icon/heart.svg" alt="찜"
-                th:value = "${preview.productId}">
-              </div>
+						<div th:text="${preview.name}" class="name">러브다이브미공포</div>
 
-              <div th:text="${preview.name}" class="name">
-                러브다이브미공포
-              </div>
+						<div th:text="${preview.regDate}" class="time">0일 전</div>
+					</div>
+				</div>
+			</div>
 
-              <div th:text="${preview.regDate}" class="time">
-                0일 전
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
+		</section>
 
-    </section>
+	</section>
 
-    <script defer>
+	<script defer>
       const productSection = document.querySelector(".product-wrap");
       let html = document.querySelector("html");
       let page = 2;
@@ -151,22 +147,20 @@
                     for(let product of products){
                       let template = `
                 <div class="product-container">
-                    <a href="/product/${product.productId}">
-                      <div><img src=${product.thumbNailImg} alt="product-img"></div>
+                    <div><img src=${product.thumbNailImg} alt="product-img"></div>
 
-                      <div class="price-wish">
-                          <span>${product.price}</span>
-                          <img class ="wish" src="/image/icon/heart.svg" alt="찜" th:value = "${product.productId}">
-                      </div>
+                    <div class="price-wish">
+                        <span>${product.price}</span>
+                        <img class ="wish" src="/image/icon/heart.svg" alt="찜" th:data-id = "${product.productId}">
+                    </div>
 
-                      <div class="name">
-                          ${product.name}
-                      </div>
+                    <div class="name">
+                        ${product.name}
+                    </div>
 
-                      <div class="time">
-                          ${product.regDate}
-                      </div>
-                    </a>
+                    <div class="time">
+                        ${product.regDate}
+                    </div>
                 </div>`;
                       productSection.insertAdjacentHTML("beforeend", template);
                     }
@@ -182,7 +176,7 @@
 
     </script>
 
-  </main>
+</main>
 
 
 </html>

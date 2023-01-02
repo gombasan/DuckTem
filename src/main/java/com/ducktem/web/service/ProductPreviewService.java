@@ -12,5 +12,8 @@ public interface ProductPreviewService {
 
     List<ProductPreview> preview(int page);
 
+	List<ProductPreview> previewByCategory(Integer superCategoryId, Integer categoryId);
+
+
     ProductPreview get(Long productId);
 }

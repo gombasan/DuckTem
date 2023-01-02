@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ducktem.web.dao.CategoryDao">
+
+
+
+
+	<select id="findAll"
+		resultType="SuperCategory">
+		select * from SuperCategory
+	</select>
+
+
+	<select id="findSubCategoryAll"
+		resultType="Category">
+		select Category.id categoryId, SuperCategory.id superCategoryId,
+		SuperCategory.name superCategoryName, Category.name categoryName
+		from Category join SuperCategory
+		on Category.superCategoryId = SuperCategory.id
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="superCategoryId != null">
+				SuperCategory.id = #{superCategoryId};
+			</if>
+		</trim>
+	</select>
+
+
+</mapper>
