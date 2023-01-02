@@ -9,8 +9,11 @@ import com.ducktem.web.entity.ProductPreview;
 @Mapper
 public interface SearchDao {
 
-	public List<ProductPreview> getList(String keyword);
+//	public List<ProductPreview> getList(String keyword);
+
+	public List<ProductPreview> getList(String keyword, String option);
 
 	public int count(String keyword);
+
 
 }

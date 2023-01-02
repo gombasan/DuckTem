@@ -12,6 +12,9 @@ public interface SearchService {
 
 	/*검색어 결과 갯수 조회*/
 	int getResultCount(String keyword);
+
+	/*검색어 결과 필터링*/
+	List<ProductPreview> getfilteredResult(String keyword, String option);
 	
 
 }

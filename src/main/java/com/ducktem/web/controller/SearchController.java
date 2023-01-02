@@ -27,31 +27,12 @@ public class SearchController {
 		
 		List<ProductPreview> searchResult = searchService.getResult(keyword);
 		model.addAttribute("searchResult",searchResult);
-		System.out.println(searchResult);
 		
 		int resultCount = searchService.getResultCount(keyword);
 		model.addAttribute("resultCount",resultCount);
 		model.addAttribute("keyword",keyword);
 		
-				
 		return "list-search";
 	}
 	
-//	@PostMapping("/")
-//	public String search(@RequestParam("keyword") String keyword) {
-//		System.out.println(keyword);
-//		
-//		return "list-search";
-//	}
-//	
-//	@PostMapping("/")
-//	public String search(@RequestParam("keyword") String keyword) {
-//		
-//		List<ProductPreview> result = searchService.getResult(keyword);
-//		System.out.println(keyword);
-//		System.out.println(result);
-//		
-//		return "search?q="+keyword;
-//	}
-//
 }
