@@ -52,7 +52,7 @@ window.addEventListener("load", function () {
 			for(let i=0; i<myProducts.length;i++){
 				let temp = `
 				    <section class="product-wrap">		
-			            <div class="product-container">
+			            <div class="product-container" onclick="window.location.href='/product/${myProducts[i].productId}';" >
 		                    <div><img src="${myProducts[i].thumbNailImg}" alt="product-img"></div>
 		
 		                    <div class="price-wish">
@@ -163,14 +163,69 @@ window.addEventListener("load", function () {
     }
     
 //   =================================================================
-    
+   let myReviewTitleNum = reviewBtn.lastElementChild;
+   let myReviewtTitleNumResult;
+   let myPageReviews = [];
+   	myReviewTitleNum.init = function(){
+		myReviewTitleNum.innerText = String(myReviewtTitleNumResult);
+	} 
+	
     reviewBtn.onclick = function(e){
         wishTitleNum.init();
         reviewPage.classList.remove("d-none");
         productPage.classList.add("d-none");
         wishListPage.classList.add("d-none"); 
 
+
+		
     }
+    
+    fetch(`/getMyReviewList`,{
+			method: "GET"
+		})
+		.then(async(response)=>{
+			let result = await response.json();
+			return result;
+		})
+		.then((result)=>{	
+			if(result == null)
+				console.log("오프라인 이므로 실행하지 않습니다.");
+			if(result != null){
+				myPageReviews = result;
+			}
+		}).then(()=>{
+			let template = null;
+			for(let i=0; i<myPageReviews.length;i++){
+				if(!myPageReviews[i].profileImg){
+					myPageReviews[i].profileImg = "/image/profile-img.png";
+				}
+				
+				let temp = `
+					<div class="review-detail">
+	                    <div><img src="${myPageReviews[i].profileImg}" alt=""></div>
+	                    <div>${myPageReviews[i].memberId}</div>
+	                    <div>${myPageReviews[i].regDate}</div>
+	                    <div><img src="/image/icon/report.svg" alt=""></div>
+	                    <div>${myPageReviews[i].productName}</div>
+	                    <div>${myPageReviews[i].content}</div>
+	                </div>
+				`;
+			        if(i==0)
+			        	template = temp;
+			        else	
+			        	template += temp;
+			        
+			}
+			if(template!=null){				
+		       reviewPage.insertAdjacentHTML('beforeend',template);
+		       myReviewtTitleNumResult = myPageReviews.length;
+		       myReviewTitleNum.init();
+			}
+		        
+		})
+		.catch(()=>{
+			console.log('에러발생');
+		})
 
     // =====키워드 알림======================================================
 

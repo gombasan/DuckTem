@@ -7,11 +7,13 @@ import java.util.List;
 public interface ProductPreviewService {
 
     List<ProductPreview> myList(String memberId);
-    
+
     List<ProductPreview> preview();
 
     List<ProductPreview> preview(int page);
 
 	List<ProductPreview> previewByCategory(Integer superCategoryId, Integer categoryId);
 
+
+    ProductPreview get(Long productId);
 }
