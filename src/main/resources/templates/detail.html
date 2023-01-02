@@ -59,8 +59,8 @@
 	<section class="detail-container">
 		<div class="detail-container-title">
 			<h1 th:text="${product.name}">뉴진스 비공굿 판매(포카, 떡메)</h1>
-			<span class="detail-category">비공식 굿즈 > 문구류</span> <span
-				th:text="${product.regDate}">1분전</span>
+			<span class="detail-category" > <span th:text="${category.superCategoryName}" >비공식 굿즈</span> <span> > </span> <span th:text="${category.categoryName}">문구류</span> </span> 
+			<span th:text="${product.regDate}">1분전</span>
 		</div>
 		<div class="detail-icon">
 			<div class="">
