@@ -250,4 +250,20 @@
   "senderId" : "admin",
   "chatMsg" : "잘 되는거냐",
   "regDate" : "2023-01-01 22:48:33"
+}, {
+  "senderId" : "admin",
+  "chatMsg" : "ㅎㅇ",
+  "regDate" : "2023-01-02 15:38:47"
+}, {
+  "senderId" : "admin",
+  "chatMsg" : "ㅎㅇ",
+  "regDate" : "2023-01-02 15:39:27"
+}, {
+  "senderId" : "미지123",
+  "chatMsg" : "바바바바이",
+  "regDate" : "2023-01-02 15:39:34"
+}, {
+  "senderId" : "admin",
+  "chatMsg" : "고쳐주세요~~~",
+  "regDate" : "2023-01-02 15:39:40"
 } ]
