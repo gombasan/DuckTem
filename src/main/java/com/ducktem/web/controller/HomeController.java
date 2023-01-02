@@ -21,7 +21,7 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    private ProductPreviewService productPreviewServiceService;
+    private ProductPreviewService productPreviewService;
     @Autowired
     private MemberService memberService;
 
@@ -31,7 +31,7 @@ public class HomeController {
     @GetMapping("/")
 
     public String index(Model model, HttpSession session, HttpServletRequest request) {
-        List<ProductPreview> preview = productService.preview();
+        List<ProductPreview> preview = productPreviewService.preview();
         model.addAttribute("preview", preview);
         
         /*자동 로그인*/
