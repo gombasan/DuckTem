@@ -13,7 +13,7 @@ public class ProductPreviewServiceImpl implements ProductPreviewService {
 
     @Autowired
     private ProductPreviewDao productPreviewDao;
-    
+
 
 
     @Override
@@ -36,9 +36,14 @@ public class ProductPreviewServiceImpl implements ProductPreviewService {
 
 	@Override
 	public List<ProductPreview> previewByCategory(Integer superCategoryId, Integer categoryId) {
-		
+
 		return productPreviewDao.findPreviewListByCategory(superCategoryId, categoryId);
 	}
 
-	
+
+
+    @Override
+    public ProductPreview get(Long productId) {
+        return productPreviewDao.findByProductId(productId);
+    }
 }

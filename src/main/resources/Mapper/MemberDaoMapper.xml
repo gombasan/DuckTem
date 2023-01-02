@@ -21,10 +21,26 @@
         select * from Member where nickName = #{memberNickName};
     </select>
 
-    <update id="updateStatus" parameterType="Member">
+    <select id="findByNickName" resultType="com.ducktem.web.entity.Member">
+        select * from Member where nickName = #{memberNickName};
+    </select>
+
+    <update id="updateStatus">
         update Member
         set status = 1
         where userId = #{userId};
+
     </update>
+
+    <update id="updateAutoLogin">
+        update Member
+        set autoLogin = #{sessionId}
+        where userId = #{userId};
+    </update>
+
+    <select id="findbyLoginInfo" resultType="com.ducktem.web.entity.Member">
+        select * from Member 
+        where autoLogin = #{loginInfo};
+    </select>
 
 </mapper>

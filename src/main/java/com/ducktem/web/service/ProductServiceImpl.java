@@ -46,13 +46,31 @@ public class ProductServiceImpl implements ProductService{
 
 
         /* 상품 시간 n분전으로 표시 준비.*/
-//        Product product = productDao.findById(productId);
-//        Date regDate = product.getRegDate();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
-//        System.out.println("regDate = " + sdf.format(regDate));
+        Product product = productDao.findById(productId);
+        Date regDate = product.getRegDate();
+        long today = System.currentTimeMillis();
+
+        long sec = (today-regDate.getTime()) / 1000;
+        long minute = (today-regDate.getTime()) / 60000;
+        long hour = (today-regDate.getTime()) /3600000;
+        long days = sec / (24 * 60 * 60);
+
+        if(sec < 60){
+            String betweenSec = sec + "초 전";
+            product.setNTimeAgo(betweenSec);
+        }else if (minute < 60){
+            String betweenMinute = minute + "분 전";
+            product.setNTimeAgo(betweenMinute);
+        }else if(hour < 24) {
+            String betweenHour = hour + "시간 전";
+            product.setNTimeAgo(betweenHour);
+        }else if(days < 30) {
+            String betweenDays = days + "일 전";
+            product.setNTimeAgo(betweenDays);
+        }
 
 
-        return productDao.findById(productId);
+        return product;
     }
 
 
@@ -96,5 +114,10 @@ public class ProductServiceImpl implements ProductService{
 
         return false;
     }
+
+	@Override
+	public List<Product> getByMemberId(String memberId) {
+		return productDao.findByMemberId(memberId);
+	}
 
 }

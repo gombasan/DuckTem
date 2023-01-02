@@ -5,12 +5,8 @@ import java.util.Date;
 public class Review {
 	private Long productId;
 	private String memberId;
-	private String mark;
 	private String content;
     private Date regDate;
-    private Date updateDate;
-    
-    
 	/**
 	 * @return the productId
 	 */
@@ -36,18 +32,6 @@ public class Review {
 		this.memberId = memberId;
 	}
 	/**
-	 * @return the mark
-	 */
-	public String getMark() {
-		return mark;
-	}
-	/**
-	 * @param mark the mark to set
-	 */
-	public void setMark(String mark) {
-		this.mark = mark;
-	}
-	/**
 	 * @return the content
 	 */
 	public String getContent() {
@@ -71,21 +55,6 @@ public class Review {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	/**
-	 * @return the updateDate
-	 */
-	public Date getUpdateDate() {
-		return updateDate;
-	}
-	/**
-	 * @param updateDate the updateDate to set
-	 */
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
-	
-    
-    
     
     
 }
