@@ -22,4 +22,6 @@ public interface MemberService {
     /*회원 탈퇴 서비스*/
     void deactMember(String userId);
 
+	List<Member> getMemberList(List<String> members);
+
 }

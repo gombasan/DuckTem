@@ -97,4 +97,9 @@ public class ProductServiceImpl implements ProductService{
         return false;
     }
 
+	@Override
+	public List<Product> getByMemberId(String memberId) {
+		return productDao.findByMemberId(memberId);
+	}
+
 }

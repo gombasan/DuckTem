@@ -1,12 +1,8 @@
 package com.ducktem.web.entity;
 
-import java.util.Date;
-
-public class Review {
+public class Buy {
 	private Long productId;
 	private String memberId;
-	private String content;
-    private Date regDate;
 	/**
 	 * @return the productId
 	 */
@@ -31,30 +27,10 @@ public class Review {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	/**
-	 * @return the content
-	 */
-	public String getContent() {
-		return content;
+	public Buy(Long productId, String memberId) {
+
+		this.productId = productId;
+		this.memberId = memberId;
 	}
-	/**
-	 * @param content the content to set
-	 */
-	public void setContent(String content) {
-		this.content = content;
-	}
-	/**
-	 * @return the regDate
-	 */
-	public Date getRegDate() {
-		return regDate;
-	}
-	/**
-	 * @param regDate the regDate to set
-	 */
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
-    
-    
+	
 }

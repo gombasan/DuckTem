@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -69,4 +70,20 @@ public class MemberServiceImpl implements MemberService{
         memberDao.updateStatus(userId);
 
     }
+    
+    
+    
+    
+   
+    @Override
+    public List<Member> getMemberList(List<String> members) {
+		List<Member> customersInfo = new ArrayList<>(members.size());
+		
+		for(int i=0; i<members.size(); i++)		
+			customersInfo.add(i,memberDao.findById(members.get(i)));
+		
+		return customersInfo;
+    }
+    
+    
 }
