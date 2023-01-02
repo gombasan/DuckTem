@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{inc/layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
 
 
 <!--  공통 css 제외한 나머지 css&js  -->
@@ -60,7 +59,7 @@
 		<div class="detail-container-title">
 			<h1 th:text="${product.name}">뉴진스 비공굿 판매(포카, 떡메)</h1>
 			<span class="detail-category">비공식 굿즈 > 문구류</span> <span
-				th:text="${product.regDate}">1분전</span>
+                th:text="${product.nTimeAgo}">1분전</span>
 		</div>
 		<div class="detail-icon">
 			<div class="">
@@ -76,32 +75,40 @@
 		</div>
 		<p th:text="${product.description}">다니엘해린눌린자국있으나나머지멤찍힘스크래치없슴니다빛번짐인증가넝</p>
 
-	</section>
-	<hr>
-	<section>
-		<ul class="detail-button">
-			<li><a class="btn btn-tag " href="">Newjeans</a></li>
-			<li><a class="btn btn-tag " href="">포카</a></li>
-			<li><a class="btn btn-tag " href="">Aespa</a></li>
-		</ul>
-	</section>
-	<hr>
-	<section class="detail-spec-container">
-		<ul>
-			<li th:text="|상품상태 : ${product.condition}|">상품상태</li>
-			<li th:text="|배송방법 : ${product.deliveryType}|">배송방법</li>
-		</ul>
-	</section>
-	<hr>
-	<section>
-		<h1 class="detail-user-others">이 판매자의 다른 물건</h1>
-		<section class="product-wrap">
+    </section>
+    <hr>
+    <section>
+        <ul class="detail-button">
+            <li><a class="btn btn-tag " href="">Newjeans</a></li>
+            <li><a class="btn btn-tag " href="">포카</a></li>
+            <li><a class="btn btn-tag " href="">Aespa</a></li>
+        </ul>
+    </section>
+    <hr>
+    <section class="detail-spec-container">
+        <ul>
+            <li th:text="|상품상태 : ${product.condition}|">상품상태</li>
+            <li th:text="|배송방법 : ${product.deliveryType}|">배송방법</li>
+        </ul>
+    </section>
+    <hr>
+    <section>
+        <h1 class="detail-user-others">이 판매자의 다른 물건</h1>
+        <section class="product-wrap">
 
-			<div th:each="memberProducts : ${memberProducts}"
-				class="product-container">
-				<div>
-					<img th:src="${memberProducts.thumbNailImg}" alt="product-img">
-				</div>
+            <div th:each="memberProducts : ${memberProducts}" class="product-container">
+                <a th:href="@{|/product/${memberProducts.productId}|}">
+                    <div><img th:src="${memberProducts.thumbNailImg}" alt="product-img"></div>
+
+                    <div class="price-wish">
+                        <span th:text="${memberProducts.price}" > 80,000원</span>
+
+                        <img class ="wish" src="/image/icon/heart.svg" alt="찜" th:data-id = "${memberProducts.productId}">
+                    </div>
+
+                    <div th:text="${memberProducts.name}" class="name">
+                        러브다이브 미공포
+                    </div>
 
 				<div class="price-wish">
 					<span th:text="${memberProducts.price}"> 80,000원</span> <img
@@ -196,7 +203,7 @@
             });
         </script>
 
-	</section>
+    </section>
 
 
 

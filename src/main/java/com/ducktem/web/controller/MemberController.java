@@ -44,7 +44,6 @@ public class MemberController {
             else {
                 memberService.reg(memberForm);
                 return "/sign-up-ending";
-
             }
         }
         else {
@@ -62,23 +61,17 @@ public class MemberController {
         return "member/list";
     }
 
-
-
-
-
-
-    // ===================================================================로그인/로그아웃==========================================================
-
-
-
-
     // =====================================마이페이지==========================================================
 
 
     @GetMapping("/mypage")
     public String myPage(HttpSession session, Model model) {
-
+    	
         String userId = (String)session.getAttribute("userId");
+        
+        if (userId == null)//로그인 안한경우 로그인 페이지로 연결
+        	return "redirect:/login?returnURL=/mypage";
+        			
         Member member = memberService.getMember(userId);
         model.addAttribute(member);
 
@@ -107,64 +100,6 @@ public class MemberController {
         else {
             return "test-deactive";
         }
-    }
-
-
-    // =======================================(수정중)============================로그인/로그아웃==========================================================
-
-    @GetMapping("/login")
-    public String loginForm() {
-
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam("userId") String id,
-                        @RequestParam("pwd") String pwd,
-                        @RequestParam(defaultValue = "false" ,name = "autologin") boolean autoLogin,
-                        HttpSession session,
-                        HttpServletRequest request,
-                        HttpServletResponse response
-    ) {
-        Member user = memberService.getMember(id);
-
-        //탈퇴 회원 확인
-        if(user.getStatus() == 1) {
-            //로그인 인풋창 아래에 '회원 정보가 존재하지 않습니다' 띄우는 방법?
-            System.out.println("없는 계정입니다.");
-
-            return "/login";
-        }
-        else if(user != null && user.getPwd().equals(pwd)) {
-            session.setAttribute("nickName",user.getNickName());
-            session.setAttribute("userId",user.getUserId());
-//            세션에서 멤버식별용 아이디 얻어와야 마이페이지에서 멤버별 정보 가져올 수 있음
-            String sessionId = session.getId();
-            System.out.println(sessionId);
-
-            if(autoLogin == true) {
-                Cookie cookie = new Cookie("loginInfo",sessionId);
-                cookie.setPath("/");
-                cookie.setMaxAge(60*60*24*7);
-                response.addCookie(cookie);
-            }
-
-            return "redirect:/";
-        }
-        else {
-            System.out.println("없는 계정입니다.");
-            return "/login";
-        }
-
-
-
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-
-        return "redirect:/";
     }
 
 }

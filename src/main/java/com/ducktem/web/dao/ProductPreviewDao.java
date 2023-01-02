@@ -1,6 +1,5 @@
 package com.ducktem.web.dao;
 
-
 import com.ducktem.web.entity.ProductPreview;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,6 +14,8 @@ public interface ProductPreviewDao {
     List<ProductPreview> findMemberProductList(String memberId);
 
     List<ProductPreview> getPreviewList(int size, int offset);
+
+    ProductPreview findByProductId(Long productId);
 
 	List<ProductPreview> findPreviewListByCategory(Integer superCategoryId, Integer categoryId);
 
