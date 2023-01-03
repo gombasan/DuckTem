@@ -31,7 +31,6 @@ public class HomeController {
     public String index(Model model, HttpSession session) {
         List<ProductPreview> preview = productPreviewServiceService.preview();
         model.addAttribute("preview", preview);
-
         return "index";
     }
 
