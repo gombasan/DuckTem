@@ -71,8 +71,6 @@
 
 
             <div class="product-wrap">
-
-
                 <div th:each="result : ${searchResult}" class="product-container">
                     <div>
                         <img src="/image/example-image.png" alt="product-img">
@@ -84,7 +82,6 @@
                     </div>
 
                     <div th:text="${result.name}" class="name">러브다이브미공포</div>
-
                     <div th:text="${result.regDate}" class="time">0일 전</div>
                 </div>
 

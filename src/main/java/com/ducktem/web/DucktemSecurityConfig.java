@@ -46,12 +46,14 @@ public class DucktemSecurityConfig {
 	@Bean
 	public PasswordEncoder passwordEncoder(){
 		
+//		//회원가입 시 적용
 //		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 //		String test = encoder.encode("testtest");
 //		System.out.println(test);
 		
 		return new BCryptPasswordEncoder();
 	}
+	
 	
 	@Bean
 	public UserDetailsService jdbcUserDetailsService() {
