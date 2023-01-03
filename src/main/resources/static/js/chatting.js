@@ -3,8 +3,9 @@ window.addEventListener("load",function () {
     let chatInput = document.querySelector(".chat-input");
     let chatBox = document.querySelector("#chat-box");
     let chatSection = document.querySelector(".chat");
+    chatSection.scrollTo(0,chatSection.scrollHeight);
 
-    chatSendBtn.addEventListener("click", (e) =>{
+    let chatSend = function (e) {
         e.preventDefault();
         let customerId = document.querySelector("#chat-title").dataset.id;
         let sellerId = document.querySelector(".member-nickname").dataset.id;
@@ -20,10 +21,17 @@ window.addEventListener("load",function () {
             <span class="chat-time">오후 16:08</span>
           </div>`;
         chatSection.insertAdjacentHTML("beforeend",template);
+        chatSection.scrollTo(0,chatSection.scrollHeight);
+    }
 
-
+    chatSendBtn.addEventListener("click", chatSend);
+    chatInput.addEventListener("keypress",(e) =>{
+        if(e.code === "Enter") {
+            chatSend(e);
+        }
     });
 
+    // 상대방이 메시지를 보냈을 경우.
     socket.onmessage = function (e) {
         // let msg = e.data;
         let template = `<div class="chat-receive">
@@ -34,17 +42,4 @@ window.addEventListener("load",function () {
         chatSection.insertAdjacentHTML("beforeend",template);
     }
 
-
-
-
-
-
-    // btn.onclick = function () {
-    //     let msg = document.querySelector("#msg").value;
-    //     websocket.send(msg);
-    // }
-    // websocket.onmessage = function(e) {
-    //     alert(`${e.id}`);
-    //     alert(`서버로부터 전송받은 데이터 : ${e.data}`);
-    // }
 })
