@@ -69,15 +69,16 @@ window.addEventListener("load",function(){
 	wishes.init();
 
 // wishList check, 공통
-	main.onclick = function(e){
+	window.onclick = function(e){
 		
 		if(e.target.classList.contains("wish"))	{
-			e.preventDefault();
 			
 	        if(!e.target.classList.contains("checked")){ // 하트가 안눌린 것  
 		        // fetch api
 		        console.log("하트가 눌리는 곳입니다.");
-		        id = e.target.dataset.id;        
+
+		        id = e.target.dataset.id;      
+
 		        fetch(`/${id}/wish`,{
 					method: "POST"
 				})

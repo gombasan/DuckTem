@@ -12,6 +12,7 @@
 
 
 	<script src="/js/rolling-banner.js"></script>
+	<script src="/js/productDetail.js"></script>
 	<script src="/js/wish.js"></script>
 
 </th:block>
@@ -99,16 +100,13 @@
 			<h3 id="title2">최근 등록된 상품</h3>
 			<div class="product-flex">
 				<div class="product-wrap">
-
-					<div th:each="preview : ${preview}" class="product-container">
+                     <div th:each="preview : ${preview}" class="product-container" th:data-location="${preview.productId}" >
 						<div>
 							<img th:src="${preview.thumbNailImg}" alt="product-img">
 						</div>
 
 						<div class="price-wish">
-							<span th:text="${preview.price}"></span> <img class="wish"
-								src="/image/icon/heart.svg" alt="찜"
-								th:data-id="${preview.productId}">
+							<span th:text="${preview.price}"></span><img class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${preview.productId}">
 						</div>
 
 						<div th:text="${preview.name}" class="name">러브다이브미공포</div>

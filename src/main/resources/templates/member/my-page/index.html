@@ -40,7 +40,7 @@
 
             <section class="title">
                 <div class="selling-btn">
-                    <span class="open-with-product">판매중</span><span>0</span>
+                    <span class="open-with-product">판매중</span><span th:text="${myProducts.size}">0</span>
                 </div>
                 <div class="wish-list-btn">
                     <span class="open-with-wish">찜 상품</span><span>0</span>
@@ -51,7 +51,22 @@
 
             </section>
 
-            <section class="product-wrap product-page"></section>
+            <section class="product-wrap product-page">
+            		<section class="product-wrap">		
+			            <div th:each="myProduct : ${myProducts}"  class="product-container" th:data-location="${myProduct.productId}" >
+		                    <div><img th:src="${myProduct.thumbNailImg}" alt="product-img"></div>
+		
+		                    <div class="price-wish">
+		                        <span th:text="${myProduct.price}+원"></span>	
+		                        <img class ="wish" src="/image/icon/heart.svg" alt="찜" th:data-id ="${myProduct.productId}">
+		                    </div>
+		
+		                    <div th:text="${myProduct.name}" class="name"></div>
+		
+		                    <div th:text="${myProduct.regDate}" class="time"></div>
+			            </div>
+			        </section>
+            </section>
 
             <section class="d-none product-wrap wishList-page"></section>
 

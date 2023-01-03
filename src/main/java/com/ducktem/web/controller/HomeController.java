@@ -46,11 +46,11 @@ public class HomeController {
         	}
         }
         
-        if (!loginInfo.equals("")) {
-        	Member member = memberService.findByLoginInfo(loginInfo);
-        	session.setAttribute("nickName",member.getNickName());
-        	session.setAttribute("userId",member.getUserId());
-        }
+//        if (!loginInfo.equals("")) {
+//        	Member member = memberService.findByLoginInfo(loginInfo);
+//        	session.setAttribute("nickName",member.getNickName());
+//        	session.setAttribute("userId",member.getUserId());
+//        }
 
         return "index";
     }

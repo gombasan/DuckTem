@@ -28,5 +28,5 @@ public class MyPageController {
 
         return productPreviewService.myList(userId);
     }
-	
+
 }
