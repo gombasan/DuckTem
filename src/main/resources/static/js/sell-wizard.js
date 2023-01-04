@@ -117,7 +117,7 @@ window.addEventListener("load", function () {
                             "                           class=\"img-input\" src=\"/image/빈-상품이미지.png\" alt=\"\">\n" +
                             "                     </div>"
                         if(imgIndex != 4)
-                        e.target.parentElement.insertAdjacentHTML("afterbegin", tempInputBox);
+                        e.target.parentElement.insertAdjacentHTML("beforeend", tempInputBox);
 
                         e.target.src = evt.target.result;
 

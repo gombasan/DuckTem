@@ -6,25 +6,26 @@
         select pi.name thumbNailImg, p.price, p.regDate, p.id productId ,p.name
 		from Product_image pi 
 		inner join Product p on pi.productId = p.id
-	        where p.name like '%${keyword}%'
+	        where p.name like '%${keyword}%' and pi.thumbNail = 1
 	    	<if test="option == null || option=='latest'">
-	       		order by regDate desc
+	       		order by p.regDate desc
 	        </if>
 	    	<if test="option == 'price-high'">
-	       		order by price desc
+	       		order by p.price desc
 	        </if>
 	    	<if  test="option == 'price-low'">
-	       		order by price asc
+	       		order by p.price asc
 	        </if>        
 	    	<if  test="option == 'most-viewed'">
-	       		order hit desc
+	       		order by p.hit desc
 	        </if>        
     </select>
 
     <select id="count" resultType="int">
-        select count(id)
-		from Product 
-        where name like '%${keyword}%'
+        select count(p.id)
+		from Product p
+		inner join Product_image pi on p.id = pi.productId
+        where p.name like '%${keyword}%' and pi.thumbNail = 1
     </select>
 
 </mapper>
