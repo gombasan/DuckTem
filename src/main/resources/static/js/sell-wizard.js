@@ -1,12 +1,5 @@
 
-
-
-
-
-
-
-
-//=======================================================================//
++//=======================================================================//
 // ====================    상품등록 (이전 이후 넘기기)    ================//
 //=======================================================================//
 window.addEventListener("load", function () {
@@ -195,14 +188,6 @@ window.addEventListener("load", function () {
 
 
 
-
-
-
-
-
-
-
-
     //=======================================================================//
     // ====================    카테고리 선택 (2번째 페이지)    ================//
     //=======================================================================//
@@ -332,9 +317,9 @@ window.addEventListener("load", function () {
         if (tagIndex < 5) {
 
 
-			tagTemplate = `<div class="btn btn-tag tag-default d-none"><input type="hidden" name="tag" value="" ></input></div>`
+			tagTemplate = `<div class="btn btn-tag tag-default"><input type="hidden" name="tag" value="" ></input></div>`
+			tagTemplate.querySelector(".tag").childNodes.value = tagInput.value;
 			tagBox.insertAdjacentHTML("afterbegin", tagTemplate);
-			tag.childNodes.value = tagInput.value;
            
             tagIndex++;
             

@@ -12,15 +12,13 @@ window.addEventListener("load", function () {
     let reviewPage = document.querySelector(".review");
 
 //    내가 판매하고 있는 상품 목록 불러오기
-    sellingBtn.onclick = function(e){
+    sellingBtn.onclick = function(){
 		wishTitleNum.init();
         productPage.classList.remove("d-none");
         wishListPage.classList.add("d-none");
         reviewPage.classList.add("d-none");
         
-        
-//     온클릭 이벤트가 있을 때도 초기화 되어야 함
-		productPage.init();
+        pageInfo("myProductList","GET",productPage,myProductTitleNum);
 		
     }
    
@@ -31,11 +29,11 @@ window.addEventListener("load", function () {
    	myProductTitleNum.init = function(){
 		myProductTitleNum.innerText = String(myProductTitleNumResult);
 	}
-   
-//   my page 초기화 
-    productPage.init = function(){
-		fetch(`/myProductList`,{
-			method: "GET"
+
+    let pageInfo = function(myPageInfo,methodType,place,titleNum){
+		
+		fetch(`/${myPageInfo}`,{
+			method: methodType
 		})
 		.then(async(response)=>{
 			let result = await response.json();
@@ -45,49 +43,51 @@ window.addEventListener("load", function () {
 			if(result == null)
 				console.log("오프라인 이므로 실행하지 않습니다.");
 			if(result != null){
-				myProducts = result;
+				products = result;
 			}
 		}).then(()=>{
 			let template = null;
-			for(let i=0; i<myProducts.length;i++){
+			let WishImg = null;
+//			for(let i=0; i<products.length;i++){
+			for(let i=(products.length-1); i>=0; i--){
+				if(myPageInfo=="myProductList")
+					WishImg = `<img class ="wish" src="/image/icon/heart.svg" alt="찜" data-id = "${products[i].productId}">`
+				else if(myPageInfo=="myWishList")
+					WishImg = `<img class ="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" data-id = "${products[i].productId}">`
 				let temp = `
 				    <section class="product-wrap">		
-			            <div class="product-container">
-		                    <div><img src="${myProducts[i].thumbNailImg}" alt="product-img"></div>
+			            <div class="product-container" data-location="${products[i].productId}">
+		                    <div><img src="${products[i].thumbNailImg}" alt="product-img"></div>
 		
 		                    <div class="price-wish">
-		                        <span text="">${myProducts[i].price}원</span>	
-		                        <img class ="wish" src="/image/icon/heart.svg" alt="찜" data-id = "${myProducts[i].productId}">
-		                    </div>
+		                        <span text="">${products[i].price}원</span>`
+		                        +WishImg+
+		                   `</div>
 		
 		                    <div text="" class="name">
-		                        ${myProducts[i].name}
+		                        ${products[i].name}
 		                    </div>
 		
 		                    <div text="" class="time">
-		                        ${myProducts[i].regDate}
+		                        ${products[i].regDate}
 		                    </div>
 			            </div>
 			        </section>`;
-			        if(i==0)
+			        if(i==(products.length-1))
 			        	template = temp;
 			        else	
 			        	template += temp;
 			        
 			}
-		       productPage.innerHTML = template;
-		       myProductTitleNumResult = myProducts.length;
-		       myProductTitleNum.init();
+		       place.innerHTML = template;
+		       titleNum.innerText = String(products.length);
+		       
 		})
 		.catch(()=>{
 			console.log('에러발생');
 		})
 	}
     
-//    productPage는 onload 될 때마다 init 되어야 함
-    productPage.init();
-
-
     
 //wishList=================================================================
 // title 있을 때만 my-page에서 실행하고, 만들어 주기 위한 코드
@@ -103,15 +103,30 @@ window.addEventListener("load", function () {
 
 	wishTitleNum.init();
 
-    wishListBtn.onclick = function(e){
-		wishTitleNum.init();
-		
+    wishListBtn.onclick = function(){
         wishListPage.classList.remove("d-none");
         reviewPage.classList.add("d-none");
         productPage.classList.add("d-none");
-		let wishProducts = [];
- //	찜 상품 보여주기=============================================================
-		fetch(`/myWishList`,{
+        pageInfo("myWishList","GET",wishListPage,wishTitleNum);
+        	    
+    }
+    
+//   =================================================================
+   let myReviewTitleNum = reviewBtn.lastElementChild;
+   let myReviewtTitleNumResult;
+   let myPageReviews = [];
+   	myReviewTitleNum.init = function(){
+		myReviewTitleNum.innerText = String(myReviewtTitleNumResult);
+	} 
+	
+    reviewBtn.onclick = function(){
+        wishTitleNum.init();
+        reviewPage.classList.remove("d-none");
+        productPage.classList.add("d-none");
+        wishListPage.classList.add("d-none"); 
+    }
+    
+    fetch(`/getMyReviewList`,{
 			method: "GET"
 		})
 		.then(async(response)=>{
@@ -122,55 +137,41 @@ window.addEventListener("load", function () {
 			if(result == null)
 				console.log("오프라인 이므로 실행하지 않습니다.");
 			if(result != null){
-				wishProducts = result;
+				myPageReviews = result;
 			}
 		}).then(()=>{
 			let template = null;
-			for(let i=0; i<wishProducts.length;i++){
+			for(let i=0; i<myPageReviews.length;i++){
+				if(!myPageReviews[i].profileImg){
+					myPageReviews[i].profileImg = "/image/profile-img.png";
+				}
+				
 				let temp = `
-				    <section class="product-wrap">		
-			            <div class="product-container">
-		                    <div><img src="${wishProducts[i].thumbNailImg}" alt="product-img"></div>
-		
-		                    <div class="price-wish">
-		                        <span text="">${wishProducts[i].price}원</span>	
-		                        <img class ="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" data-id = "${wishProducts[i].productId}">
-		                    </div>
-		
-		                    <div text="" class="name">
-		                        ${wishProducts[i].name}
-		                    </div>
-		
-		                    <div text="" class="time">
-		                        ${wishProducts[i].regDate}
-		                    </div>
-			            </div>
-			        </section>`;
+					<div class="review-detail">
+	                    <div><img src="${myPageReviews[i].profileImg}" alt=""></div>
+	                    <div>${myPageReviews[i].memberId}</div>
+	                    <div>${myPageReviews[i].regDate}</div>
+	                    <div><img src="/image/icon/report.svg" alt=""></div>
+	                    <div>${myPageReviews[i].productName}</div>
+	                    <div>${myPageReviews[i].content}</div>
+	                </div>
+				`;
 			        if(i==0)
 			        	template = temp;
 			        else	
 			        	template += temp;
 			        
 			}
-		       wishListPage.innerHTML = template;
+			if(template!=null){				
+		       reviewPage.insertAdjacentHTML('beforeend',template);
+		       myReviewtTitleNumResult = myPageReviews.length;
+		       myReviewTitleNum.init();
+			}
 		        
 		})
 		.catch(()=>{
 			console.log('에러발생');
 		})
-
-	    
-    }
-    
-//   =================================================================
-    
-    reviewBtn.onclick = function(e){
-        wishTitleNum.init();
-        reviewPage.classList.remove("d-none");
-        productPage.classList.add("d-none");
-        wishListPage.classList.add("d-none"); 
-
-    }
 
     // =====키워드 알림======================================================
 

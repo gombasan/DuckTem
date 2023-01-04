@@ -7,7 +7,9 @@
     <th:block layout:fragment="css">
 
         <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/index.css">
         <link rel="stylesheet" href="/css/list.css">
+        <script src="/js/list-search.js"></script>
     
     	<script src="/js/wish.js"></script>
     </th:block>
@@ -20,7 +22,7 @@
         <section class="search-result-wrap">
             <h1 class="d-none">검색결과</h1>
             <div>
-                <span class="search-result">잇지</span><span>의 검색결과 6건</span>
+                <span class="search-result" th:text="${keyword}">잇지</span><span th:text="|의 검색결과 ${resultCount} 건|">의 검색결과 6건</span>
             </div>
         </section>
 
@@ -51,11 +53,11 @@
 
         <div class="option">
 
-            <select>
-                <option value="">최신순</option>
-                <option value="">높은 가격순</option>
-                <option value="">낮은 가격순</option>
-                <option value="">인기상품순</option>
+            <select class="search-filter">
+                <option class="latest" value="latest">최신순</option>
+                <option class="price-high" value="price-high">높은 가격순</option>
+                <option class="price-low" value="price-low">낮은 가격순</option>
+                <option class="most-wished" value="most-viewed">인기상품순</option>
             </select>
         </div>
 
@@ -70,21 +72,18 @@
 
 
             <div class="product-wrap">
-
-
-                <div class="product-container">
+                <div th:each="result : ${searchResult}" class="product-container">
                     <div>
                         <img src="/image/example-image.png" alt="product-img">
                     </div>
 
                     <div class="price-wish">
-                        <span> 80,000원</span>
+                        <span th:text="${result.price}"> 80,000원</span>
                         <img  class ="wish" src="/image/icon/heart.svg" alt="찜">
                     </div>
 
-                    <div class="name">러브다이브미공포</div>
-
-                    <div class="time">0일 전</div>
+                    <div th:text="${result.name}" class="name">러브다이브미공포</div>
+                    <div th:text="${result.regDate}" class="time">0일 전</div>
                 </div>
 
                

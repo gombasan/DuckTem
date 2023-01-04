@@ -9,8 +9,8 @@ import com.ducktem.web.entity.Review;
 @Mapper
 public interface ReviewDao {
 
-	void save();
+	void save(Long productId, String memberId);
 
-	List<Review> getReviewList();
+	Review get(Long productId, String memberId);
 
 }

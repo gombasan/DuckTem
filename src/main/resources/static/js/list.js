@@ -93,8 +93,8 @@ window.addEventListener("load", function() {
 
 					let template =
 						`
-				<div class="product-container">
-				
+				<div class="product-container"  >
+				<a href="/product/${i.productId}">
 					<div>
 						<img src="${i.thumbNailImg}" alt="product-img">
 					</div>
@@ -107,7 +107,7 @@ window.addEventListener("load", function() {
 					<div class="name">${i.name}</div>
 
 					<div class="time">${i.regDate}</div>
-				
+				</a>
 			</div>
 				`
 
