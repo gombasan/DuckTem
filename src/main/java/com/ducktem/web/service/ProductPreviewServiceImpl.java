@@ -22,16 +22,16 @@ public class ProductPreviewServiceImpl implements ProductPreviewService {
     }
 
     @Override
-    public List<ProductPreview> preview() {
-        return this.preview(1);
+    public List<ProductPreview> preview(String memberId) {
+        return this.preview(1,memberId);
     }
 
     @Override
-    public List<ProductPreview> preview(int page) {
+    public List<ProductPreview> preview(int page, String memberId) {
         int size = 10;
         int offset = (page-1)*size;
 
-        return productPreviewDao.getPreviewList(size,offset);
+        return productPreviewDao.getPreviewList(size,offset,memberId);
     }
 
 	@Override

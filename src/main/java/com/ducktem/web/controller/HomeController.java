@@ -30,7 +30,8 @@ public class HomeController {
     @GetMapping("/")
 
     public String index(Model model, HttpSession session, HttpServletRequest request) {
-        List<ProductPreview> preview = productPreviewService.preview();
+    	String userId = (String)session.getAttribute("userId");
+        List<ProductPreview> preview = productPreviewService.preview(userId);
         model.addAttribute("preview", preview);
 
         /*자동 로그인*/

@@ -31,6 +31,7 @@ window.addEventListener("load", function () {
 	}
 
     let pageInfo = function(myPageInfo,methodType,place,titleNum){
+		
 		fetch(`/${myPageInfo}`,{
 			method: methodType
 		})

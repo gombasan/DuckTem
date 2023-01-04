@@ -14,8 +14,11 @@
         order by regDate desc;
     </select>
 
-    <select id="getPreviewList" resultType="ProductPreview" parameterType="Int">
-        select * from ProductPreview
+    <select id="getPreviewList" resultType="ProductPreview">
+        select pp.*, memberId in (select memberId from WishList where memberId = #{memberId}) 
+        as status from ProductPreview pp
+		left outer join WishList wl
+		on pp.productId = wl.productId
         order by regDate desc LIMIT #{size} OFFSET #{offset};
     </select>
 

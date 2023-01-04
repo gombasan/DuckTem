@@ -106,7 +106,9 @@
 						</div>
 
 						<div class="price-wish">
-							<span th:text="${preview.price}"></span><img class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${preview.productId}">
+							<span th:text="${preview.price}"></span>
+							<img th:if="${preview.status == 1}" class="wish" src="/image/icon/icon-heart-red.svg" alt="찜" th:data-id="${preview.productId}">
+							<img th:unless="${preview.status == 1}" class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${preview.productId}">
 						</div>
 
 						<div th:text="${preview.name}" class="name">러브다이브미공포</div>
@@ -134,22 +136,32 @@
         let htmlScrollTop = html.scrollTop;
         let htmlScrollClientHeight = html.clientHeight;
 
+        let tempHeart = null;
+        
+        
         if(htmlScrollHeight - htmlScrollTop - paddingOfBottom <= htmlScrollClientHeight) {
 
           fetch(`/${page}`)
                   .then((response) => response.json())
                   .then(products => {
+
                     if(products.length < 10) {
                       isEndPage = true;
                     }
                     for(let product of products){
+                  	  if(product.status == 1)
+                  		tempHeart = `<img class="wish" src="/image/icon/icon-heart-red.svg" alt="찜" data-id="${product.productId}">`
+                  	  else
+                  		tempHeart = `<img class="wish" src="/image/icon/heart.svg" alt="찜" data-id="${product.productId}">`
+                    	
+                    	
                       let template = `
                 <div class="product-container">
                     <div><img src=${product.thumbNailImg} alt="product-img"></div>
 
                     <div class="price-wish">
                         <span>${product.price}</span>
-                        <img class ="wish" src="/image/icon/heart.svg" alt="찜" th:data-id = "${product.productId}">
+                        ${tempHeart}
                     </div>
 
                     <div class="name">
