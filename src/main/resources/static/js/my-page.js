@@ -50,10 +50,10 @@ window.addEventListener("load", function () {
 			let WishImg = null;
 //			for(let i=0; i<products.length;i++){
 			for(let i=(products.length-1); i>=0; i--){
-				if(myPageInfo=="myProductList")
-					WishImg = `<img class ="wish" src="/image/icon/heart.svg" alt="찜" data-id = "${products[i].productId}">`
-				else if(myPageInfo=="myWishList")
+				if(product.status == 1)
 					WishImg = `<img class ="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" data-id = "${products[i].productId}">`
+				else
+					WishImg = `<img class ="wish" src="/image/icon/heart.svg" alt="찜" data-id = "${products[i].productId}">`
 				let temp = `
 				    <section class="product-wrap">		
 			            <div class="product-container" data-location="${products[i].productId}">
