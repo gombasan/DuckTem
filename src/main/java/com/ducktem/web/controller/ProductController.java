@@ -1,5 +1,6 @@
 package com.ducktem.web.controller;
 
+import com.ducktem.web.entity.DucktemUserDetails;
 import com.ducktem.web.entity.Member;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductImg;
@@ -13,6 +14,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -46,15 +49,25 @@ public class ProductController {
         System.out.println(session.getAttribute("id"));
         return "/member/sell/index";
     }
-
+//
+//    /* 상품 등록 요청 */
+//    @PostMapping("/product")
+//    public String regProduct(Product product , MultipartFile file, HttpSession session, HttpServletRequest request) {
+//
+//        productService.upload((String) session.getAttribute("nickName"),product);
+//        imgService.upload(file,product.getId(),request);
+//
+//        return "redirect:/";
+//    }
+    
     /* 상품 등록 요청 */
     @PostMapping("/product")
-    public String regProduct(Product product , MultipartFile file, HttpSession session, HttpServletRequest request) {
-
-        productService.upload((String) session.getAttribute("nickName"),product);
-        imgService.upload(file,product.getId(),request);
-
-        return "redirect:/";
+    public String regProduct(Product product , MultipartFile file, @AuthenticationPrincipal DucktemUserDetails user , HttpServletRequest request) {
+    	
+    	productService.upload(user.getNickName(),product);
+    	imgService.upload(file,product.getId(),request);
+    	
+    	return "redirect:/";
     }
 
 

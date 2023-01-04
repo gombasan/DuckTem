@@ -1,6 +1,7 @@
 package com.ducktem.web.controller;
 
 
+import com.ducktem.web.entity.DucktemUserDetails;
 import com.ducktem.web.entity.Member;
 import com.ducktem.web.form.MemberForm;
 import com.ducktem.web.service.MemberService;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,9 +67,9 @@ public class MemberController {
 
 
     @GetMapping("/mypage")
-    public String myPage(HttpSession session, Model model) {
+    public String myPage(@AuthenticationPrincipal DucktemUserDetails user, Model model) {
     	
-        String userId = (String)session.getAttribute("userId");
+        String userId = user.getUsername();
         
         System.out.println("마이페이지");
 //        if (userId == null)//로그인 안한경우 로그인 페이지로 연결
