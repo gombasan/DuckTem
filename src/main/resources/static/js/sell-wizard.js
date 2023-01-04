@@ -1,5 +1,5 @@
 
-+//=======================================================================//
+//=======================================================================//
 // ====================    상품등록 (이전 이후 넘기기)    ================//
 //=======================================================================//
 window.addEventListener("load", function () {
@@ -90,52 +90,97 @@ window.addEventListener("load", function () {
 
 
 
-    imgInput.onclick = function () {
-        console.log(imgIndex);
-        if (imgIndex < 4) {
-            let event = new MouseEvent("click", {
-                'view': window,
-                'bubbles': true,
-                'cancelable': true
-            });
+//    imgInput.onclick = function () {
+//        console.log(imgIndex);
+//        if (imgIndex < 4) {
+//            let event = new MouseEvent("click", {
+//                'view': window,
+//                'bubbles': true,
+//                'cancelable': true
+//            });
+//
+//            fileInput.dispatchEvent(event);
+//
+//
+//
+//        }
+//    }
+//
+//
+//
+//
+//    fileInput.oninput = function () {
+//
+//        let url = fileInput.files[0];
+//
+//        let reader = new FileReader();
+//        reader.onload = (evt) => {
+//
+//
+//            newimgInputAfter = imgInputAfter.cloneNode(true);
+//            inputBox.insertBefore(imgInput, imgInputAfter)
+//            inputBox.appendChild(newimgInputAfter);
+//            imgInputAfter.src = evt.target.result;
+//            imgInputAfter.classList.remove("d-none");
+//            imgIndex++;
+//            imgNum.innerHTML = imgIndex;
+//
+//
+//        }
+//
+//
+//
+//        reader.readAsDataURL(url);
+//
+//    }
 
-            fileInput.dispatchEvent(event);
+
+//================================================
 
 
 
+    document.querySelector(".input-container").onclick = function (e) {
+        if(e.target.classList.contains("img-input")) {
+            if (imgIndex < 4) {
+
+                let event = new MouseEvent("click", {
+                    'view': window,
+                    'bubbles': true,
+                    'cancelable': true
+                });
+                let fileInput = e.target.previousElementSibling;
+
+                fileInput.dispatchEvent(event);
+
+                fileInput.oninput = function () {
+
+                    let url = fileInput.files[0];
+
+                    let reader = new FileReader();
+                    reader.onload = (evt) => {
+
+                        let tempInputBox = "<div class=\"input-box\">\n" +
+                            "                        <input value=\"img\" class=\"d-none file-input\"\n" +
+                            "                           name=\"files\" type=\"file\"> <img\n" +
+                            "                           class=\"img-input\" src=\"/image/빈-상품이미지.png\" alt=\"\">\n" +
+                            "                     </div>"
+
+                        e.target.parentElement.insertAdjacentHTML("afterbegin", tempInputBox);
+
+                        e.target.src = evt.target.result;
+
+                        imgIndex++;
+                        imgNum.innerHTML = imgIndex;
+
+
+                    }
+                    reader.readAsDataURL(url);
+
+                }
+            }
         }
-    }
-
-
-
-
-    fileInput.oninput = function () {
-
-        let url = fileInput.files[0];
-
-        let reader = new FileReader();
-        reader.onload = (evt) => {
-
-
-            newimgInputAfter = imgInputAfter.cloneNode(true);
-            inputBox.insertBefore(imgInput, imgInputAfter)
-            inputBox.appendChild(newimgInputAfter);
-            imgInputAfter.src = evt.target.result;
-            imgInputAfter.classList.remove("d-none");
-            imgIndex++;
-            imgNum.innerHTML = imgIndex;
-
-
-        }
-
-
-
-        reader.readAsDataURL(url);
 
     }
-
-
-
 
 
 
@@ -251,6 +296,7 @@ window.addEventListener("load", function () {
 
     let tagIndex = 0
     let blankPattern = /^\s+|\s+$/g;
+    var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
 
 
     tagInput.onclick = function () {
@@ -264,11 +310,12 @@ window.addEventListener("load", function () {
 
 
     addBtn.onclick = function () {
-        if(!tagInput.value|| (tagInput.value.replace(blankPattern, '' ) == "")){
-            alert("공백이 입력되었습니다.")
+        if(!tagInput.value|| (tagInput.value.replace(blankPattern, '') == "")){
+			//if(!tagInput.value||tagInput.value(/\W|\s/g) > -1){
+            alert("특수문자 또는 공백이 입력되었습니다.")
             return;
         }
-        console.log(tagIndex);
+       
         if (tagIndex < 5) {
 
 
