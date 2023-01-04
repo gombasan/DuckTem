@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.ducktem.web.service.DucktemUserDetailsService;
+
 @Configuration
 public class DucktemSecurityConfig {
 	
@@ -52,6 +54,12 @@ public class DucktemSecurityConfig {
 //		System.out.println(test);
 		
 		return new BCryptPasswordEncoder();
+	}
+	
+//	@Bean
+	public UserDetailsService ducktemUserDetailsService() {
+
+		return new DucktemUserDetailsService();
 	}
 	
 	
