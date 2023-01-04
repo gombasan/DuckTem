@@ -26,7 +26,7 @@ public class ImgServiceImpl implements ImgService{
     /* 상품 이미지 등록 서비스*/
     @Override
     public void upload(MultipartFile[] files,Long productId,HttpServletRequest request) {
-        MultipartFile thumbNail = files[3];
+        MultipartFile thumbNail = files[0];
 
         for(int i=0; i<files.length; i++) {
             ProductImg productImg = new ProductImg();
@@ -34,24 +34,25 @@ public class ImgServiceImpl implements ImgService{
                 productImg.setThumbnail((byte) 1);
             }
             String productName = fileSave(files[i], request);
+            productImg.setProductId(productId);
             if(productName != null){
                 productImg.setName(productName);
                 imgDao.save(productImg);
             }
         }
 
-        for(MultipartFile file : files) {
-            ProductImg productImg = new ProductImg();
-            String test = fileSave(file,request);
-            System.out.println(test);
-            productImg.setProductId(productId);
-            /* 상품 이미지 파일 이름에 UUID 삽입 후 저장 */
-            String productName = fileSave(file, request);
-            if(productName != null) {
-                productImg.setName(productName);
-                imgDao.save(productImg);
-            }
-        }
+//        for(MultipartFile file : files) {
+//            ProductImg productImg = new ProductImg();
+//            String test = fileSave(file,request);
+//            System.out.println(test);
+//            productImg.setProductId(productId);
+//            /* 상품 이미지 파일 이름에 UUID 삽입 후 저장 */
+//            String productName = fileSave(file, request);
+//            if(productName != null) {
+//                productImg.setName(productName);
+//                imgDao.save(productImg);
+//            }
+//        }
     }
 
 
