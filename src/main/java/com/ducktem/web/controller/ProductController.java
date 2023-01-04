@@ -47,17 +47,17 @@ public class ProductController {
 
     /* 상품 등록 폼파일 요청 */
     @GetMapping("/product")
-    public String regProductForm(HttpSession session) {
+    public String regProductForm() {
 
         return "/member/sell/index";
     }
 
     /* 상품 등록 요청 */
     @PostMapping("/product")
-    public String regProduct(Product product , MultipartFile file, HttpSession session, HttpServletRequest request) {
+    public String regProduct(Product product ,MultipartFile thumbNail, MultipartFile[] files, HttpSession session, HttpServletRequest request) {
 
         productService.upload((String) session.getAttribute("nickName"),product);
-        imgService.upload(file,product.getId(),request);
+        imgService.upload(thumbNail,files,product.getId(),request);
 
         return "redirect:/";
     }

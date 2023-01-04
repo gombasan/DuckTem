@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -20,16 +21,24 @@ public class ImgServiceImpl implements ImgService{
     private ImgDao imgDao;
 
 
+
+
     /* 상품 이미지 등록 서비스*/
     @Override
-    public void upload(MultipartFile file,Long productId,HttpServletRequest request) {
-        ProductImg productImg = new ProductImg();
-        productImg.setProductId(productId);
-        /* 상품 이미지 파일 이름에 UUID 삽입 후 저장 */
-        productImg.setName(fileSave(file,request));
+    public void upload(MultipartFile thumbNail,MultipartFile[] files,Long productId,HttpServletRequest request) {
+        ProductImg thumbNailImg = new ProductImg();
+        thumbNailImg.setThumbnail((byte) 1);
+        thumbNailImg.setProductId(productId);
+        thumbNailImg.setName(fileSave(thumbNail,request));
+        imgDao.save(thumbNailImg);
 
-
-        imgDao.save(productImg);
+        for(MultipartFile file : files) {
+            ProductImg productImg = new ProductImg();
+            productImg.setProductId(productId);
+            /* 상품 이미지 파일 이름에 UUID 삽입 후 저장 */
+            productImg.setName(fileSave(file, request));
+            imgDao.save(productImg);
+        }
     }
 
 
@@ -47,11 +56,12 @@ public class ImgServiceImpl implements ImgService{
 
 
         UUID uuid = UUID.randomUUID();
+
         String productImgName = uuid + "_" + file.getOriginalFilename();
         File productImgFile = new File(productImgPath, productImgName);
-        try{
+        try {
             file.transferTo(productImgFile);
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         return "/productimgs/" + productImgName;
