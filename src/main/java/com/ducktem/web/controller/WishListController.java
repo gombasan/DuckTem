@@ -64,7 +64,6 @@ public class WishListController {
 		String userId = (String)session.getAttribute("userId");
         
 		if(userId == null) {
-            System.out.println("로그인 후 사용해주세요.");
             return "/login";
 		}
 		else {
@@ -89,9 +88,7 @@ public class WishListController {
 			return "NoWishList";
 			
 //			찜 목록 확인	
-		else {			
-			System.out.println(userId);
-			System.out.println(productId);
+		else {
 	        wishListService.deleteWish(userId, productId);
 	        return "deleteDone";
 		}

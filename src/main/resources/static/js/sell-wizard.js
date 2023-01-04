@@ -73,9 +73,9 @@ window.addEventListener("load", function () {
 
     const imgInput = document.querySelector(".img-input");
     const imgInputAfter = document.querySelector(".img-input-after");
-    const fileInput = document.querySelector(".file-input");
+    // let fileInput = document.querySelector(".file-input");
     let inputBox = document.querySelector(".input-box")
-    let newimgInputAfter;
+
 
 
 
@@ -90,49 +90,53 @@ window.addEventListener("load", function () {
 
 
 
-    imgInput.onclick = function () {
-        console.log(imgIndex);
-        if (imgIndex < 4) {
-            let event = new MouseEvent("click", {
-                'view': window,
-                'bubbles': true,
-                'cancelable': true
-            });
+    document.querySelector(".input-container").onclick = function (e) {
+        if(e.target.classList.contains("img-input")) {
+            if (imgIndex < 4) {
 
-            fileInput.dispatchEvent(event);
+                let event = new MouseEvent("click", {
+                    'view': window,
+                    'bubbles': true,
+                    'cancelable': true
+                });
+                let fileInput = e.target.previousElementSibling;
+
+                fileInput.dispatchEvent(event);
+
+                fileInput.oninput = function () {
+
+                    let url = fileInput.files[0];
+
+                    let reader = new FileReader();
+                    reader.onload = (evt) => {
+
+                        imgIndex++;
+                        let tempInputBox = "<div class=\"input-box\">\n" +
+                            "                        <input value=\"img\" class=\"d-none file-input\"\n" +
+                            "                           name=\"files\" type=\"file\"> <img\n" +
+                            "                           class=\"img-input\" src=\"/image/빈-상품이미지.png\" alt=\"\">\n" +
+                            "                     </div>"
+                        if(imgIndex != 4)
+                        e.target.parentElement.insertAdjacentHTML("afterbegin", tempInputBox);
+
+                        e.target.src = evt.target.result;
+
+                        imgNum.innerHTML = imgIndex;
 
 
+                    }
+                    reader.readAsDataURL(url);
 
+                }
+            }
         }
+
     }
 
 
 
 
-    fileInput.oninput = function () {
 
-        let url = fileInput.files[0];
-
-        let reader = new FileReader();
-        reader.onload = (evt) => {
-
-
-            newimgInputAfter = imgInputAfter.cloneNode(true);
-            inputBox.insertBefore(imgInput, imgInputAfter)
-            inputBox.appendChild(newimgInputAfter);
-            imgInputAfter.src = evt.target.result;
-            imgInputAfter.classList.remove("d-none");
-            imgIndex++;
-            imgNum.innerHTML = imgIndex;
-
-
-        }
-
-
-
-        reader.readAsDataURL(url);
-
-    }
 
 
 

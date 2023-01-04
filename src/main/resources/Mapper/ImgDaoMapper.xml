@@ -3,7 +3,7 @@
 <mapper namespace="com.ducktem.web.dao.ImgDao">
     <insert id="save" parameterType="ProductImg">
 
-        INSERT INTO `Product_image` (`name`,`productId`) VALUES (#{name}, #{productId});
+        INSERT INTO `Product_image` (`name`,`thumbNail`,`productId`) VALUES (#{name},${thumbNail},#{productId});
 
     </insert>
 

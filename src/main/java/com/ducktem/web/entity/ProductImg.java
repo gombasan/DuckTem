@@ -4,7 +4,7 @@ public class ProductImg {
     private String name;
 
     private Long productId;
-    private boolean thumbnail;
+    private byte thumbNail;
 
     public Long getProductId() {
         return productId;
@@ -22,11 +22,11 @@ public class ProductImg {
         this.name = name;
     }
 
-    public boolean isThumbnail() {
-        return thumbnail;
+    public byte getThumbNail() {
+        return thumbNail;
     }
 
-    public void setThumbnail(boolean thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setThumbnail(byte thumbNail) {
+        this.thumbNail = thumbNail;
     }
 }
