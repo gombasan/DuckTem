@@ -117,17 +117,17 @@ window.addEventListener("load", function () {
                     let reader = new FileReader();
                     reader.onload = (evt) => {
 
+                        imgIndex++;
                         let tempInputBox = "<div class=\"input-box\">\n" +
                             "                        <input value=\"img\" class=\"d-none file-input\"\n" +
                             "                           name=\"files\" type=\"file\"> <img\n" +
                             "                           class=\"img-input\" src=\"/image/빈-상품이미지.png\" alt=\"\">\n" +
                             "                     </div>"
-
-                        e.target.parentElement.insertAdjacentHTML("afterend", tempInputBox);
+                        if(imgIndex != 4)
+                        e.target.parentElement.insertAdjacentHTML("afterbegin", tempInputBox);
 
                         e.target.src = evt.target.result;
 
-                        imgIndex++;
                         imgNum.innerHTML = imgIndex;
 
 
