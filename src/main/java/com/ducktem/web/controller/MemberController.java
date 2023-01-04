@@ -77,14 +77,9 @@ public class MemberController {
     	
         String userId = user.getUsername();
         
-        System.out.println("마이페이지");
-//        if (userId == null)//로그인 안한경우 로그인 페이지로 연결
-//        	return "redirect:/login?returnURL=/mypage";
-        			
-//        Member member = memberService.getMember(userId);
-//        model.addAttribute(member);
+        Member member = memberService.getMember(userId);
+        model.addAttribute(member);
 
-        
         List<ProductPreview> myProducts = productPreviewService.myList(userId);
         model.addAttribute("myProducts",myProducts);
 
