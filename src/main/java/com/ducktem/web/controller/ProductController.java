@@ -1,11 +1,6 @@
 package com.ducktem.web.controller;
 
-import com.ducktem.web.entity.SuperCategory;
-import com.ducktem.web.entity.Member;
-import com.ducktem.web.entity.Product;
-import com.ducktem.web.entity.ProductImg;
-import com.ducktem.web.entity.ProductPreview;
-import com.ducktem.web.entity.Category;
+import com.ducktem.web.entity.*;
 import com.ducktem.web.service.*;
 
 
@@ -57,10 +52,11 @@ public class ProductController {
 
     /* 상품 등록 요청 */
     @PostMapping("/product")
-    public String regProduct(Product product , MultipartFile file, @AuthenticationPrincipal DucktemUserDetails user , HttpServletRequest request) {
+    public String regProduct(Product product ,MultipartFile[] files, @AuthenticationPrincipal DucktemUserDetails user , HttpServletRequest request) {
 
     	productService.upload(user.getNickName(),product);
-    	imgService.upload(file,product.getId(),request);
+
+    	imgService.upload(files,product.getId(),request);
 
     	return "redirect:/";
     }

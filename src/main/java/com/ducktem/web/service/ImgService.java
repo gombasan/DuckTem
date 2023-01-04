@@ -10,7 +10,7 @@ import java.util.List;
 public interface ImgService {
 
     /* 상품아이디로 파일 등록하기 */
-    void upload(MultipartFile thumbNail,MultipartFile[] file, Long productId, HttpServletRequest request);
+    void upload(MultipartFile[] file, Long productId, HttpServletRequest request);
 
     List<ProductImg> getList(Long productId);
 
