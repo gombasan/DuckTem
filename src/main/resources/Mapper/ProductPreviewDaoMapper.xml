@@ -41,7 +41,7 @@
 		    	 Category.id=#{categoryId}
 		    </if>
 	     </trim>
-
+  		order by ProductPreview.regDate desc ;
     </select>
 
 

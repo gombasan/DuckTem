@@ -80,9 +80,9 @@ window.addEventListener("load", function () {
 
     const imgInput = document.querySelector(".img-input");
     const imgInputAfter = document.querySelector(".img-input-after");
-    // let fileInput = document.querySelector(".file-input");
+    const fileInput = document.querySelector(".file-input");
     let inputBox = document.querySelector(".input-box")
-
+    let newimgInputAfter;
 
 
 
@@ -97,10 +97,57 @@ window.addEventListener("load", function () {
 
 
 
+//    imgInput.onclick = function () {
+//        console.log(imgIndex);
+//        if (imgIndex < 4) {
+//            let event = new MouseEvent("click", {
+//                'view': window,
+//                'bubbles': true,
+//                'cancelable': true
+//            });
+//
+//            fileInput.dispatchEvent(event);
+//
+//
+//
+//        }
+//    }
+//
+//
+//
+//
+//    fileInput.oninput = function () {
+//
+//        let url = fileInput.files[0];
+//
+//        let reader = new FileReader();
+//        reader.onload = (evt) => {
+//
+//
+//            newimgInputAfter = imgInputAfter.cloneNode(true);
+//            inputBox.insertBefore(imgInput, imgInputAfter)
+//            inputBox.appendChild(newimgInputAfter);
+//            imgInputAfter.src = evt.target.result;
+//            imgInputAfter.classList.remove("d-none");
+//            imgIndex++;
+//            imgNum.innerHTML = imgIndex;
+//
+//
+//        }
+//
+//
+//
+//        reader.readAsDataURL(url);
+//
+//    }
+
+
+
     document.querySelector(".input-container").onclick = function (e) {
         if(e.target.classList.contains("img-input")) {
+			
             if (imgIndex < 4) {
-
+				
                 let event = new MouseEvent("click", {
                     'view': window,
                     'bubbles': true,
@@ -115,21 +162,23 @@ window.addEventListener("load", function () {
                     let url = fileInput.files[0];
 
                     let reader = new FileReader();
+                    
                     reader.onload = (evt) => {
-
+						imgIndex++;
                         let tempInputBox = "<div class=\"input-box\">\n" +
                             "                        <input value=\"img\" class=\"d-none file-input\"\n" +
                             "                           name=\"files\" type=\"file\"> <img\n" +
                             "                           class=\"img-input\" src=\"/image/빈-상품이미지.png\" alt=\"\">\n" +
                             "                     </div>"
 
-                        e.target.parentElement.insertAdjacentHTML("afterend", tempInputBox);
+						if (imgIndex!=4)
+                        e.target.parentElement.insertAdjacentHTML("afterbegin", tempInputBox);
 
                         e.target.src = evt.target.result;
 
-                        imgIndex++;
+                        
                         imgNum.innerHTML = imgIndex;
-
+						
 
                     }
                     reader.readAsDataURL(url);
@@ -139,15 +188,6 @@ window.addEventListener("load", function () {
         }
 
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -263,7 +303,7 @@ window.addEventListener("load", function () {
 
 
     const tagInput = document.querySelector(".tag-input");
-    const tag = document.querySelector(".btn-tag");
+    const tag = document.querySelector(".tag-default");
     const addBtn = document.querySelector(".btn-add");
     const tagBox = document.querySelector(".tag-box")
     console.log(tag)
@@ -292,16 +332,12 @@ window.addEventListener("load", function () {
         if (tagIndex < 5) {
 
 
-            newTag = tag.cloneNode(true);
-            tagBox.appendChild(newTag);
-            tagBox.insertBefore(tag, null)
-
-
-
-            tag.innerHTML = tagInput.value;
-
-            tag.classList.remove("d-none")
+			tagTemplate = `<div class="btn btn-tag tag-default d-none"><input type="hidden" name="tag" value="" ></input></div>`
+			tagBox.insertAdjacentHTML("afterbegin", tagTemplate);
+			tag.childNodes.value = tagInput.value;
+           
             tagIndex++;
+            
             tagInput.value = "";
             tagInput.setAttribute(Placeholder, "태그를 입력해주세요");
             
