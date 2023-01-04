@@ -68,8 +68,8 @@ public class ProductController {
 
     /* 내 상품 수정 페이지 요청 */
     @GetMapping("/product/myproduct/{memberNickName}/{id}")
-    public String myProduct(Model model,@PathVariable("memberNickName") String memberNickName,@PathVariable(value = "id", required = false) Long productId, HttpSession session) {
-        if(memberNickName.equals(session.getAttribute("nickName"))) {
+    public String myProduct(Model model,@PathVariable("memberNickName") String memberNickName,@PathVariable(value = "id", required = false) Long productId, @AuthenticationPrincipal DucktemUserDetails user) {
+        if(memberNickName.equals(user.getNickName())) {
             model.addAttribute("img", imgService.getList(productId));
             model.addAttribute("product", productService.get(productId));
             
