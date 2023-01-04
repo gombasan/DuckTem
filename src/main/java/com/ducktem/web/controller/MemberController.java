@@ -3,8 +3,11 @@ package com.ducktem.web.controller;
 
 import com.ducktem.web.entity.DucktemUserDetails;
 import com.ducktem.web.entity.Member;
+import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.form.MemberForm;
 import com.ducktem.web.service.MemberService;
+import com.ducktem.web.service.ProductPreviewService;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,6 +30,9 @@ import java.util.List;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+    
+    @Autowired
+    private ProductPreviewService productPreviewService;
 
     // ===================================================================회원 등록 ==========================================================
     @GetMapping("/sign-up")
@@ -78,6 +84,11 @@ public class MemberController {
 //        Member member = memberService.getMember(userId);
 //        model.addAttribute(member);
 
+        
+        List<ProductPreview> myProducts = productPreviewService.myList(userId);
+        model.addAttribute("myProducts",myProducts);
+
+        
         return "member/my-page/index";
     }
 

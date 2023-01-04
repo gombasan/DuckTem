@@ -8,6 +8,9 @@
 
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/member/my-page/index.css">
+    
+    <script src="/js/my-page.js"></script>
+   	<script src="/js/wish.js"></script>
 
 </th:block>
 
@@ -18,96 +21,70 @@
 
             <section class="profile">
                 <div>
-                    <img src="/image/profile-img.png" alt="">
+                    <img th:if="${member.profileImg == null}" src="/image/profile-img.png" alt="">
+                    <img th:if="${member.profileImg != null}" th:src="${member.profileImg}" alt="">
                 </div>
                 <div>
-                    <span>Nickname</span>
+                    <span th:text="${member.nickName}">Nickname</span>
                 </div>
                 <div>
                     <a class="btn btn-default" href="">내 정보</a>
                 </div>
                 <div>
-                    <span>소개말</span>
+                    <span th:text="${member.intro}">소개말</span>
                 </div>
                 <div>
-                    <a class="btn btn-default" href="">키워드 알림</a>
+                    <a class="btn btn-default keyword-alert-btn" href="">키워드 알림</a>
                 </div>
             </section>
 
             <section class="title">
-                <div>
-                    <span>판매중</span><span> 0</span>
+                <div class="selling-btn">
+                    <span class="open-with-product">판매중</span><span th:text="${myProducts.size}">0</span>
                 </div>
-                <div>
-                    <span>찜 상품</span><span> 0</span>
+                <div class="wish-list-btn">
+                    <span class="open-with-wish">찜 상품</span><span>0</span>
                 </div>
-                <div>
+                <div class="review-btn">
                     <span>후기</span><span>0</span>
                 </div>
 
             </section>
 
-            <section class="d-none product-wrap">
-
-                <div class="product-container">
-                    <div><img src="/image/example-image0.png" alt="product-img"></div>
-
-                    <div class="price-wish">
-                        <span> 80,000원</span>
-                        <img src="/image/icon/heart.svg" alt="찜">
-                    </div>
-
-                    <div class="name">
-                        러브다이브미공포
-                    </div>
-
-                    <div class="time">
-                        0일 전
-                    </div>
-                </div>
-
-                <div class="product-container">
-                    <div><img src="/image/example-image0.png" alt="product-img"></div>
-
-                    <div class="price-wish">
-                        <span> 80,000원</span>
-                        <img src="/image/icon/heart.svg" alt="찜">
-                    </div>
-
-                    <div class="name">
-                        러브다이브미공포
-                    </div>
-
-                    <div class="time">
-                        0일 전
-                    </div>
-                </div>
-
+            <section class="product-wrap product-page">
+            		<section class="product-wrap">		
+			            <div th:each="myProduct : ${myProducts}"  class="product-container" th:data-location="${myProduct.productId}" >
+		                    <div><img th:src="${myProduct.thumbNailImg}" alt="product-img"></div>
+		
+		                    <div class="price-wish">
+		                        <span th:text="${myProduct.price}+원"></span>	
+		                        <img class ="wish" src="/image/icon/heart.svg" alt="찜" th:data-id ="${myProduct.productId}">
+		                    </div>
+		
+		                    <div th:text="${myProduct.name}" class="name"></div>
+		
+		                    <div th:text="${myProduct.regDate}" class="time"></div>
+			            </div>
+			        </section>
             </section>
 
-            <section class="review">
+            <section class="d-none product-wrap wishList-page"></section>
+
+
+            <section class="d-none review">
                 <div class="stars">
-                    <span>
+                    <span class="">
                         4.5
                     </span>
 
-                    <span>
-                        ⭐⭐⭐⭐⭐
+                    <span class="">
+                        ★★★★☆
                     </span>
 
-                    <span>
+                    <span class="">
                         (1)
                     </span>
-                </div>
-
-                <div class="review-detail">
-                    <div><img src="/image/profile-img.png" alt=""></div>
-                    <div>Nickname</div>
-                    <div>0000.00.00</div>
-                    <div><img src="/image/icon/report.svg" alt=""></div>
-                    <div>후기제목</div>
-                    <div>후기내용후기내용후기내용후기내용</div>
-                </div>
+                </div>              
             </section>
 
         </section>
@@ -116,10 +93,10 @@
 
 
     <!-- 키워드 알림 버튼 누르면 이거 떠야함~ -->
-    <aside class="keyword-alert-wrap">
+    <aside class="d-none keyword-alert-wrap">
         <section class="keyword-alert">
             <div class="keyword-alert-title">
-                <h1>키워드 알림 설정</h1><img src="/image/icon/icon-close.svg" alt="">
+                <h1>키워드 알림 설정</h1><img class="keyword-close" src="/image/icon/icon-close.svg" alt="">
             </div>
 
             <div class="keyword-alert-category">
@@ -135,7 +112,7 @@
             <div class="flex-wrap">
                 <div class="keyword-alert-input">
                     <input type="text" placeholder="키워드를 입력해 주세요(예: #NCT)">
-                    <span>등록</span>
+                    <span class="">등록</span>
                 </div>
             </div>
 

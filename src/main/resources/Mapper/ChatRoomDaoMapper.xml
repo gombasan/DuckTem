@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ducktem.web.dao.ChatRoomDao">
+    <insert id="save" parameterType="ChatRoom">
+        insert into ChatRoom (sellerId,customerId,chatting,productId)
+        values (#{sellerId},#{customerId},#{chatting},#{productId});
+    </insert>
+
+    <select id="findOne" resultType="ChatRoom">
+        select * from ChatRoom
+        where sellerId = #{sellerId} AND customerId = #{customerId} AND productId = #{productId};
+    </select>
+
+</mapper>

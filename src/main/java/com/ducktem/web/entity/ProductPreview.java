@@ -1,17 +1,30 @@
 package com.ducktem.web.entity;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public class ProductPreview {
     private Long productId;
     private String thumbNailImg;
     private String price;
     private String name;
     private String regDate;
+    private int salesStatusId;
+
 
     public ProductPreview(String thumbNailImg, String price, String name, String regDate) {
         this.thumbNailImg = thumbNailImg;
         this.price = price;
         this.name = name;
         this.regDate = regDate;
+    }
+
+    public int getSalesStatusId() {
+        return salesStatusId;
+    }
+
+    public void setSalesStatusId(int salesStatusId) {
+        this.salesStatusId = salesStatusId;
     }
 
     public Long getProductId() {
@@ -63,4 +76,6 @@ public class ProductPreview {
                 ", regDate='" + regDate + '\'' +
                 '}';
     }
+
+	
 }

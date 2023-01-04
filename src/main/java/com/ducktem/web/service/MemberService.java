@@ -24,6 +24,9 @@ public interface MemberService {
     /*회원 탈퇴 서비스*/
     void deactMember(String userId);
 
+
+	List<Member> getMemberList(List<String> members);
+
     /*자동로그인용 세션 추가*/
 	void addAutoLogin(String userId, String sessionId);	
 	
@@ -32,6 +35,7 @@ public interface MemberService {
 	
 	/*닉네임 중복 확인*/
 	boolean validNickName(String nickName);
+
 
 
 }

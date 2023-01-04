@@ -60,14 +60,22 @@
     transition: border-bottom .5s step-start;
 }
 
-/* .supercategory span::after{
+
+
+.selected {
+    border-bottom: 3px solid var(--color-dark);
+}
+
+/*
+ .supercategory span::after{
     display: block;
     width: inherit;
     content: '';
     border-bottom: 3px solid var(--color-dark); 
     transform: scaleX(0);
     transition: transform 250ms ease-in-out;
-} */
+} 
+*/
 
 
 
@@ -92,6 +100,8 @@
 .subcategory {
     padding-left: 1em;
 }
+
+
 
 
 .subcategory input {
