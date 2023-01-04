@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,6 +51,10 @@ public class MemberController {
                 return "/sign-up";
             }
             else {
+        		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        		String pwd = encoder.encode(memberForm.getPwd());
+        		memberForm.setPwd(pwd);
+        		
                 memberService.reg(memberForm);
                 return "/sign-up-ending";
             }

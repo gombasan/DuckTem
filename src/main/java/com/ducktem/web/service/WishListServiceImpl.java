@@ -92,6 +92,7 @@ public class WishListServiceImpl implements WishListService{
 //			tempPreview.setProductId(tempProdcutId);
 //			myWishList.add(i,tempPreview);
 //		}
+
 		return myWishList;
 	}
 
