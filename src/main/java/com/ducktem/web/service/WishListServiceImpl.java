@@ -87,7 +87,7 @@ public class WishListServiceImpl implements WishListService{
 												tempProductImgList.get(0).getName(),
 												tempProduct.getPrice(),
 												tempProduct.getName(),
-												tempProduct.getRegDate().toString()); 
+												wishList.get(i).getRegDate().toString()); 
 			
 			tempPreview.setProductId(tempProdcutId);
 			myWishList.add(i,tempPreview);

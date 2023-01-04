@@ -8,12 +8,14 @@ public interface ProductPreviewService {
 
     List<ProductPreview> myList(String memberId);
 
-    List<ProductPreview> preview();
+	List<ProductPreview> preview(String memberId);
 
-    List<ProductPreview> preview(int page);
+	List<ProductPreview> preview(int page, String memberId);
 
 	List<ProductPreview> previewByCategory(Integer superCategoryId, Integer categoryId);
 
-
     ProductPreview get(Long productId);
+
+
+
 }

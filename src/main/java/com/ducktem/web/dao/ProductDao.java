@@ -17,11 +17,13 @@ public interface ProductDao {
 
     /* 상품 찾기 */
     Product findById(Long productId);
-
+    /* 상품 찾기 */
+    List<Product> findByMemberId(String regMemberId);
 
     void updateHit(Long productId);
 
 
     void update(Product product);
+
 
 }

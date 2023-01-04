@@ -14,12 +14,23 @@ public class Product {
     private String condition;
     private int categoryId;
     private String regMemberId;
-    private int salesStatusId;
-
     private String deliveryType;
+    private int salesStatusId;
     private int hit;
     private String nTimeAgo;
-    public Long getId() {
+
+
+    
+    
+    public String getDeliveryType() {
+		return deliveryType;
+	}
+
+	public void setDeliveryType(String deliveryType) {
+		this.deliveryType = deliveryType;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -39,14 +50,6 @@ public class Product {
         return condition;
     }
 
-
-    public String getDeliveryType() {
-        return deliveryType;
-    }
-
-    public void setDeliveryType(String deliveryType) {
-        this.deliveryType = deliveryType;
-    }
 
     public void setCondition(String condition) {
         this.condition = condition;

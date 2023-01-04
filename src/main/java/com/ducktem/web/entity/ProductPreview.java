@@ -10,16 +10,25 @@ public class ProductPreview {
     private String name;
     private String regDate;
     private int salesStatusId;
+    private int status;
+    
+    
 
+    /**
+	 * @return the status
+	 */
+	public int getStatus() {
+		return status;
+	}
 
-    public ProductPreview(String thumbNailImg, String price, String name, String regDate) {
-        this.thumbNailImg = thumbNailImg;
-        this.price = price;
-        this.name = name;
-        this.regDate = regDate;
-    }
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
-    public int getSalesStatusId() {
+	public int getSalesStatusId() {
         return salesStatusId;
     }
 

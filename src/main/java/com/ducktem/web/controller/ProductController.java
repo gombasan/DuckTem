@@ -14,6 +14,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ProductController {
@@ -54,12 +57,12 @@ public class ProductController {
 
     /* 상품 등록 요청 */
     @PostMapping("/product")
-    public String regProduct(Product product ,MultipartFile thumbNail, MultipartFile[] files, HttpSession session, HttpServletRequest request) {
+    public String regProduct(Product product , MultipartFile file, @AuthenticationPrincipal DucktemUserDetails user , HttpServletRequest request) {
 
-        productService.upload((String) session.getAttribute("nickName"),product);
-        imgService.upload(thumbNail,files,product.getId(),request);
+    	productService.upload(user.getNickName(),product);
+    	imgService.upload(file,product.getId(),request);
 
-        return "redirect:/";
+    	return "redirect:/";
     }
 
 
@@ -138,11 +141,13 @@ public class ProductController {
         String regMemberId = product.getRegMemberId();
         Member member = memberService.getMember(regMemberId);
         List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId());
+        Category category = categoryService.getCategoryName(productId);
 
         model.addAttribute("productImgs", productImgs);
         model.addAttribute("product", product);
         model.addAttribute("member", member);
         model.addAttribute("memberProducts", memberProducts);
+        model.addAttribute("category",category);
 
         
         return "detail";

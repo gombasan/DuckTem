@@ -25,4 +25,6 @@ public interface ProductService {
     void update(Product product);
 
     void stateChange(Long productId, int salesStatusId);
+
+	List<Product> getByMemberId(String memberId);
 }
