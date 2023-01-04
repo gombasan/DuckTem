@@ -1,5 +1,6 @@
 package com.ducktem.web.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -62,9 +63,10 @@ public class DucktemUserDetails implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
-		authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
+		List<GrantedAuthority> list = new ArrayList<>();
+		list.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
 		
-		return authorities;
+		return list;
 	}
 
 	@Override

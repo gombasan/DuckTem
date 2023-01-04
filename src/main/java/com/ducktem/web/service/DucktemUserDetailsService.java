@@ -1,5 +1,6 @@
 package com.ducktem.web.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,6 +12,7 @@ import com.ducktem.web.entity.Member;
 
 public class DucktemUserDetailsService implements UserDetailsService{
 
+	@Autowired
 	private MemberDao memberdao;
 	
 	@Override

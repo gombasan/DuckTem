@@ -3,6 +3,7 @@ package com.ducktem.web;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -56,14 +57,15 @@ public class DucktemSecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 	
-//	@Bean
+	@Bean
 	public UserDetailsService ducktemUserDetailsService() {
 
+		System.out.println("detailservice");
 		return new DucktemUserDetailsService();
 	}
 	
 	
-	@Bean
+//	@Bean
 	public UserDetailsService jdbcUserDetailsService() {
 		
 		JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
