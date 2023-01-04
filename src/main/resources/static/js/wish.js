@@ -36,7 +36,34 @@ window.addEventListener("load",function(){
 		nums.init();
 	};
 		
-
+	wishes.init = function(){
+		
+		fetch(`/wish`,{
+			method: "GET"
+		})
+		.then(async(response)=>{
+			let result = await response.json();
+			return result;
+		})
+		.then((result)=>{	
+			if(result == null)
+				console.log("오프라인 이므로 실행하지 않습니다.");
+				
+			if(result != null){
+				for(let i = 0; i<wishes.length;i++){
+					for(let j=0; j<result.length; j++){
+						if(wishes[i].dataset.id == result[j].productId){
+							wishes[i].src = "/image/icon/icon-heart-red.svg";
+							wishes[i].classList.add("checked");
+						};
+					};
+				};	
+				
+			};		
+		});
+		
+	};	
+	
 // wishList check, 공통
 	window.onclick = function(e){
 		

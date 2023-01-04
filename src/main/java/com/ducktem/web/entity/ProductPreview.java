@@ -12,21 +12,6 @@ public class ProductPreview {
     private int salesStatusId;
     private int status;
     
-    
-
-    /**
-	 * @return the status
-	 */
-	public int getStatus() {
-		return status;
-	}
-
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(int status) {
-		this.status = status;
-	}
 
 	public int getSalesStatusId() {
         return salesStatusId;
@@ -76,6 +61,15 @@ public class ProductPreview {
         this.regDate = regDate;
     }
 
+    public int getStatus() {
+    	return status;
+    }
+    
+    
+    public void setStatus(int status) {
+    	this.status = status;
+    }
+
     @Override
     public String toString() {
         return "ProductPreview{" +
@@ -83,8 +77,11 @@ public class ProductPreview {
                 ", price='" + price + '\'' +
                 ", name='" + name + '\'' +
                 ", regDate='" + regDate + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
+
+
 
 	
 }

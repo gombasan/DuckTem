@@ -34,6 +34,7 @@ public class HomeController {
         List<ProductPreview> preview = productPreviewService.preview(userId);
         model.addAttribute("preview", preview);
         
+        
 //        /*자동 로그인*/
 //        Cookie[] cookies = request.getCookies();
 //        String loginInfo = "";

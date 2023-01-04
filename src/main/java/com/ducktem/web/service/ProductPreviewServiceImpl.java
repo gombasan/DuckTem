@@ -30,7 +30,7 @@ public class ProductPreviewServiceImpl implements ProductPreviewService {
     public List<ProductPreview> preview(int page, String memberId) {
         int size = 10;
         int offset = (page-1)*size;
-
+        System.out.println(productPreviewDao.getPreviewList(size,offset,memberId));
         return productPreviewDao.getPreviewList(size,offset,memberId);
     }
 
