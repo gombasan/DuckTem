@@ -39,12 +39,39 @@ window.addEventListener("load",function(){
 //      };
 //  }
 
-  let bottomWish = document.querySelector(".bottomWish");
-  if(bottomWish){
+	let bottomWish = document.querySelector(".bottom-wish-box");
+	let nums = document.querySelector(".bottom-wish-nums");	
+	let currentNums = null;
+		
+  	if(bottomWish){
     	bottomWish.onclick = function(e){
-    	  wish(e.target);			
+    		wish(e.target);
+    		if(e.target.classList.contains("checked"))
+    			currentNums--;
+    		else if(!e.target.classList.contains("checked"))
+    			currentNums++;
+    		
+    		nums.innerText = String(currentNums);
 	  }
+	  
+	  		// bottom 있을 때만 실행하고, 만들어 주기 위한 코드	
+		// nums 초기화
+			nums.init = function(){
+				let id = nums.previousElementSibling.dataset.id;
+				fetch(`/${id}/nums`,{
+					method: "GET"
+				})
+		        .then((response) => response.text())
+		        .then((result) => {
+					nums.innerText = String(result);
+					currentNums = result;
+				})
+				.catch(()=>console.log('에러발생'));
+			};
+
+			nums.init();
   }
+
 
 });
 

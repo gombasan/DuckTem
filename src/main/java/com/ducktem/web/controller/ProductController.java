@@ -41,6 +41,9 @@ public class ProductController {
     @Autowired
     private ProductPreviewService productPreviewService;
 
+    @Autowired
+    private WishListService wishListService;
+    
 // ===================================================================상품 등록 ==========================================================
 
     /* 상품 등록 폼파일 요청 */
@@ -144,8 +147,10 @@ public class ProductController {
         String regMemberId = product.getRegMemberId();
         Member member = memberService.getMember(regMemberId);
         List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId(),userId);
-        Category category = categoryService.getCategoryName(productId);
-
+        Category category = categoryService.getCategoryName(productId);        
+        
+        String bottomStatus = wishListService.getStatus(userId, productId);
+        
         model.addAttribute("productImgs", productImgs);
         model.addAttribute("product", product);
         model.addAttribute("member", member);
@@ -153,7 +158,7 @@ public class ProductController {
         model.addAttribute("category",category);
         model.addAttribute("user", ducktemUserDetails);
 
-        
+        model.addAttribute("bottomStatus", bottomStatus);
         return "detail";
     }
 
