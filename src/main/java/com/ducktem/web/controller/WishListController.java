@@ -58,8 +58,7 @@ public class WishListController {
     	List<WishList> wishList = null;
 		if(userId != null)
 			wishList = wishListService.findWish(userId); 
-		
-		
+
 		return wishList;
 	}
 	
@@ -117,10 +116,7 @@ public class WishListController {
 	@ResponseBody
 	public List<ProductPreview> myWishList(@AuthenticationPrincipal DucktemUserDetails user) {
     	String userId = user.getUsername();
-    	List<WishList> wishList = null;    	
-		if(userId != null)
-			wishList = wishListService.findWish(userId); 
-    	return productPreviewService.preview(userId);
+    	return wishListService.getmyWishList(userId);
 	}
     
     
