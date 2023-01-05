@@ -11,12 +11,14 @@ public interface ProductPreviewDao {
 
     List<ProductPreview> getPreviewAll();
 
-    List<ProductPreview> findMemberProductList(String memberId);
+    List<ProductPreview> findMemberProductList(String memberId, String myUserId);
 
     List<ProductPreview> getPreviewList(int size, int offset, String memberId);
 
     ProductPreview findByProductId(Long productId);
 
 	List<ProductPreview> findPreviewListByCategory(Integer superCategoryId, Integer categoryId);
+
+	List<ProductPreview> getWishPreviewList(String memberId);
 
 }

@@ -1,16 +1,10 @@
 package com.ducktem.web.controller;
 
-import com.ducktem.web.entity.*;
-import com.ducktem.web.service.*;
 
+import java.util.List;
 
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -20,8 +14,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Map;
+import com.ducktem.web.entity.Category;
+import com.ducktem.web.entity.DucktemUserDetails;
+import com.ducktem.web.entity.Member;
+import com.ducktem.web.entity.Product;
+import com.ducktem.web.entity.ProductImg;
+import com.ducktem.web.entity.ProductPreview;
+import com.ducktem.web.entity.ProductTag;
+import com.ducktem.web.entity.SuperCategory;
+import com.ducktem.web.service.CategoryService;
+import com.ducktem.web.service.ImgService;
+import com.ducktem.web.service.MemberService;
+import com.ducktem.web.service.ProductPreviewService;
+import com.ducktem.web.service.ProductService;
+import com.ducktem.web.service.TagService;
+import com.ducktem.web.service.WishListService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class ProductController {
@@ -41,6 +51,12 @@ public class ProductController {
     @Autowired
     private ProductPreviewService productPreviewService;
 
+    @Autowired
+    private TagService tagService;
+
+    @Autowired
+    private WishListService wishListService;
+
 // ===================================================================상품 등록 ==========================================================
 
     /* 상품 등록 폼파일 요청 */
@@ -52,13 +68,20 @@ public class ProductController {
 
     /* 상품 등록 요청 */
     @PostMapping("/product")
-    public String regProduct(Product product ,MultipartFile[] files, @AuthenticationPrincipal DucktemUserDetails user , HttpServletRequest request) {
+
+
+
+    public String regProduct(MultipartFile thumbNail, Product product , MultipartFile[] files, @AuthenticationPrincipal DucktemUserDetails user ,String[] tag, HttpServletRequest request) {
+
 
     	productService.upload(user.getNickName(),product);
+    	Long productId = product.getId();
+    	imgService.upload(files,productId,request);
+    	tagService.upload(tag, productId, (byte) 0, request);
 
-    	imgService.upload(files,product.getId(),request);
 
     	return "redirect:/";
+
     }
 
 
@@ -127,7 +150,14 @@ public class ProductController {
     public String productDetail(Model model,
                                 HttpServletResponse response,
                                 @CookieValue(name = "newHit", required=false, defaultValue = "default") String hitCookie,
-                                @PathVariable("id") Long productId, @AuthenticationPrincipal DucktemUserDetails ducktemUserDetails) {
+                                @PathVariable("id") Long productId, @AuthenticationPrincipal DucktemUserDetails ducktemUserDetails,
+                                @AuthenticationPrincipal DucktemUserDetails user) {
+    	String userId = null;
+
+    	if(user != null) {
+    		userId = user.getUsername();
+    	}
+
 
         /* 새로 고침 조회수 막기 위해 추가. */
         productService.upHit(response,hitCookie,productId);
@@ -136,8 +166,11 @@ public class ProductController {
         List<ProductImg> productImgs = imgService.getList(productId);
         String regMemberId = product.getRegMemberId();
         Member member = memberService.getMember(regMemberId);
-        List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId());
+
+        List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId(),userId);
         Category category = categoryService.getCategoryName(productId);
+        List<ProductTag> productTags = tagService.getList(productId);
+        String bottomStatus = wishListService.getStatus(userId, productId);
 
 
         model.addAttribute("productImgs", productImgs);
@@ -145,10 +178,10 @@ public class ProductController {
         model.addAttribute("member", member);
         model.addAttribute("memberProducts", memberProducts);
         model.addAttribute("category",category);
-
+        model.addAttribute("productTags",productTags);
         model.addAttribute("user", ducktemUserDetails);
 
-        
+        model.addAttribute("bottomStatus", bottomStatus);
         return "detail";
     }
 

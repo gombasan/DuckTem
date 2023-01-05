@@ -48,13 +48,12 @@ window.addEventListener("load", function () {
 		}).then(()=>{
 			let template = null;
 			let tempHeart = null;
-//			for(let i=0; i<products.length;i++){
-			for(let i=(products.length-1); i>=0; i--){
-				if(product.status == 1)
+			for(let i=0; i<products.length;i++){
+				if(products[i].status == 1)
 					tempHeart = `<img class ="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" data-id = "${products[i].productId}">`
 				else
 					tempHeart = `<img class ="wish" src="/image/icon/heart.svg" alt="찜" data-id = "${products[i].productId}">`
-				
+
 				let temp = `
 				    <section class="product-wrap">		
 			            <div class="product-container" data-location="${products[i].productId}">
@@ -74,7 +73,8 @@ window.addEventListener("load", function () {
 		                    </div>
 			            </div>
 			        </section>`;
-			        if(i==(products.length-1))
+			        
+			        if(i==0)
 			        	template = temp;
 			        else	
 			        	template += temp;

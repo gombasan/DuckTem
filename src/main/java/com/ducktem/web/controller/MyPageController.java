@@ -20,16 +20,6 @@ public class MyPageController {
 	
     @Autowired
     private ProductPreviewService productPreviewService;
-	
-//	
-//    /* 판매중 상품 보여주기 */
-//    @GetMapping("myProductList")
-//	@ResponseBody
-//    public List<ProductPreview> getMyProduct(HttpSession session) {
-//    	String userId = (String)session.getAttribute("userId");
-//
-//        return productPreviewService.myList(userId);
-//    }
     
     /* 판매중 상품 보여주기 */
     @GetMapping("myProductList")
@@ -37,7 +27,7 @@ public class MyPageController {
     public List<ProductPreview> getMyProduct(@AuthenticationPrincipal DucktemUserDetails user) {
     	String userId = user.getUsername();
     	
-    	return productPreviewService.myList(userId);
+    	return productPreviewService.myList(userId, userId);
     }
 
 }

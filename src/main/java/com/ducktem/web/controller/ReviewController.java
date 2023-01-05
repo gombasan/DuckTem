@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ducktem.web.entity.DucktemUserDetails;
 import com.ducktem.web.entity.Member;
 import com.ducktem.web.entity.MyPageReview;
 import com.ducktem.web.entity.Product;
@@ -37,8 +39,12 @@ public class ReviewController {
 	
 //	review 등록하기
     @PostMapping("regReview")
-    public void regReview(HttpSession session,Long productId) {
-    	String userId = (String)session.getAttribute("userId");
+    public void regReview(@AuthenticationPrincipal DucktemUserDetails user, Long productId) {
+    	String userId = null;
+    	
+    	if(user != null) {
+    		userId = user.getUsername();
+    	}
     	if(buyService.confirmBuy(userId,productId))
     		reviewService.save(userId,productId);  
     }
@@ -46,8 +52,12 @@ public class ReviewController {
 //	myreviewList-내가 받은 리뷰???
     @GetMapping("getMyReviewList")
 	@ResponseBody
-    public List<MyPageReview> getMyReviewProduct(HttpSession session) {
-    	String userId = (String)session.getAttribute("userId");
+    public List<MyPageReview> getMyReviewProduct(@AuthenticationPrincipal DucktemUserDetails user) {
+    	String userId = null;
+    	
+    	if(user != null) {
+    		userId = user.getUsername();
+    	}
     	
     	List<Product> mySellingProduct = productService.getByMemberId(userId);
     	List<String> tempCustomers = buyService.get(mySellingProduct);

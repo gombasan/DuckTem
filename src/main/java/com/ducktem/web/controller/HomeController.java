@@ -32,6 +32,7 @@ public class HomeController {
     /* 메인 페이지*/
     @GetMapping("/")
 
+
     public String index(Model model, @AuthenticationPrincipal DucktemUserDetails user, HttpServletRequest request) {
     	
     	String userId = null;
@@ -44,12 +45,8 @@ public class HomeController {
     	model.addAttribute("preview", preview);
 
 
-
         return "index";
     }
 
-
-
-    
 
 }

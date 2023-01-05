@@ -126,3 +126,75 @@
 
 
 
+
+/* ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ 급하게 추가수정 ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
+
+
+/*이미지 좌우 이동*/
+.vector{
+	width : 30px;
+	height : 30px;
+	position : absolute;
+	top : 50%;
+	opacity:0.3;
+	transition : .5s
+}
+
+.vector:hover{
+	cursor : pointer;
+	opacity:0.9;
+	transition : .5s;
+
+}
+
+.vector-right{
+	right : 3%;
+}
+.vector-left{
+	left : 3%;
+	transform: rotate( 180deg )
+}
+
+
+/*이미지 css*/
+.image-container{
+	position : relative;
+}
+
+.image-box img{
+	height : 400px;
+}
+
+
+.dot-container{
+	position : absolute;
+	bottom : 20px;
+	left : 50%;
+}
+
+.dot-wrap{
+	display : flex;
+	justify-content: center;
+
+}
+.dot-box{
+	width : 60px;
+	display : flex;
+	justify-content: space-evenly;
+}
+
+.index-dot{
+
+	width : 15px;
+	opacity : 0.2;
+}
+
+
+.dot-hightlight{
+
+	opacity : 0.9;
+}
+
+
+
+

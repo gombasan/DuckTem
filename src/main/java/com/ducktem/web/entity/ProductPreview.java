@@ -10,9 +10,18 @@ public class ProductPreview {
     private String name;
     private Date regDate;
     private int salesStatusId;
+    private int hit;
     private int status;
 
     private String nTimeAgo;
+
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 
 	public int getSalesStatusId() {
         return salesStatusId;

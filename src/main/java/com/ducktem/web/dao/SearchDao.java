@@ -11,7 +11,7 @@ public interface SearchDao {
 
 //	public List<ProductPreview> getList(String keyword);
 
-	public List<ProductPreview> getList(String keyword, String option);
+	public List<ProductPreview> getList(String keyword, String option, String userId);
 
 	public int count(String keyword);
 

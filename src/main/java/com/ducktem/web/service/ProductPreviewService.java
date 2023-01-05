@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductPreviewService {
 
-    List<ProductPreview> myList(String memberId);
+    List<ProductPreview> myList(String memberId, String myUserId);
 
 	List<ProductPreview> preview(String memberId);
 

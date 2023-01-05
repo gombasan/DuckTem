@@ -85,7 +85,7 @@ public class MemberController {
         Member member = memberService.getMember(userId);
         model.addAttribute(member);
 
-        List<ProductPreview> myProducts = productPreviewService.myList(userId);
+        List<ProductPreview> myProducts = productPreviewService.myList(userId, userId);
         model.addAttribute("myProducts",myProducts);
 
         

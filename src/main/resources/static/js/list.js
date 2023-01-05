@@ -51,14 +51,18 @@ window.addEventListener("load", function() {
 			.then(response => response.json())
 			.then(data => {
 
-
 				let result = data.resultObject;
 				categoryBox.innerHTML = "";
 				productBox.innerHTML = "";
+				
+console.log(Object.values(data))
+console.log(data)
+console.log(data['categoryList'])
 
 
+				//for (let i of data[Object.keys(data)[0]]) {
+					for (let i of data['categoryList']) {
 
-				for (let i of data[Object.keys(data)[0]]) {
 
 					let template =
 						`
