@@ -7,16 +7,16 @@
 		from Product_image pi 
 		inner join Product p on pi.productId = p.id
 	        where p.name like '%${keyword}%' and pi.thumbNail = 1
-	    	<if test="${option} == null || #{option} == 'latest'">
+	    	<if test="option == null || option == 'latest'">
 	       		order by p.regDate desc
 	        </if>
-	    	<if test="#{option} == 'price-high'">
+	    	<if test="option == 'price-high'">
 	       		order by p.price desc
 	        </if>
-	    	<if  test="#{option} == 'price-low'">
+	    	<if  test="option == 'price-low'">
 	       		order by p.price asc
 	        </if>        
-	    	<if  test="#{option} == 'most-viewed'">
+	    	<if  test="option == 'most-viewed'">
 	       		order by p.hit desc
 	        </if>        
     </select>

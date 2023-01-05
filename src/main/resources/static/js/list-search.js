@@ -8,7 +8,6 @@ window.addEventListener("load", function(){
 		let el = e.target;
 		let option = null;
 		
-		
 		for(let i=0; i<el.length; i++){
 			if(el.options[i].selected){
 				option= el.options[i].value;
@@ -18,36 +17,33 @@ window.addEventListener("load", function(){
 		
 		let keyword = keywordBox.innerHTML;
 		
-		console.log("keyword = "+keyword);//맞게 나옴
-		
 		fetch(`/api/search/${keyword}/${option}`)
 			.then((response) => response.json())
 			.then((list) => {
 				
 				productBox.innerHTML = "";
 				
-				for(let p of list){
+				for(let l of list){
 					
 					let template = `
+                    <div class="product-container">
 	                    <div>
-	                        <img th:src="${p.thumbNailImg}" alt="product-img">
+	                        <img src="${l.thumbNailImg}" alt="product-img">
 	                    </div>
 	
 	                    <div class="price-wish">
-	                        <span th:text="${p.price}"> 80,000원</span>
-	                        <img th:if="${p.status == 1}" class="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" th:data-id="${p.productId}">
-	                     	<img th:unless="${p.status == 1}" class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${p.productId}">
+	                        <span> ${l.price}원</span>
 	                    </div>
 	
-	                    <div th:text="${p.name}" class="name">러브다이브미공포</div>
-	                    <div th:text="${p.regDate}" class="time">0일 전</div>
+	                    <div class="name">${l.name}</div>
+	                    <div class="time">${l.regDate}</div>
 	                </div>
 					`
-					
+				productBox.insertAdjacentHTML("beforeend",template);
 				}
 				
-//				productBox.innerHTML = template;
-				productBox.insertAdjacentHTML = template;
+		         // <img th:if="${l.status == 1}" class="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" th:data-id="${l.productId}">
+		         //<img th:unless="${l.status == 1}" class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${l.productId}">
 				
 				}
 			)
