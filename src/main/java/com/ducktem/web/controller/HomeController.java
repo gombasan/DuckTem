@@ -35,7 +35,8 @@ public class HomeController {
     public String index(Model model, @AuthenticationPrincipal DucktemUserDetails user, HttpServletRequest request) {
     	
     	String userId = null;
-    	
+
+
     	if(user != null) {
     		userId = user.getUsername();
     	}

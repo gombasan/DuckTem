@@ -42,7 +42,7 @@ public class ChattingApi {
         model.addAttribute("user", ducktemUserDetails);
 
 
-        return "member/chatting/detail";
+        return "member/chatting/index";
     }
 
     @ResponseBody

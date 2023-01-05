@@ -139,11 +139,13 @@ public class ProductController {
         List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId());
         Category category = categoryService.getCategoryName(productId);
 
+
         model.addAttribute("productImgs", productImgs);
         model.addAttribute("product", product);
         model.addAttribute("member", member);
         model.addAttribute("memberProducts", memberProducts);
         model.addAttribute("category",category);
+
         model.addAttribute("user", ducktemUserDetails);
 
         
