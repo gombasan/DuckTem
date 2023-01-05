@@ -1,10 +1,15 @@
 package com.ducktem.web.api;
 
+import com.ducktem.web.entity.DucktemUserDetails;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.service.ProductPreviewService;
 import com.ducktem.web.service.ProductService;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +27,14 @@ public class ProductPageApi {
 
 
     @GetMapping("/{page}")
-    public List<ProductPreview> homeProductList(@PathVariable(name = "page") int page) {
-        List<ProductPreview> preview = productPreviewService.preview(page);
+    public List<ProductPreview> homeProductList(@AuthenticationPrincipal DucktemUserDetails user, @PathVariable(name = "page") int page) {
+    	String userId = null;
+    	
+    	if(user != null) {
+    		userId = user.getUsername();
+    	}
+    	
+    	List<ProductPreview> preview = productPreviewService.preview(page, userId);
 
         return preview;
     }

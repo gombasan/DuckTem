@@ -3,7 +3,9 @@ package com.ducktem.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ducktem.web.entity.DucktemUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ducktem.web.entity.DucktemUserDetails;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.entity.WishList;
 import com.ducktem.web.service.ImgService;
 import com.ducktem.web.service.MemberService;
+import com.ducktem.web.service.ProductPreviewService;
 import com.ducktem.web.service.ProductService;
 import com.ducktem.web.service.WishListService;
 
@@ -39,15 +43,18 @@ public class WishListController {
 
     @Autowired
     private ProductService productService;
-    
+
+    @Autowired
+    private ProductPreviewService productPreviewService;
+
     @Autowired
     private MemberService memberService;
 //	나의 찜 목록 불러오기
     @GetMapping("wish")
 	@ResponseBody
-	public List<WishList> findWishList(HttpSession session) {
+	public List<WishList> findWishList(@AuthenticationPrincipal DucktemUserDetails user) {
 		
-    	String userId = (String)session.getAttribute("userId");
+    	String userId = user.getUsername();
     	List<WishList> wishList = null;
 		if(userId != null)
 			wishList = wishListService.findWish(userId); 
@@ -59,12 +66,11 @@ public class WishListController {
 //	찜 저장
     @PostMapping("{id}/wish")
 	@ResponseBody
-	public String checkWishList(HttpSession session,
+	public String checkWishList(@AuthenticationPrincipal DucktemUserDetails user,
 								@PathVariable("id") Long productId) {
-		String userId = (String)session.getAttribute("userId");
-        
+		String userId = user.getUsername();
+
 		if(userId == null) {
-            System.out.println("로그인 후 사용해주세요.");
             return "/login";
 		}
 		else {
@@ -78,9 +84,9 @@ public class WishListController {
 //	찜 취소
     @DeleteMapping("{id}/wish/delete")
 	@ResponseBody
-	public String deleteWishList(HttpSession session,
+	public String deleteWishList(@AuthenticationPrincipal DucktemUserDetails user,
 								  @PathVariable("id") Long productId) {
-		String userId = (String)session.getAttribute("userId");
+    	String userId = user.getUsername();
 
 		if(userId == null)
 			return "NoUserId";		
@@ -89,9 +95,7 @@ public class WishListController {
 			return "NoWishList";
 			
 //			찜 목록 확인	
-		else {			
-			System.out.println(userId);
-			System.out.println(productId);
+		else {
 	        wishListService.deleteWish(userId, productId);
 	        return "deleteDone";
 		}
@@ -111,20 +115,20 @@ public class WishListController {
 //	멤버	아이디로 불러오기 wish 프로덕트 불러오기 
     @GetMapping("myWishList")
 	@ResponseBody
-	public ArrayList<ProductPreview> myWishList(HttpSession session) {
-    	String userId = (String)session.getAttribute("userId");
+	public List<ProductPreview> myWishList(@AuthenticationPrincipal DucktemUserDetails user) {
+    	String userId = user.getUsername();
     	List<WishList> wishList = null;    	
 		if(userId != null)
 			wishList = wishListService.findWish(userId); 
-    	return wishListService.getmyWishList(wishList);
+    	return productPreviewService.preview(userId);
 	}
     
     
 //	나의 찜 개수 불러오기
     @GetMapping("myPageWishNum")
 	@ResponseBody
-	public int findMyWishNum(HttpSession session) {
-    	String userId = (String)session.getAttribute("userId");
+	public int findMyWishNum(@AuthenticationPrincipal DucktemUserDetails user) {
+    	String userId = user.getUsername();
 		return wishListService.getMyWishNum(userId);
 	}	
 	

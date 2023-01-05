@@ -1,11 +1,6 @@
 package com.ducktem.web.controller;
 
-import com.ducktem.web.entity.SuperCategory;
-import com.ducktem.web.entity.Member;
-import com.ducktem.web.entity.Product;
-import com.ducktem.web.entity.ProductImg;
-import com.ducktem.web.entity.ProductPreview;
-import com.ducktem.web.entity.Category;
+import com.ducktem.web.entity.*;
 import com.ducktem.web.service.*;
 
 
@@ -14,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -48,19 +45,20 @@ public class ProductController {
 
     /* 상품 등록 폼파일 요청 */
     @GetMapping("/product")
-    public String regProductForm(HttpSession session) {
+    public String regProductForm() {
 
         return "/member/sell/index";
     }
 
     /* 상품 등록 요청 */
     @PostMapping("/product")
-    public String regProduct(Product product , MultipartFile file, HttpSession session, HttpServletRequest request) {
+    public String regProduct(Product product ,MultipartFile[] files, @AuthenticationPrincipal DucktemUserDetails user , HttpServletRequest request) {
 
-        productService.upload((String) session.getAttribute("nickName"),product);
-        imgService.upload(file,product.getId(),request);
+    	productService.upload(user.getNickName(),product);
 
-        return "redirect:/";
+    	imgService.upload(files,product.getId(),request);
+
+    	return "redirect:/";
     }
 
 
@@ -70,8 +68,8 @@ public class ProductController {
 
     /* 내 상품 수정 페이지 요청 */
     @GetMapping("/product/myproduct/{memberNickName}/{id}")
-    public String myProduct(Model model,@PathVariable("memberNickName") String memberNickName,@PathVariable(value = "id", required = false) Long productId, HttpSession session) {
-        if(memberNickName.equals(session.getAttribute("nickName"))) {
+    public String myProduct(Model model,@PathVariable("memberNickName") String memberNickName,@PathVariable(value = "id", required = false) Long productId, @AuthenticationPrincipal DucktemUserDetails user) {
+        if(memberNickName.equals(user.getNickName())) {
             model.addAttribute("img", imgService.getList(productId));
             model.addAttribute("product", productService.get(productId));
             
@@ -129,7 +127,7 @@ public class ProductController {
     public String productDetail(Model model,
                                 HttpServletResponse response,
                                 @CookieValue(name = "newHit", required=false, defaultValue = "default") String hitCookie,
-                                @PathVariable("id") Long productId) {
+                                @PathVariable("id") Long productId, @AuthenticationPrincipal DucktemUserDetails ducktemUserDetails) {
 
         /* 새로 고침 조회수 막기 위해 추가. */
         productService.upHit(response,hitCookie,productId);
@@ -140,13 +138,14 @@ public class ProductController {
         Member member = memberService.getMember(regMemberId);
         List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId());
         Category category = categoryService.getCategoryName(productId);
-        
+
         model.addAttribute("productImgs", productImgs);
         model.addAttribute("product", product);
         model.addAttribute("member", member);
         model.addAttribute("memberProducts", memberProducts);
         model.addAttribute("category",category);
-        
+        model.addAttribute("user", ducktemUserDetails);
+
         
         return "detail";
     }

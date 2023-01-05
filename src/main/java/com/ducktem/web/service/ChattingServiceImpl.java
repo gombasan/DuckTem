@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class ChattingServiceImpl implements ChattingService{
 
-
+    private final String PATH = System.getProperty("user.dir") + "/chattings";
     @Autowired
     private ChatRoomDao chatRoomDao;
 
@@ -35,7 +35,7 @@ public class ChattingServiceImpl implements ChattingService{
         ChatRoom existingChatRoom = chatRoomDao.findOne(sellerId, customerId, productId);
 
         if (existingChatRoom == null) {
-            chatting = request.getServletContext().getRealPath("/chattings") + File.separator + "chatting" + "_" + sellerId + "_" + customerId + "_" + productId;
+            chatting = File.separator + "chatting" + "_" + sellerId + "_" + customerId + "_" + productId;
             chatRoom.setChatting(chatting);
             chatRoomDao.save(chatRoom);
             existingChatRoom = chatRoom;
@@ -43,7 +43,7 @@ public class ChattingServiceImpl implements ChattingService{
 
         List<Chat> chats = null;
         try {
-            File file = new File(existingChatRoom.getChatting());
+            File file = new File(PATH+existingChatRoom.getChatting());
             chats = mapper.readValue(file, new TypeReference<List<Chat>>() {});
         } catch (Exception e) {
 

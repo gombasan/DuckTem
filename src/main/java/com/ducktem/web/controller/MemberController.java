@@ -1,15 +1,21 @@
 package com.ducktem.web.controller;
 
 
+import com.ducktem.web.entity.DucktemUserDetails;
 import com.ducktem.web.entity.Member;
+import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.form.MemberForm;
 import com.ducktem.web.service.MemberService;
+import com.ducktem.web.service.ProductPreviewService;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +31,9 @@ import java.util.List;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+    
+    @Autowired
+    private ProductPreviewService productPreviewService;
 
     // ===================================================================회원 등록 ==========================================================
     @GetMapping("/sign-up")
@@ -42,6 +51,10 @@ public class MemberController {
                 return "/sign-up";
             }
             else {
+        		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        		String pwd = encoder.encode(memberForm.getPwd());
+        		memberForm.setPwd(pwd);
+        		
                 memberService.reg(memberForm);
                 return "/sign-up-ending";
             }
@@ -65,16 +78,17 @@ public class MemberController {
 
 
     @GetMapping("/mypage")
-    public String myPage(HttpSession session, Model model) {
+    public String myPage(@AuthenticationPrincipal DucktemUserDetails user, Model model) {
     	
-        String userId = (String)session.getAttribute("userId");
+        String userId = user.getUsername();
         
-        if (userId == null)//로그인 안한경우 로그인 페이지로 연결
-        	return "redirect:/login?returnURL=/mypage";
-        			
         Member member = memberService.getMember(userId);
         model.addAttribute(member);
 
+        List<ProductPreview> myProducts = productPreviewService.myList(userId);
+        model.addAttribute("myProducts",myProducts);
+
+        
         return "member/my-page/index";
     }
 

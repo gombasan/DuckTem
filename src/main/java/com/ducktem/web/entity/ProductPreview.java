@@ -10,16 +10,10 @@ public class ProductPreview {
     private String name;
     private String regDate;
     private int salesStatusId;
+    private int status;
+    
 
-
-    public ProductPreview(String thumbNailImg, String price, String name, String regDate) {
-        this.thumbNailImg = thumbNailImg;
-        this.price = price;
-        this.name = name;
-        this.regDate = regDate;
-    }
-
-    public int getSalesStatusId() {
+	public int getSalesStatusId() {
         return salesStatusId;
     }
 
@@ -67,6 +61,15 @@ public class ProductPreview {
         this.regDate = regDate;
     }
 
+    public int getStatus() {
+    	return status;
+    }
+    
+    
+    public void setStatus(int status) {
+    	this.status = status;
+    }
+
     @Override
     public String toString() {
         return "ProductPreview{" +
@@ -74,8 +77,11 @@ public class ProductPreview {
                 ", price='" + price + '\'' +
                 ", name='" + name + '\'' +
                 ", regDate='" + regDate + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
+
+
 
 	
 }
