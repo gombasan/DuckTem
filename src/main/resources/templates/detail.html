@@ -82,9 +82,8 @@
     <hr>
     <section>
         <ul class="detail-button">
-            <li><a class="btn btn-tag " href="">Newjeans</a></li>
-            <li><a class="btn btn-tag " href="">포카</a></li>
-            <li><a class="btn btn-tag " href="">Aespa</a></li>
+            <li th:each "memberProducts : ${memberProducts}" ><a class="btn btn-tag " href=""></a></li>
+            
         </ul>
     </section>
     <hr>
