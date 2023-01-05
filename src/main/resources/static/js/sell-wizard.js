@@ -270,10 +270,16 @@ window.addEventListener("load", function () {
         if (tagIndex < 5) {
 
 
-			tagTemplate = `<div class="btn btn-tag tag-default">${tagInput.value}</div><input class="tag-hiddenBox" type="hidden" name="tag" value="" ></input>`
+			tagTemplate = 
+			`
+				<div class="btn btn-tag tag-default">${tagInput.value}</div>
+				<input class="tag-hiddenBox" type="hidden" name="tag" value="" ></input>
+			`
 			tagBox.insertAdjacentHTML("beforeend", tagTemplate);
-           let tag = document.querySelector(".tag-hiddenBox");
-           tag.value = tagInput.value;
+			
+            let tag = document.querySelector(".tag-hiddenBox");
+            
+            tag.value = tagInput.value;
             tagIndex++;
             
             tagInput.value = "";

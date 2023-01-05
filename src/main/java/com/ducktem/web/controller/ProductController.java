@@ -158,6 +158,7 @@ public class ProductController {
         List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId());
         Category category = categoryService.getCategoryName(productId);
         List<ProductTag> productTags = tagService.getList(productId);
+        System.out.println(productTags);
 
         model.addAttribute("productImgs", productImgs);
         model.addAttribute("product", product);
