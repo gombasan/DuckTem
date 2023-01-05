@@ -78,20 +78,21 @@ public class WishListServiceImpl implements WishListService{
 	public ArrayList<ProductPreview> getmyWishList(List<WishList> wishList) {
 		ArrayList<ProductPreview> myWishList = new ArrayList<>(wishList.size());
 		
-		for(int i=0; i<wishList.size() ; i++) {
-			Long tempProdcutId = wishList.get(i).getProductId();
-			Product tempProduct = productDao.findById(tempProdcutId);
-			List<ProductImg> tempProductImgList = imgDao.findByProductId(tempProdcutId);
-			
+//		for(int i=0; i<wishList.size() ; i++) {
+//			Long tempProdcutId = wishList.get(i).getProductId();
+//			Product tempProduct = productDao.findById(tempProdcutId);
+//			List<ProductImg> tempProductImgList = imgDao.findByProductId(tempProdcutId);
+//			
 //			ProductPreview tempPreview = new ProductPreview(
 //												tempProductImgList.get(0).getName(),
 //												tempProduct.getPrice(),
 //												tempProduct.getName(),
-//												wishList.get(i).getRegDate().toString());
-			
+//												wishList.get(i).getRegDate().toString()); 
+//			
 //			tempPreview.setProductId(tempProdcutId);
 //			myWishList.add(i,tempPreview);
-		}
+//		}
+
 		return myWishList;
 	}
 
