@@ -11,8 +11,8 @@
 	<link rel="stylesheet" href="/css/layout.css">
 	<link rel="stylesheet" href="/css/detail.css">
 
-	<script src="/js/wish.js"></script>
-	<script src="/js/productDetail.js"></script>
+<!-- 	<script src="/js/wish.js"></script> -->
+	<script type="module" src="/js/productDetail.js"></script>
 	<style>
 .state-select {
 	background-color: var(- -color-light);
@@ -104,8 +104,8 @@
 
                     <div class="price-wish">
                         <span th:text="${memberProducts.price}" > 80,000원</span>
-
-                        <img class ="wish" src="/image/icon/heart.svg" alt="찜" th:data-id = "${memberProducts.productId}">
+						<img th:if="${memberProducts.status == 1}" class="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" th:data-id="${memberProducts.productId}">
+						<img th:unless="${memberProducts.status == 1}" class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${memberProducts.productId}">
                     </div>
 
                     <div th:text="${memberProducts.name}" class="name">
@@ -120,8 +120,9 @@
 	<section class="bottom-bar-wrap">
 		<div class="bottom-bar">
 			<div>
-				<img class="wish bottom" src="/image/icon/heart.svg" alt="찜"
-					th:data-id="${product.id}"> <label class="nums">2</label>
+				<img th:if="${product.status == 1}" class="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" th:data-id="${product.productId}">
+				<img th:unless="${product.status == 1}" class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${product.productId}">
+				<label class="nums">2</label>
 			</div>
 			<div>
 				<span th:text="|${product.price}원|"></span>

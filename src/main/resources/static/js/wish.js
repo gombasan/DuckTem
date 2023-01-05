@@ -1,11 +1,10 @@
 export default function wish(target){
 	//	detail page 특수 기능
-		let nums = null;
+
 		let id = null;
 
-		if(bottomWrap){
-			nums = bottomWrap.querySelector(".nums");			
-		}
+		let nums = document.querySelector(".nums");			
+
 
 		if(!target.classList.contains("checked")){ // 하트가 안눌린 것
 	        // fetch api
@@ -58,7 +57,7 @@ export default function wish(target){
 		
 		
 		// bottom 있을 때만 실행하고, 만들어 주기 위한 코드	
-		if(bottomWrap){
+		if(document.querySelector(".bottomWish")){
 		// nums 초기화
 			nums.init = function(){
 				id = nums.previousElementSibling.dataset.id;
@@ -75,7 +74,7 @@ export default function wish(target){
 	
 			nums.init();
 		};
-};
+}
 
 window.addEventListener("load",function(){
 //	my page 빼고 적용,load와 동시에 만들어야 함
@@ -106,3 +105,4 @@ window.addEventListener("load",function(){
 
 
 });
+

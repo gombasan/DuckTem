@@ -8,7 +8,7 @@
     </select>
 
     <select id="findMemberProductList" resultType="ProductPreview">
- 		select pp.*, if ((select memberId from WishList where pp.productId = productId and memberId = #{memberId}) = #{memberId}, 1, 0) status from ProductPreview pp 
+ 		select pp.*, if ((select memberId from WishList where pp.productId = productId and memberId = #{myUserId}) = #{myUserId}, 1, 0) status from ProductPreview pp 
         where regMemberId = #{memberId}
         order by regDate desc;
     </select>

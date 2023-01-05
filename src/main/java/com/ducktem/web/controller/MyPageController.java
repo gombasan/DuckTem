@@ -27,7 +27,7 @@ public class MyPageController {
     public List<ProductPreview> getMyProduct(@AuthenticationPrincipal DucktemUserDetails user) {
     	String userId = user.getUsername();
     	
-    	return productPreviewService.myList(userId);
+    	return productPreviewService.myList(userId, userId);
     }
 
 }
