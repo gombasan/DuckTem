@@ -44,8 +44,6 @@ window.addEventListener("load",function(){
 
 	        if(!e.target.classList.contains("checked")){ // 하트가 안눌린 것
 		        // fetch api
-		        console.log("하트가 눌리는 곳입니다.");
-
 		        id = e.target.dataset.id;
 
 		        fetch(`/${id}/wish`,{
@@ -54,7 +52,7 @@ window.addEventListener("load",function(){
 	            .then((response) => response.text())
 	            .then((result) => {
 					if(result == "/login")
-						location.href = result;
+						location.href = "/login";
 					else if(result == "ok"){
 						e.target.classList.add("checked");
 						e.target.src = "/image/icon/icon-heart-red.svg";
@@ -94,12 +92,16 @@ window.addEventListener("load",function(){
 			};
 
 		}
-		let isProductClick = e.target.parentElement.classList.contains("product-container") || e.target.tagName === "IMG"
+		
+		else if(!e.target.classList.contains("wish")){
 
-		if(isProductClick) {
-			let productId = e.target.parentElement.dataset.location || e.target.parentElement.parentElement.dataset.location;
-			window.location.href = `/product/${productId}`
-
+			let isProductClick = e.target.parentElement.classList.contains("product-container") || e.target.tagName === "IMG"
+	
+			if(isProductClick) {
+				let productId = e.target.parentElement.dataset.location || e.target.parentElement.parentElement.dataset.location;
+				window.location.href = `/product/${productId}`
+	
+			}
 		}
 
 
