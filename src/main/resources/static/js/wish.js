@@ -1,12 +1,12 @@
 window.addEventListener("load",function(){
 	let main = document.querySelector("main");
+	let productsWrap = document.querySelector(".product-wrap");
 //	my page 빼고 적용,load와 동시에 만들어야 함
-
+	let wishes = main.querySelectorAll(".wish");
 
 //	detail page 특수 기능
 	let bottomWrap = document.querySelector(".bottom-bar-wrap");
 	let nums = main.querySelector(".nums");
-
 	let id = null;
 
 //	찜 상품 넘어갈 때 새로고침
@@ -37,13 +37,45 @@ window.addEventListener("load",function(){
 		nums.init();
 	};
 
+
+
+	wishes.init = function(){
+
+		fetch(`/wish`,{
+			method: "GET"
+		})
+		.then(async(response)=>{
+			let result = await response.json();
+			return result;
+		})
+		.then((result)=>{
+			if(result == null)
+				console.log("오프라인 이므로 실행하지 않습니다.");
+
+			if(result != null){
+				for(let i = 0; i<wishes.length;i++){
+					for(let j=0; j<result.length; j++){
+						if(wishes[i].dataset.id == result[j].productId){
+							wishes[i].src = "/image/icon/icon-heart-red.svg";
+							wishes[i].classList.add("checked");
+						};
+					};
+				};
+
+			};
+		});
+
+	};
+
 // wishList check, 공통
-	window.onclick = function(e){
+	productsWrap.onclick = function(e){
 
 		if(e.target.classList.contains("wish"))	{
 
 	        if(!e.target.classList.contains("checked")){ // 하트가 안눌린 것
 		        // fetch api
+		        console.log("하트가 눌리는 곳입니다.");
+
 		        id = e.target.dataset.id;
 
 		        fetch(`/${id}/wish`,{
@@ -52,7 +84,7 @@ window.addEventListener("load",function(){
 	            .then((response) => response.text())
 	            .then((result) => {
 					if(result == "/login")
-						location.href = "/login";
+						location.href = result;
 					else if(result == "ok"){
 						e.target.classList.add("checked");
 						e.target.src = "/image/icon/icon-heart-red.svg";
@@ -92,16 +124,12 @@ window.addEventListener("load",function(){
 			};
 
 		}
-		
-		else if(!e.target.classList.contains("wish")){
+		let isProductClick = e.target.parentElement.classList.contains("product-container") || e.target.tagName === "IMG"
 
-			let isProductClick = e.target.parentElement.classList.contains("product-container") || e.target.tagName === "IMG"
-	
-			if(isProductClick) {
-				let productId = e.target.parentElement.dataset.location || e.target.parentElement.parentElement.dataset.location;
-				window.location.href = `/product/${productId}`
-	
-			}
+		if(isProductClick) {
+			let productId = e.target.parentElement.dataset.location || e.target.parentElement.parentElement.dataset.location;
+			window.location.href = `/product/${productId}`
+
 		}
 
 

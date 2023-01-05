@@ -67,13 +67,13 @@ public class ProductController {
 
     	
 
-    public String regProduct(Product product ,MultipartFile[] files, @AuthenticationPrincipal DucktemUserDetails user ,String[] tag, HttpServletRequest request) {
+    public String regProduct(MultipartFile thumbNail, Product product , MultipartFile[] files, @AuthenticationPrincipal DucktemUserDetails user ,String[] tag, HttpServletRequest request) {
 
-
+    	
     	productService.upload(user.getNickName(),product);
     	Long productId = product.getId();
+    	imgService.upload(files,productId,request);
     	tagService.upload(tag, productId, (byte) 0, request);
-    	imgService.upload(files,product.getId(),request);
 
 
     	return "redirect:/";
@@ -158,7 +158,7 @@ public class ProductController {
         List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId());
         Category category = categoryService.getCategoryName(productId);
         List<ProductTag> productTags = tagService.getList(productId);
-        System.out.println(productTags);
+        
 
         model.addAttribute("productImgs", productImgs);
         model.addAttribute("product", product);

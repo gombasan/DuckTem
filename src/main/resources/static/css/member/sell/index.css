@@ -170,11 +170,13 @@
 
 
 
+
 /* <!-- ==========     1번 페이지    ========== --> */
 
 .reg1 input[type=text] {
     width: 90%;
 }
+
 
 .reg1 input[type=number] {
     width: 80%;
@@ -184,28 +186,75 @@
     -webkit-appearance: none;
 }
 
-.img-input {
-	display : inline-block;
-	 background : url(../../../image/빈-상품이미지.png) no-repeat;
-	 
+.thumbNail-title{
+    display: block;
+    font-size: var(--font-1);
+    color : var(--color-dark);
+    font-weight: bold;
     width: 80px;
-    height: 80px;
-
-
-
-
-    object-fit: cover;
-    border-radius: 10px;
+    text-align: center;
 }
+
+.img-input.thumbNail{
+    border: 3px solid #545454;
+}
+
+.input-box-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 0;
+}
+
+.img-input{
+    /* background: url(../../../image/icon/icon-image.svg)no-repeat center;
+    background-size: 40px 40px; */
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border: 2px solid #BBBBBB;
+    border-radius: 10px;
+    position : relative;
+    cursor: pointer;
+}
+.img-input:hover{
+
+    background-size: 42px 42px;
+    background-color: #eae9e9;
+    transition: .7s;
+}
+
+
 
 .reg1 .input-box{
     display: inline-block;
+    margin-right: 3px;
     padding: 0;
+    
 }
 
 .reg1 .img-count{
     font-size: var(--font-2);
     color: rgb(82, 82, 82);
+    padding-top: 0;
+}
+
+.img-delete{
+    display: inline-block;
+    background: url(../../../image/icon/icon-close.svg) no-repeat;
+    background-size : 20px 20px;
+    width: 20px;
+    height: 20px;    
+    position: relative;
+    top : -55px;
+    right : 25px;
+    margin-right:-20px;
+}
+
+.img-delete:hover{
+    cursor: pointer;
+    background: url(../../../image/icon/icon-close-hover.svg) no-repeat;
+    transition: .3s;
 }
 
 
@@ -352,45 +401,50 @@
     padding: .3em 2em;
 }
 
+.reg-btn{       /* -----   reg3 전용   -----*/
+    background-color: #bbbbbb;
+    padding: .3em 1em;
+    border-radius: .8em;
+    margin-bottom: 5px;
+    font-size: var(--font-2);
+}
+
 /* <!-- ==========     4번 페이지    ========== --> */
 
 .reg4{
-
-    
+display: flex;
+align-items: center;
 }
 
 .reg4 label{
-    display: block;
-    width: 200px;
-    height: 100px;
+display: inline-block;
+
 
 }
 
-.reg4 label span{
+.label-box{
+    display: flex;
+    width: 150px;
+    height: 90px;
+    justify-content: center;
+    align-items: center;
+    gap : 10px;
 
 }
 
-
-.reg4 label::before{
-    
+.delivery-icon{
     cursor: pointer;
     display: inline-block;
-    font-size: 80px;
-    
+    font-size: 50px;
 }
 
-.general-mail::before{
-    content: "📮";
+.delivery-name{
+    font-size: var(--font-2);
+    font-weight: bold;
+    align-self: flex-end;
+    padding-bottom: 30px;
+    color :rgb(61, 61, 61)
 }
-
-.semi-post::before{
-    content: "✉️";
-}
-
-.parcel::before{
-    content: "📦";
-}
-
 
 
 
@@ -405,17 +459,17 @@
 .delivery-label{
     background-color: #ffffff;
     border-radius: 20px;
-    box-shadow: 0 3px 3px rgba(0 0 0 / 25%);
+    
+    box-shadow: 0 4px 4px rgba(0 0 0 / 25%);
     
 }
 
 .reg4 input:checked + .delivery-label {
-    box-shadow: 0 0 4px 4px rgb(190, 167, 255);
+    box-shadow: 0 0 2px 2px #A9A9FF;
 }
 
 .reg4 button{
-    /* -webkit-appearance: none;
-    -moz-appearance: none; */
+
     appearance: none;
     text-decoration: none;
 }
@@ -465,12 +519,7 @@
 }
 
 
-.reg-btn{       /* -----   reg3 전용   -----*/
-    background-color: #bbbbbb;
-    padding: .3em 1em;
-    border-radius: .8em;
-    margin-bottom: 5px;
-}
+
 
 
 

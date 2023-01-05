@@ -43,60 +43,69 @@
           <!-- ==================================================     폼시작   ================================================== -->
           <form class="reg-form" method="post" enctype="multipart/form-data">
  
-             <!-- ==========     1번 페이지    ========== -->
-             <section id="one" class="reg">
-                <h1 class="d-none">상품 정보 form</h1>
-                <div class="reg1">
- 
-                   <div class="title">상품 정보를 입력해주세요</div>
- 
-                   <div class="input-container">
-                      <div class="input-title">상품 이미지</div>
-                      <div class="input-box">
-                         <input value="img" class="d-none file-input" id="img" name="thumbNail" type="file" required> 
-                         <img class="img-input" src="/image/빈-상품이미지.png" alt="" ></img>
-                      </div>
-                      <div class="input-box">
-       					 <input value="img" class="d-none file-input" name="files" type="file" >
-       					 <img class="img-input d-none" src="/image/빈-상품이미지.png" alt="">
-                      </div>
-                      <div class="input-box">
-       					 <input value="img" class="d-none file-input" name="files" type="file" >
-       					 <img class="img-input d-none" src="/image/빈-상품이미지.png" alt="">
-                      </div>
-                      <div class="input-box">
-       					 <input value="img" class="d-none file-input" name="files" type="file" >
-       					 <img class="img-input d-none" src="/image/빈-상품이미지.png" alt="">
-                      </div>
-                      
-                      
-                      <div class="img-count">
-                         <span class="img-num"></span> <span>/4</span>
-                      </div>
-                   </div>
- 
-                   <div>
-                      <label class="input-title" for="title">상품 제목</label> <input
-                         value="" class="input-default" id="title" name="name"
-                         type="text" required placeholder="제목을 입력해 주세요.">
-                   </div>
- 
-                   <div class="price-container">
-                      <label class="input-title" for="price">상품 가격</label> <input
-                         value="" class="input-default inline" id="price" name="price"
-                         type="number" required placeholder="가격을 입력해 주세요."><span
-                         class="input-detail">원</span>
-                   </div>
- 
-                   <div class="btn-container">
-                      <div id="quit-reg" class="btn btn-cancel" href="index.html">취소</div>
-                      <div id="first-click" class="btn btn-default">다음</div>
-                   </div>
- 
- 
-                </div>
-             </section>
- 
+            <!-- ==========     1번 페이지    ========== -->
+                    <section id="one" class="reg">
+                        <h1 class="d-none">상품 정보 form</h1>
+                        <div class="reg1">
+
+                            <div class="title">상품 정보를 입력해주세요</div>
+
+                            <div class="input-container">
+                                <div class="input-title">상품 이미지</div>
+
+                                <div class="input-box-container">
+                                    <div class="input-box">
+                                        <span class="thumbNail-title">대표 이미지</span>
+                                        <input value="img" class="d-none file-input" id="img" name="files"
+                                            type="file" required>
+                                        <img class="img-input thumbNail" src="/image/icon/icon-image.svg" alt=""></img>
+                                        <span class="img-delete thumbNail d-none"></span>
+                                    </div>
+                                    <div class="input-box">
+                                        <input value="img" class="d-none file-input" id="img" name="files"
+                                            type="file" >
+                                        <img class="img-input " src="/image/icon/icon-image.svg" alt=""></img>
+                                        <span class="img-delete d-none"></span>
+                                    </div>
+                                    <div class="input-box">
+                                        <input value="img" class="d-none file-input" id="img" name="files"
+                                            type="file" >
+                                        <img class="img-input " src="/image/icon/icon-image.svg" alt=""></img>
+                                        <span class="img-delete d-none"></span>
+                                    </div>
+                                    <div class="input-box">
+                                        <input value="img" class="d-none file-input" id="img" name="files"
+                                            type="file" >
+                                        <img class="img-input " src="/image/icon/icon-image.svg" alt=""></img>
+                                        <span class="img-delete d-none"></span>
+                                    </div>
+                                </div>
+
+                                <div class="img-count">
+                                    <span class="img-num"></span> <span>/4</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="input-title" for="title">상품 제목</label> <input value=""
+                                    class="input-default" id="title" name="name" type="text" required
+                                    placeholder="제목을 입력해 주세요.">
+                            </div>
+
+                            <div class="price-container">
+                                <label class="input-title" for="price">상품 가격</label> <input value=""
+                                    class="input-default inline" id="price" name="price" type="number" required
+                                    placeholder="가격을 입력해 주세요."><span class="input-detail">원</span>
+                            </div>
+
+                            <div class="btn-container">
+                                <div id="quit-reg" class="btn btn-cancel" href="index.html">취소</div>
+                                <div id="first-click" class="btn btn-default">다음</div>
+                            </div>
+
+
+                        </div>
+                    </section>
  
  
  
@@ -305,14 +314,12 @@
                             <div class="reg3-tag-container">
                                 <label for="tag" class="input-title">상품 태그</label>
                                 <div>
-                                    <input value="" class="input-default tag-input" id="tag" name="tag" type="text"
+                                    <input value="" class="input-default tag-input" id="tag" name="tag-input" type="text"
                                          placeholder="태그를 입력해 주세요.">
                                     <div class="btn btn-default btn-add">추가</div>
                                 </div>
                                 <div class="tag-box">
                                     
-
-
                                 </div>
 
                             </div>
