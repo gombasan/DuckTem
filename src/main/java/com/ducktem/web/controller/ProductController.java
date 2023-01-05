@@ -28,6 +28,7 @@ import com.ducktem.web.service.MemberService;
 import com.ducktem.web.service.ProductPreviewService;
 import com.ducktem.web.service.ProductService;
 import com.ducktem.web.service.TagService;
+import com.ducktem.web.service.WishListService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
