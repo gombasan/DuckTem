@@ -1,3 +1,5 @@
+import {wish as bottomWish} from './wish.js';
+
 let chatting = function () {
 
 
@@ -14,6 +16,13 @@ let chatting = function () {
           window.location.href = "/chatting?sellerId="+sellerId+"&&customerId="+customerId+"&&productId="+productId;
         };
     }
+    else{
+		let bottomWrap = document.querySelector(".bottom-bar-wrap");
+		bottomWrap.onclick = function(e){
+			bottomWish(e.target);			
+		}
+	}
+    
 };
 window.addEventListener("load",chatting);
 
