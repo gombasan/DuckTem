@@ -68,9 +68,6 @@ window.addEventListener("load", function () {
     //=======================================================================//
     // ====================    이미지 넣기 (1번째 페이지)    ================//
     //=======================================================================//
-
-
-
     const imgInput = document.querySelector(".img-input");
     const imgInputAfter = document.querySelector(".img-input-after");
     const fileInput = document.querySelector(".file-input");
@@ -82,65 +79,15 @@ window.addEventListener("load", function () {
     let imgNum = this.document.querySelector(".img-num")
     let imgIndex = 0;
     imgNum.innerHTML = imgIndex;
-
-
-
-
-
-
-
-
-//    imgInput.onclick = function () {
-//        console.log(imgIndex);
-//        if (imgIndex < 4) {
-//            let event = new MouseEvent("click", {
-//                'view': window,
-//                'bubbles': true,
-//                'cancelable': true
-//            });
-//
-//            fileInput.dispatchEvent(event);
-//
-//
-//
-//        }
-//    }
-//
-//
-//
-//
-//    fileInput.oninput = function () {
-//
-//        let url = fileInput.files[0];
-//
-//        let reader = new FileReader();
-//        reader.onload = (evt) => {
-//
-//
-//            newimgInputAfter = imgInputAfter.cloneNode(true);
-//            inputBox.insertBefore(imgInput, imgInputAfter)
-//            inputBox.appendChild(newimgInputAfter);
-//            imgInputAfter.src = evt.target.result;
-//            imgInputAfter.classList.remove("d-none");
-//            imgIndex++;
-//            imgNum.innerHTML = imgIndex;
-//
-//
-//        }
-//
-//
-//
-//        reader.readAsDataURL(url);
-//
-//    }
-
-
+    
+    
+    
+    
 
     document.querySelector(".input-container").onclick = function (e) {
         if(e.target.classList.contains("img-input")) {
-			
             if (imgIndex < 4) {
-				
+
                 let event = new MouseEvent("click", {
                     'view': window,
                     'bubbles': true,
@@ -155,32 +102,32 @@ window.addEventListener("load", function () {
                     let url = fileInput.files[0];
 
                     let reader = new FileReader();
-                    
                     reader.onload = (evt) => {
-						imgIndex++;
-                        let tempInputBox = "<div class=\"input-box\">\n" +
-                            "                        <input value=\"img\" class=\"d-none file-input\"\n" +
-                            "                           name=\"files\" type=\"file\"> <img\n" +
-                            "                           class=\"img-input\" src=\"/image/빈-상품이미지.png\" alt=\"\">\n" +
-                            "                     </div>"
 
-						if (imgIndex!=4)
-                        e.target.parentElement.insertAdjacentHTML("afterbegin", tempInputBox);
+                        let tempInputBox = `<div class="input-box">
+       					 <input value="img" class="d-none file-input" name="files" type="file" >
+       					 <img class="img-input" src="/image/빈-상품이미지.png" alt="">
+                      </div>`
+						console.log(imgIndex)
+						if(imgIndex != 4)
+                        e.target.parentElement.insertAdjacentHTML("afterend", tempInputBox);
 
                         e.target.src = evt.target.result;
 
-                        
-                        imgNum.innerHTML = imgIndex;
-						
-
                     }
                     reader.readAsDataURL(url);
+                    imgIndex++;
+                    imgNum.innerHTML = imgIndex;
 
                 }
             }
         }
 
     }
+
+
+
+
 
 
 
@@ -288,10 +235,10 @@ window.addEventListener("load", function () {
 
 
     const tagInput = document.querySelector(".tag-input");
-    const tag = document.querySelector(".tag-default");
+    
     const addBtn = document.querySelector(".btn-add");
     const tagBox = document.querySelector(".tag-box")
-    console.log(tag)
+    
     
 
     let tagIndex = 0
@@ -317,10 +264,10 @@ window.addEventListener("load", function () {
         if (tagIndex < 5) {
 
 
-			tagTemplate = `<div class="btn btn-tag tag-default"><input type="hidden" name="tag" value="" ></input></div>`
-			tagTemplate.querySelector(".tag").childNodes.value = tagInput.value;
-			tagBox.insertAdjacentHTML("afterbegin", tagTemplate);
-           
+			tagTemplate = `<div class="btn btn-tag tag-default">${tagInput.value}</div><input class="tag-hiddenBox" type="hidden" name="tag" value="" ></input>`
+			tagBox.insertAdjacentHTML("beforeend", tagTemplate);
+           let tag = document.querySelector(".tag-hiddenBox");
+           tag.value = tagInput.value;
             tagIndex++;
             
             tagInput.value = "";

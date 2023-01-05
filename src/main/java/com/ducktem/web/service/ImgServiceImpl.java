@@ -29,15 +29,21 @@ public class ImgServiceImpl implements ImgService{
         ProductImg thumbNailImg = new ProductImg();
         thumbNailImg.setThumbnail((byte) 1);
         thumbNailImg.setProductId(productId);
-        thumbNailImg.setName(fileSave(thumbNail,request));
-        imgDao.save(thumbNailImg);
+        String thumbNailName = fileSave(thumbNail, request);
 
+        if(thumbNailName != null) {
+            thumbNailImg.setName(thumbNailName);
+            imgDao.save(thumbNailImg);
+        }
         for(MultipartFile file : files) {
             ProductImg productImg = new ProductImg();
             productImg.setProductId(productId);
             /* 상품 이미지 파일 이름에 UUID 삽입 후 저장 */
-            productImg.setName(fileSave(file, request));
-            imgDao.save(productImg);
+            String productName = fileSave(file, request);
+            if(productName != null) {
+                productImg.setName(productName);
+                imgDao.save(productImg);
+            }
         }
     }
 
@@ -45,7 +51,6 @@ public class ImgServiceImpl implements ImgService{
     /*  */
     @Override
     public List<ProductImg> getList(Long productId) {
-
         return imgDao.findByProductId(productId);
     }
 
@@ -56,6 +61,10 @@ public class ImgServiceImpl implements ImgService{
 
 
         UUID uuid = UUID.randomUUID();
+
+        if(file.getOriginalFilename().equals("")) {
+            return null;
+        }
 
         String productImgName = uuid + "_" + file.getOriginalFilename();
         File productImgFile = new File(productImgPath, productImgName);

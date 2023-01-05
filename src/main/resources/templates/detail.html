@@ -80,9 +80,9 @@
     <hr>
     <section>
         <ul class="detail-button">
-            <li><a class="btn btn-tag " href="">Newjeans</a></li>
-            <li><a class="btn btn-tag " href="">포카</a></li>
-            <li><a class="btn btn-tag " href="">Aespa</a></li>
+            <li th:each="productTags : ${productTags}" >
+            	<a th:text="${productTags.name}" class="btn btn-tag tag-default" href=""></a>
+            </li>
         </ul>
     </section>
     <hr>

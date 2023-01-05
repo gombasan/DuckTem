@@ -184,9 +184,16 @@
     -webkit-appearance: none;
 }
 
-.img-input, .img-input-after {
+.img-input {
+	display : inline-block;
+	 background : url(../../../image/빈-상품이미지.png) no-repeat;
+	 
     width: 80px;
     height: 80px;
+
+
+
+
     object-fit: cover;
     border-radius: 10px;
 }

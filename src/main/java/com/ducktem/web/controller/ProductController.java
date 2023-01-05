@@ -6,10 +6,11 @@ import com.ducktem.web.entity.Member;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductImg;
 import com.ducktem.web.entity.ProductPreview;
+import com.ducktem.web.entity.ProductTag;
 import com.ducktem.web.entity.Category;
 import com.ducktem.web.service.*;
 
-
+import groovyjarjarantlr4.v4.codegen.model.ModelElement;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -46,6 +47,9 @@ public class ProductController {
 
     @Autowired
     private ProductPreviewService productPreviewService;
+    
+    @Autowired
+    private TagService tagService;
 
 // ===================================================================상품 등록 ==========================================================
 
@@ -69,10 +73,14 @@ public class ProductController {
     /* 상품 등록 요청 */
     @PostMapping("/product")
 
-    public String regProduct(MultipartFile thumbNail, Product product , MultipartFile[] files, @AuthenticationPrincipal DucktemUserDetails user , HttpServletRequest request) {
+    public String regProduct(MultipartFile thumbNail, Product product , MultipartFile[] files, @AuthenticationPrincipal DucktemUserDetails user ,String[] tag, HttpServletRequest request) {
     	
     	productService.upload(user.getNickName(),product);
-    	imgService.upload(thumbNail, files,product.getId(),request);
+    	Long productId = product.getId();
+    	imgService.upload(thumbNail, files,productId,request);
+    	System.out.println("tag : "+tag);
+    	tagService.upload(tag, productId, (byte) 0, request);
+    	System.out.println("tag : "+tag);
     	
     	return "redirect:/";
 
@@ -155,12 +163,14 @@ public class ProductController {
         Member member = memberService.getMember(regMemberId);
         List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId());
         Category category = categoryService.getCategoryName(productId);
+        List<ProductTag> productTags = tagService.getList(productId);
         
         model.addAttribute("productImgs", productImgs);
         model.addAttribute("product", product);
         model.addAttribute("member", member);
         model.addAttribute("memberProducts", memberProducts);
         model.addAttribute("category",category);
+        model.addAttribute("productTags",productTags);
         
         
         return "detail";

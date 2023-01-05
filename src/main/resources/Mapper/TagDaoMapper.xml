@@ -7,10 +7,12 @@
 
 	<insert id="save"
 		parameterType="ProductTag">
-		INSERT INTO Tag (`name`,`productId`,`ban`) VALUES (#{name},${productId},#{ban});
+		INSERT INTO Tag (`name`,`productId`,`ban`) VALUES (#{name},#{productId},#{ban});
 	</insert>
 
-
+ 	<select id="findByProductId" resultType="ProductTag" parameterType="Long">
+        select * from Tag where productId = #{productId}
+    </select>
 	
 
 

@@ -3,7 +3,7 @@ package com.ducktem.web.entity;
 public class ProductTag {
 	
 	 private Long id;
-	 private String[] name;
+	 private String name;
 	 private Long productId;
 	 private byte ban;
 	 
@@ -11,7 +11,7 @@ public class ProductTag {
 	public Long getId() {
 		return id;
 	}
-	public String[] getName() {
+	public String getName() {
 		return name;
 	}
 	public Long getProductId() {
@@ -23,7 +23,7 @@ public class ProductTag {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public void setName(String[] name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	public void setProductId(Long productId) {
