@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/component.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/member/chatting/index.css">
+    <script src="/js/websocket.js"></script>
+    <script src="/js/chatting.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <section class="header-wrap">
+            <div class="backpage-btn-wrap">
+                <img class="backpage-btn" src="/image/talk-icon/back.png" alt="">
+
+                <h1 th:attr="data-id=${seller.userId}" th:text="${seller.nickName}" class="others">상대방</h1>
+            </div>
+            <div class="option-btn-wrap">
+                <img class="option-btn" src="/image/talk-icon/점3개옵션.svg" alt="">
+            </div>
+        </section>
+
+    </header>
+
+    <main>
+        <section class="main-wrap">
+            <section class="product-info">
+                <div class="product-img-wrap">
+                    <img class="product-img" th:src="@{|/productimgs/${productPreview.thumbNailImg}|}" alt="">
+                </div>
+                <div class="info-flex">
+                    <div>
+                        <span th:text="${productPreview.salesStatusId}" >거래상태</span>
+                        <span id="product-name" th:attr="data-id=${productPreview.productId}" th:text="${productPreview.name}" >[상품상태] 상품제목 입력구간입니당나귀상목상품품목상품품목상품품목상품품목상품품</span>
+                    </div>
+                    <span th:text="${productPreview.price}">500,000원</span>
+                </div>
+            </section>
+            <section class="chatting-padding">
+                <div class="chatting-date-flex">
+                    <div class="chatting-date-wrap">
+                        <span class="chat-date">00월 00일 몇요일</span>
+                    </div>
+                </div>
+
+                <ul class="chat-text-section" id="chat-box" th:attr="data-id=${customer.userId}">
+                    <div id="chat-list" th:each="chatMsg : ${chattingList}">
+                        <li class="send-wrap" th:if="${chatMsg.senderId} == ${user.username}" >
+                            <div class="img-wrap">
+                                <img class="img" src="/image/talk-icon/human.svg" alt="">
+                            </div>
+                            <div class="chat-text" th:text="${chatMsg.chatMsg}" >
+                                동해물과백두산이
+                            </div>
+                            <div class="chat-text-date">오후 00:00</div>
+
+                        </li>
+
+                        <li class="received-wrap" th:if="${chatMsg.senderId} != ${user.username}" >
+                            <div class="img-wrap">
+                                <img class="img" src="/image/talk-icon/human.svg" alt="">
+                            </div>
+                            <div class="chat-text" th:text="${chatMsg.chatMsg}">
+                                좀 조용히해라
+                            </div>
+                            <div class="chat-text-date">오후 00:00</div>
+                        </li>
+                    </div>
+                </ul>
+            </section>
+            <div class="chat-input-box">
+                <div class="chat-input-area">
+                    <div class="tool-box">
+                        <img class="btn-bold" src="/image/talk-icon/bold.svg" alt="">
+                        <img src="/image/talk-icon/italic.svg" alt="">
+                        <img src="/image/talk-icon/취소선.svg" alt="">
+                    </div>
+                    <div>
+                        <input class="chat-input" type="text" placeholder="상대방에게 메시지 보내기">
+                    </div>
+                    <div class="button-wrap">
+                        <div>
+                            <img src="/image/talk-icon/camera.svg" alt="">
+                        </div>
+                        <div>
+                            <img src="/image/talk-icon/send-button.svg" class="send-button">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+
+</html>

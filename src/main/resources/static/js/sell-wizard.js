@@ -68,31 +68,74 @@ window.addEventListener("load", function () {
     //=======================================================================//
     // ====================    이미지 넣기 (1번째 페이지)    ================//
     //=======================================================================//
-
-
-
     const imgInput = document.querySelector(".img-input");
-    const imgInputAfter = document.querySelector(".img-input-after");
-    // let fileInput = document.querySelector(".file-input");
+    const imgInputBoxContainer = document.querySelector(".input-box-container");
+    const fileInput = document.querySelector(".file-input");
     let inputBox = document.querySelector(".input-box")
-
+    let newimgInputAfter;
 
 
 
     let imgNum = this.document.querySelector(".img-num")
     let imgIndex = 0;
     imgNum.innerHTML = imgIndex;
-
-
-
-
-
-
-
+    
+    
+    
+    
 
     document.querySelector(".input-container").onclick = function (e) {
+		
+		
+		
+		
+                            
+                            
+		
+		if(e.target.classList.contains("img-delete thumbNail")){
+			
+			let thumbNailImgDelete = e.target;
+			
+			
+
+
+			
+			
+
+			
+			
+			
+			}
+		
+		
+		
+		
+		
+		if(e.target.classList.contains("img-delete")){
+			
+			
+			let imgDelete = e.target;
+			
+			let FileInput = `<div class="input-box">
+                                <input value="img" class="d-none file-input" id="img" name="files" type="file" >
+                                <img class="img-input " src="/image/icon/icon-image.svg" alt=""></img>
+                                <span class="img-delete d-none"></span>
+                            </div>`
+			
+			
+			imgDelete.parentElement.remove();
+			imgInputBoxContainer.insertAdjacentHTML("beforeend", FileInput);
+			imgIndex--;
+			imgNum.innerHTML = imgIndex;
+			
+			
+			
+		}
+		
+		
+		
         if(e.target.classList.contains("img-input")) {
-            if (imgIndex < 4) {
+           
 
                 let event = new MouseEvent("click", {
                     'view': window,
@@ -110,32 +153,24 @@ window.addEventListener("load", function () {
                     let reader = new FileReader();
                     reader.onload = (evt) => {
 
-                        imgIndex++;
-                        let tempInputBox = "<div class=\"input-box\">\n" +
-                            "                        <input value=\"img\" class=\"d-none file-input\"\n" +
-                            "                           name=\"files\" type=\"file\"> <img\n" +
-                            "                           class=\"img-input\" src=\"/image/빈-상품이미지.png\" alt=\"\">\n" +
-                            "                     </div>"
-                        if(imgIndex != 4)
-                        e.target.parentElement.insertAdjacentHTML("beforeend", tempInputBox);
 
                         e.target.src = evt.target.result;
 
-                        imgNum.innerHTML = imgIndex;
-
-
                     }
                     reader.readAsDataURL(url);
+                    imgIndex++;
+                    imgNum.innerHTML = imgIndex;
+                    
+                    let imgDelete = e.target.nextElementSibling;
+                    console.log(imgDelete);
+                    imgDelete.classList.remove("d-none");
+                    
 
                 }
-            }
+            
         }
 
     }
-
-
-
-
 
 
 
@@ -247,10 +282,10 @@ window.addEventListener("load", function () {
 
 
     const tagInput = document.querySelector(".tag-input");
-    const tag = document.querySelector(".tag-default");
+    
     const addBtn = document.querySelector(".btn-add");
     const tagBox = document.querySelector(".tag-box")
-    console.log(tag)
+    
     
 
     let tagIndex = 0
@@ -272,25 +307,26 @@ window.addEventListener("load", function () {
             alert("공백이 입력되었습니다.")
             return;
         }
-        console.log(tagIndex);
+   
         if (tagIndex < 5) {
 
 
-            newTag = tag.cloneNode(true);
-            tagBox.appendChild(newTag);
-            tagBox.insertBefore(tag, null)
-
-
-
-            tag.innerHTML = tagInput.value;
-
-            tag.classList.remove("d-none")
-            tagIndex++;
-            tagInput.value = "";
-            tagInput.setAttribute(Placeholder, "태그를 입력해주세요");
+			tagTemplate = 
+			`
+				<div class="btn btn-tag tag-default">${tagInput.value}</div>
+				<input class="tag-hiddenBox" type="hidden" name="tag" value="${tagInput.value}" ></input>
+			`
+			tagBox.insertAdjacentHTML("beforeend", tagTemplate);
+			
+         
             
-
+            tagIndex++;
+            
+            
         }
+        
+        tagInput.value = "";
+        tagInput.setAttribute(Placeholder, "태그를 입력해주세요");
     }
 
 

@@ -45,8 +45,18 @@ public class ProductServiceImpl implements ProductService{
     public Product get(Long productId) {
 
 
+
+
         /* 상품 시간 n분전으로 표시 준비.*/
         Product product = productDao.findById(productId);
+        dateChange(product);
+
+
+
+        return product;
+    }
+
+    public void dateChange(Product product) {
         Date regDate = product.getRegDate();
         long today = System.currentTimeMillis();
 
@@ -68,11 +78,7 @@ public class ProductServiceImpl implements ProductService{
             String betweenDays = days + "일 전";
             product.setNTimeAgo(betweenDays);
         }
-
-
-        return product;
     }
-
 
 
     /* 전체 상품 리스트 조회 서비스 (프리뷰료 변경 예정) */

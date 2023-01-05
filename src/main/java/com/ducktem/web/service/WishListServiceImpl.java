@@ -94,7 +94,9 @@ public class WishListServiceImpl implements WishListService{
 //			myWishList.add(i,tempPreview);
 //		}
 		
+
 		return productPreviewDao.getWishPreviewList(memberId);
+
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import com.ducktem.web.entity.DucktemUserDetails;
 import com.ducktem.web.entity.Product;
 import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.service.ProductPreviewService;
+import com.ducktem.web.service.ProductPreviewServiceImpl;
 import com.ducktem.web.service.ProductService;
 
 import jakarta.servlet.http.HttpSession;
@@ -34,9 +35,9 @@ public class ProductPageApi {
     		userId = user.getUsername();
     	}
     	
-    	List<ProductPreview> preview = productPreviewService.preview(page, userId);
+    	List<ProductPreview> previews = productPreviewService.preview(page, userId);
 
-        return preview;
+        return previews;
     }
 
     @PostMapping("/product/myproduct/sellStatesChange/{productId}/{selectState}")

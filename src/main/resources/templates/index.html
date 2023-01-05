@@ -13,8 +13,11 @@
 
 
 	<script src="/js/rolling-banner.js"></script>
+	<script src="/js/wish.js"></script>
 	<script type="module" src="/js/productDetail.js"></script>
-<!-- 	<script src="/js/wish.js"></script> -->
+
+
+	<script src="/js/index.js"></script>
 
 </th:block>
 
@@ -107,14 +110,14 @@
 						</div>
 
 						<div class="price-wish">
-							<span th:text="${preview.price}"></span>
+							<span th:text="|${preview.price} 원|"></span>
 							<img th:if="${preview.status == 1}" class="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" th:data-id="${preview.productId}">
 							<img th:unless="${preview.status == 1}" class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${preview.productId}">
 						</div>
 
 						<div th:text="${preview.name}" class="name">러브다이브미공포</div>
 
-						<div th:text="${preview.regDate}" class="time">0일 전</div>
+						<div th:text="${preview.nTimeAgo}" class="time">0일 전</div>
 					</div>
 				</div>
 			</div>
@@ -128,6 +131,7 @@
 		</section>
 
 	</section>
+
 
 	<script defer>
       const productSection = document.querySelector(".product-wrap");
@@ -196,6 +200,7 @@
 
 
     </script>
+
 
 </main>
 
