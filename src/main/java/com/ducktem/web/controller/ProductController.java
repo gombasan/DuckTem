@@ -127,7 +127,7 @@ public class ProductController {
     public String productDetail(Model model,
                                 HttpServletResponse response,
                                 @CookieValue(name = "newHit", required=false, defaultValue = "default") String hitCookie,
-                                @PathVariable("id") Long productId) {
+                                @PathVariable("id") Long productId, @AuthenticationPrincipal DucktemUserDetails ducktemUserDetails) {
 
         /* 새로 고침 조회수 막기 위해 추가. */
         productService.upHit(response,hitCookie,productId);
@@ -144,6 +144,7 @@ public class ProductController {
         model.addAttribute("member", member);
         model.addAttribute("memberProducts", memberProducts);
         model.addAttribute("category",category);
+        model.addAttribute("user", ducktemUserDetails);
 
         
         return "detail";

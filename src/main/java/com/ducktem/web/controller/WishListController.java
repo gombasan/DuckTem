@@ -3,6 +3,7 @@ package com.ducktem.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ducktem.web.entity.DucktemUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -45,7 +46,7 @@ public class WishListController {
 
     @Autowired
     private ProductPreviewService productPreviewService;
-    
+
     @Autowired
     private MemberService memberService;
 //	나의 찜 목록 불러오기
@@ -67,8 +68,8 @@ public class WishListController {
 	@ResponseBody
 	public String checkWishList(@AuthenticationPrincipal DucktemUserDetails user,
 								@PathVariable("id") Long productId) {
-    	String userId = user.getUsername();
-        
+		String userId = user.getUsername();
+
 		if(userId == null) {
             return "/login";
 		}

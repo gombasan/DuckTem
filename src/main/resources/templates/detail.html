@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
+<html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{inc/layout}">
@@ -99,7 +99,7 @@
         <h1 class="detail-user-others">이 판매자의 다른 물건</h1>
         <section class="product-wrap">
 
-            <div th:each="memberProducts : ${memberProducts}" class="product-container">
+            <div th:each="memberProducts : ${memberProducts}" class="product-container" th:attr="data-location=${memberProducts.productId}">
                     <div><img th:src="${memberProducts.thumbNailImg}" alt="product-img"></div>
 
                     <div class="price-wish">
@@ -126,18 +126,18 @@
 			<div>
 				<span th:text="|${product.price}원|"></span>
 			</div>
-			<div id="duck-talk" th:if="${#authentication.principal.nickName} != ${member.nickName}" th:attr="data-id=|${product.regMemberId}/${#authentication.principal.userId}/${product.id}|">
+			<div id="duck-talk" th:if="${user.username} != ${member.nickName}" th:attr="data-id=|${product.regMemberId}/${user.username}/${product.id}|">
 				<a class="btn btn-default " href="">덕템톡</a>
 			</div>
-			<div th:if="${#authentication.principal.nickName} == ${member.nickName}"
+			<div th:if="${user.username} == ${member.nickName}"
 				class="state-btn">
 				<a class="btn btn-default " href="">상태변경</a>
 			</div>
-			<div th:if="${#authentication.principal.nickName} == ${member.nickName}">
+			<div th:if="${user.username} == ${member.nickName}">
 				<a class="btn btn-default "
-					th:href="@{|/product/myproduct/${#authentication.principal.nickName}/${product.id}|}">수정</a>
+					th:href="@{|/product/myproduct/${user.username}/${product.id}|}">수정</a>
 			</div>
-			<div th:if="${#authentication.principal.nickName} == ${member.nickName}"
+			<div th:if="${user.username} == ${member.nickName}"
 				class="state-select d-none">
 				<div class="supercategory-select">상품 상태 변경</div>
 				<img class="exit" src="/image/icon/icon-close.svg" alt="">
@@ -158,7 +158,7 @@
 					th:attr="data-id=${product.id}">선택완료</div>
 			</div>
 		</div>
-		<script th:if="${#authentication.principal.nickName} == ${member.nickName}">
+		<script th:if="${user.username} == ${member.nickName}">
             let stateBtn = document.querySelector(".state-btn");
             let stateSelect = document.querySelector(".state-select");
             let main = document.querySelector("main");
