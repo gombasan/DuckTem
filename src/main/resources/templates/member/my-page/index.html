@@ -58,7 +58,8 @@
 		
 		                    <div class="price-wish">
 		                        <span th:text="${myProduct.price}+원"></span>	
-		                        <img class ="wish" src="/image/icon/heart.svg" alt="찜" th:data-id ="${myProduct.productId}">
+		                        <img th:if="${myProduct.status == 1}" class="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" th:data-id="${myProduct.productId}">
+								<img th:unless="${myProduct.status == 1}" class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${myProduct.productId}">
 		                    </div>
 		
 		                    <div th:text="${myProduct.name}" class="name"></div>

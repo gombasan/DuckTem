@@ -32,6 +32,7 @@ public class DucktemSecurityConfig {
 				.requestMatchers("/mypage").hasAnyRole("MEMBER")
 				.requestMatchers("/product").hasAnyRole("MEMBER")//상품 등록 페이지
 				.requestMatchers("/mylist").hasAnyRole("MEMBER")//내 상품 보기 
+				.requestMatchers("**/wish").hasAnyRole("MEMBER")//찜 누르기
 				.anyRequest().permitAll()		
 				.and()
 			.formLogin()
@@ -60,7 +61,6 @@ public class DucktemSecurityConfig {
 	@Bean
 	public UserDetailsService ducktemUserDetailsService() {
 
-		System.out.println("detailservice");
 		return new DucktemUserDetailsService();
 	}
 	

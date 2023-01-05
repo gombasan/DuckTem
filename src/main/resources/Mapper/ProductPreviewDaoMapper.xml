@@ -7,24 +7,26 @@
         order by regDate desc ;
     </select>
 
-
     <select id="findMemberProductList" resultType="ProductPreview">
-        select * from ProductPreview
+ 		select pp.*, if ((select memberId from WishList where pp.productId = productId and memberId = #{memberId}) = #{memberId}, 1, 0) status from ProductPreview pp 
         where regMemberId = #{memberId}
         order by regDate desc;
     </select>
-
+    
+    <select id="getWishPreviewList" resultType="ProductPreview">
+    	select pp.thumbNailImg,pp.price,wl.regDate,pp.productId,pp.name,pp.regMemberId,pp.salesStatusId, if(wl.memberId = #{memberId},1,0) status 
+		from ProductPreview pp join WishList wl on pp.productId = wl.productId where memberId = #{memberId}
+        order by regDate desc;
+    </select>
+    
     <select id="getPreviewList" resultType="ProductPreview">
-        select pp.*, memberId in (select memberId from WishList where memberId = #{memberId}) 
-        as status from ProductPreview pp
-		left outer join WishList wl
-		on pp.productId = wl.productId
+    	select pp.*, if ((select memberId from WishList where pp.productId = productId and memberId = #{memberId}) = #{memberId}, 1, 0) status from ProductPreview pp 
         order by regDate desc LIMIT #{size} OFFSET #{offset};
     </select>
 
     <select id="findByProductId" resultType="ProductPreview">
         select * from ProductPreview
-        where productId = #{prodcutId}
+        where productId = #{productId}
         order by regDate desc ;
     </select>
 

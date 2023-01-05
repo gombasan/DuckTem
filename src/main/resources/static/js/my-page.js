@@ -47,22 +47,22 @@ window.addEventListener("load", function () {
 			}
 		}).then(()=>{
 			let template = null;
-			let WishImg = null;
-//			for(let i=0; i<products.length;i++){
-			for(let i=(products.length-1); i>=0; i--){
-				if(myPageInfo=="myProductList")
-					WishImg = `<img class ="wish" src="/image/icon/heart.svg" alt="찜" data-id = "${products[i].productId}">`
-				else if(myPageInfo=="myWishList")
-					WishImg = `<img class ="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" data-id = "${products[i].productId}">`
+			let tempHeart = null;
+			for(let i=0; i<products.length;i++){
+				if(products[i].status == 1)
+					tempHeart = `<img class ="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" data-id = "${products[i].productId}">`
+				else
+					tempHeart = `<img class ="wish" src="/image/icon/heart.svg" alt="찜" data-id = "${products[i].productId}">`
+
 				let temp = `
 				    <section class="product-wrap">		
 			            <div class="product-container" data-location="${products[i].productId}">
 		                    <div><img src="${products[i].thumbNailImg}" alt="product-img"></div>
 		
 		                    <div class="price-wish">
-		                        <span text="">${products[i].price}원</span>`
-		                        +WishImg+
-		                   `</div>
+		                        <span text="">${products[i].price}원</span>
+		                        ${tempHeart}
+		                   </div>
 		
 		                    <div text="" class="name">
 		                        ${products[i].name}
@@ -73,7 +73,8 @@ window.addEventListener("load", function () {
 		                    </div>
 			            </div>
 			        </section>`;
-			        if(i==(products.length-1))
+			        
+			        if(i==0)
 			        	template = temp;
 			        else	
 			        	template += temp;

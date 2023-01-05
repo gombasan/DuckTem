@@ -19,9 +19,9 @@ public interface WishListService {
 
 	int getWIshNumsbyPId(Long productId);
 
-	ArrayList<ProductPreview> getmyWishList(List<WishList> wishList);
-
 	int getMyWishNum(String userId);
+
+	List<ProductPreview> getmyWishList(String memberId);
 
 	
 }
