@@ -19,5 +19,7 @@ public interface WishListDao {
 	int getNums(Long productId);
 
 	int getMyWishNum(String userId);
+
+	String getStatus(String memberId, Long productId);
 	
 }

@@ -3,7 +3,7 @@ export default function wish(target){
 
 		let id = null;
 
-		let nums = document.querySelector(".nums");			
+	
 
 
 		if(!target.classList.contains("checked")){ // 하트가 안눌린 것
@@ -48,32 +48,11 @@ export default function wish(target){
 					console.log("안된다.");
 				}
 			})
-			.then(()=>{
-				if(target.classList.contains("bottom"))
-					nums.init();
-			});
 		};
 		
 		
 		
-		// bottom 있을 때만 실행하고, 만들어 주기 위한 코드	
-		if(document.querySelector(".bottomWish")){
-		// nums 초기화
-			nums.init = function(){
-				id = nums.previousElementSibling.dataset.id;
-				fetch(`/${id}/nums`,{
-					method: "GET"
-				})
-		        .then((response) => response.text())
-		        .then((result) => {
-					nums.innerText = String(result);
-	
-				})
-				.catch(()=>console.log('에러발생'));
-			};
-	
-			nums.init();
-		};
+
 }
 
 window.addEventListener("load",function(){
