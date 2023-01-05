@@ -42,13 +42,8 @@ public class HomeController {
     	List<ProductPreview> preview = productPreviewService.preview(userId);
     	model.addAttribute("preview", preview);
 
-
-
         return "index";
     }
 
-
-
-    
 
 }
