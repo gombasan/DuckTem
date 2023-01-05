@@ -8,13 +8,13 @@ import com.ducktem.web.entity.ProductPreview;
 public interface SearchService {
 	
     /* 검색어 입력시 해당 상품 리스트 조회*/
-	List<ProductPreview> getResult(String keyword);
+	List<ProductPreview> getResult(String keyword, String userId);
 
 	/*검색어 결과 갯수 조회*/
 	int getResultCount(String keyword);
 
 	/*검색어 결과 필터링*/
-	List<ProductPreview> getfilteredResult(String keyword, String option);
+	List<ProductPreview> getfilteredResult(String keyword, String option, String userId);
 	
 
 }

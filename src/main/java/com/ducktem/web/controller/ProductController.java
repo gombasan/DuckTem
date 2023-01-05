@@ -53,6 +53,9 @@ public class ProductController {
     @Autowired
     private TagService tagService;
 
+    @Autowired
+    private WishListService wishListService;
+    
 // ===================================================================상품 등록 ==========================================================
 
     /* 상품 등록 폼파일 요청 */
@@ -146,8 +149,15 @@ public class ProductController {
     public String productDetail(Model model,
                                 HttpServletResponse response,
                                 @CookieValue(name = "newHit", required=false, defaultValue = "default") String hitCookie,
-                                @PathVariable("id") Long productId, @AuthenticationPrincipal DucktemUserDetails ducktemUserDetails) {
-
+                                @PathVariable("id") Long productId, @AuthenticationPrincipal DucktemUserDetails ducktemUserDetails,
+                                @AuthenticationPrincipal DucktemUserDetails user) {
+    	String userId = null;
+    	
+    	if(user != null) {
+    		userId = user.getUsername();
+    	}
+    	
+    	
         /* 새로 고침 조회수 막기 위해 추가. */
         productService.upHit(response,hitCookie,productId);
 
@@ -155,9 +165,11 @@ public class ProductController {
         List<ProductImg> productImgs = imgService.getList(productId);
         String regMemberId = product.getRegMemberId();
         Member member = memberService.getMember(regMemberId);
-        List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId());
-        Category category = categoryService.getCategoryName(productId);
+
+        List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId(),userId);
+        Category category = categoryService.getCategoryName(productId);        
         List<ProductTag> productTags = tagService.getList(productId);
+        String bottomStatus = wishListService.getStatus(userId, productId);
         
 
         model.addAttribute("productImgs", productImgs);
@@ -168,7 +180,7 @@ public class ProductController {
         model.addAttribute("productTags",productTags);
         model.addAttribute("user", ducktemUserDetails);
 
-        
+        model.addAttribute("bottomStatus", bottomStatus);
         return "detail";
     }
 

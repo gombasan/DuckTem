@@ -23,5 +23,7 @@ public interface WishListService {
 
 	List<ProductPreview> getmyWishList(String memberId);
 
+	String getStatus(String userId, Long productId);
+
 	
 }

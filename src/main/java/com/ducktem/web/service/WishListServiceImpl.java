@@ -104,6 +104,12 @@ public class WishListServiceImpl implements WishListService{
 		return wishListDao.getMyWishNum(userId);
 	}
 
+	@Override
+	public String getStatus(String userId, Long productId) {
+		
+		return wishListDao.getStatus(userId, productId);
+	}
+
 
 	
 }

@@ -17,8 +17,8 @@ public class ProductPreviewServiceImpl implements ProductPreviewService {
 
 
     @Override
-    public List<ProductPreview> myList(String memberId) {
-        return productPreviewDao.findMemberProductList(memberId);
+    public List<ProductPreview> myList(String memberId, String myUserId) {
+        return productPreviewDao.findMemberProductList(memberId, myUserId);
     }
 
     @Override

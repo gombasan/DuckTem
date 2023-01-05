@@ -11,8 +11,8 @@
 	<link rel="stylesheet" href="/css/layout.css">
 	<link rel="stylesheet" href="/css/detail.css">
 
-	<script src="/js/wish.js"></script>
-	<script src="/js/productDetail.js"></script>
+	<!-- 	<script src="/js/wish.js"></script> -->
+	<script type="module" src="/js/productDetail.js"></script>
 	<style>
 .state-select {
 	background-color: var(- -color-light);
@@ -101,12 +101,24 @@
 	<section>
 		<ul class="detail-button">
 
+
 			<li th:each="productTags : ${productTags}"><a
 				th:text="${productTags.name}" class="btn btn-tag tag-default"
 				href=""></a></li>
 
 		</ul>
 	</section>
+
+	<div class="price-wish">
+		<span th:text="${memberProducts.price}"> 80,000원</span> <img
+			th:if="${memberProducts.status == 1}" class="wish checked"
+			src="/image/icon/icon-heart-red.svg" alt="찜"
+			th:data-id="${memberProducts.productId}"> <img
+			th:unless="${memberProducts.status == 1}" class="wish"
+			src="/image/icon/heart.svg" alt="찜"
+			th:data-id="${memberProducts.productId}">
+	</div>
+
 
 	<section class="detail-spec-container">
 		<ul>
@@ -117,36 +129,40 @@
 
 	<section>
 		<h1 class="detail-user-others">이 판매자의 다른 물건</h1>
-		
+
 		<div class="product-flex">
-		<section class="product-wrap">
+			<section class="product-wrap">
 
-			<div th:each="memberProducts : ${memberProducts}"
-				class="product-container"
-				th:attr="data-location=${memberProducts.productId}">
-				<div>
-					<img th:src="${memberProducts.thumbNailImg}" alt="product-img">
+				<div th:each="memberProducts : ${memberProducts}"
+					class="product-container"
+					th:attr="data-location=${memberProducts.productId}">
+					<div>
+						<img th:src="${memberProducts.thumbNailImg}" alt="product-img">
+					</div>
+
+					<div class="price-wish">
+						<span th:text="${memberProducts.price}"> 80,000원</span> <img
+							class="wish" src="/image/icon/heart.svg" alt="찜"
+							th:data-id="${memberProducts.productId}">
+					</div>
+
+					<div th:text="${memberProducts.name}" class="name">러브다이브 미공포</div>
+
+					<div th:text="${memberProducts.regDate}" class="time">0일 전</div>
 				</div>
-
-				<div class="price-wish">
-					<span th:text="${memberProducts.price}"> 80,000원</span> <img
-						class="wish" src="/image/icon/heart.svg" alt="찜"
-						th:data-id="${memberProducts.productId}">
-				</div>
-
-				<div th:text="${memberProducts.name}" class="name">러브다이브 미공포</div>
-
-				<div th:text="${memberProducts.regDate}" class="time">0일 전</div>
-			</div>
-		</section>
+			</section>
 		</div>
 	</section>
 
 	<section class="bottom-bar-wrap">
 		<div class="bottom-bar">
-			<div>
-				<img class="wish bottom" src="/image/icon/heart.svg" alt="찜"
-					th:data-id="${product.id}"> <label class="nums">2</label>
+			<div class=bottom-wish-box>
+				<img th:if="${bottomStatus== '1'}" class="wish checked"
+					src="/image/icon/icon-heart-red.svg" alt="찜"
+					th:data-id="${product.id}"> <img
+					th:unless="${bottomStatus == '1'}" class="wish"
+					src="/image/icon/heart.svg" alt="찜" th:data-id="${product.id}">
+				<label class="bottom-wish-nums">2</label>
 			</div>
 			<div>
 				<span th:text="|${product.price}원|"></span>

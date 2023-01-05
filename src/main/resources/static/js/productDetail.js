@@ -1,5 +1,16 @@
-let chatting = function() {
+import wish from "./wish.js";
 
+
+
+
+
+
+//==========================================================
+//===================   급조된 자스  준현아 미안하게 됐따. 그냥 써라.  ===================
+//==========================================================
+window.addEventListener('load', function() {
+	
+	let chatting = function() {
 
 	let duckTalk = document.querySelector("#duck-talk");
 	let query = duckTalk.dataset.id
@@ -15,14 +26,9 @@ let chatting = function() {
 		};
 	}
 };
-window.addEventListener("load", chatting);
 
-
-
-
-
-//▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  여기서부터  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
-window.addEventListener('load', function() {
+	chatting();
+	
 
 	let imageBox = document.querySelectorAll(".image-box")
 	let vectorRight = document.querySelector(".vector-right")
@@ -69,11 +75,55 @@ window.addEventListener('load', function() {
 		}
 		
 	}
+	
+//==========================================================
+//===================   for bottom Wish   ===================
+//==========================================================
+
+//  .   ____          _            __ _ _
+// /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+//( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+// \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+//  '  |____| .__|_| |_|_| |_\__, | / / / /
+// =========|_|==============|___/=/_/_/_/
+
+
+
+	let bottomWish = document.querySelector(".bottom-wish-box");
+	let nums = document.querySelector(".bottom-wish-nums");	
+	let currentNums = null;
+		
+  	if(bottomWish){
+    	bottomWish.onclick = function(e){
+    		wish(e.target);
+    		if(e.target.classList.contains("checked"))
+    			currentNums--;
+    		else if(!e.target.classList.contains("checked"))
+    			currentNums++;
+    		
+    		nums.innerText = String(currentNums);
+	  }
+	  
+	  		// bottom 있을 때만 실행하고, 만들어 주기 위한 코드	
+		// nums 초기화
+			nums.init = function(){
+				let id = nums.previousElementSibling.dataset.id;
+				fetch(`/${id}/nums`,{
+					method: "GET"
+				})
+		        .then((response) => response.text())
+		        .then((result) => {
+					nums.innerText = String(result);
+					currentNums = result;
+				})
+				.catch(()=>console.log('에러발생'));
+			};
+
+			nums.init();
+  }
 
 
 });
-//▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲   여기까지   ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
-
 
 
 

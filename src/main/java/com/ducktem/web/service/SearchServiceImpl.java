@@ -15,9 +15,10 @@ public class SearchServiceImpl implements SearchService {
 	private SearchDao searchDao;
 
 	@Override
-	public List<ProductPreview> getResult(String keyword) {
+	public List<ProductPreview> getResult(String keyword, String userId) {
 
-		List<ProductPreview> result = searchDao.getList(keyword, null);
+		//daoMapper 수정. 걍 getfilteredResult로 통일할 것. 
+		List<ProductPreview> result = searchDao.getList(keyword, null, userId);
 
 		return result;
 	}
@@ -31,9 +32,9 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public List<ProductPreview> getfilteredResult(String keyword, String option) {
+	public List<ProductPreview> getfilteredResult(String keyword, String option, String userId) {
 		
-		List<ProductPreview> list = searchDao.getList(keyword, option);
+		List<ProductPreview> list = searchDao.getList(keyword, option, userId);
 
     	return list;
 	}
