@@ -19,9 +19,10 @@
 		SuperCategory.id
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
 			<if test="superCategoryId != null">
-				SuperCategory.id = #{superCategoryId};
+				SuperCategory.id = #{superCategoryId}
 			</if>
 		</trim>
+		
 	</select>
 
 
