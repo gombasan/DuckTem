@@ -51,7 +51,9 @@
 			th:if="${product.salesStatusId == 3 }">예약중</span>
 	</div>
 	<section class="profile-container">
-		<img class="profile-img" th:src="${member.profileImg}" alt="">
+<!--		<img class="profile-img" th:if="${member.profileImg} != null" th:src="${member.profileImg}" alt="">-->
+<!--		<img class="profile-img" th:if="${member.profileImg} == null" src="/image/profile-img.png" alt="">-->
+		<img class="profile-img" th:src="${member.profileImg}" onerror="this.src = '/image/profile-img.png'" alt="">
 		<h1 th:text="${member.nickName}">미지123</h1>
 		<span class="product-count">판매상품 <span
 			th:text="${#lists.size(memberProducts)}"></span></span> <span
@@ -112,7 +114,7 @@
                         러브다이브 미공포
                     </div>
 
-				<div th:text="${memberProducts.regDate}" class="time">0일 전</div>
+				<div th:text="${memberProducts.nTimeAgo}" class="time">0일 전</div>
 			</div>
 		</section>
 	</section>

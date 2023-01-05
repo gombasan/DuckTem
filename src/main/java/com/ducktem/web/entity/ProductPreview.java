@@ -8,10 +8,11 @@ public class ProductPreview {
     private String thumbNailImg;
     private String price;
     private String name;
-    private String regDate;
+    private Date regDate;
     private int salesStatusId;
     private int status;
-    
+
+    private String nTimeAgo;
 
 	public int getSalesStatusId() {
         return salesStatusId;
@@ -53,11 +54,11 @@ public class ProductPreview {
         this.name = name;
     }
 
-    public String getRegDate() {
+    public Date getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(String regDate) {
+    public void setRegDate(Date regDate) {
         this.regDate = regDate;
     }
 
@@ -68,6 +69,14 @@ public class ProductPreview {
     
     public void setStatus(int status) {
     	this.status = status;
+    }
+
+    public String getNTimeAgo() {
+        return nTimeAgo;
+    }
+
+    public void setNTimeAgo(String nTimeAgo) {
+        this.nTimeAgo = nTimeAgo;
     }
 
     @Override

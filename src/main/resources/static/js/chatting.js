@@ -2,9 +2,9 @@ window.addEventListener("load",function () {
     let chatSendBtn = document.querySelector(".send-button");
     let chatInput = document.querySelector(".chat-input");
     let chatSection = document.querySelector(".chatting-padding");
-    let chatTextSection = document.querySelector(".chat-text-section");
+    let chatList = document.querySelector(".chat-text-section");
     chatSection.scrollTo(0,chatSection.scrollHeight);
-
+    console.log(chatList);
     let chatSend = function (e) {
         e.preventDefault();
         let customerId = document.querySelector("#chat-box").dataset.id;
@@ -25,7 +25,7 @@ window.addEventListener("load",function () {
             </div>
             <div class="chat-text-date">오후 00:00</div>
         </li>`
-        chatTextSection.insertAdjacentHTML("beforeend",template);
+        chatList.insertAdjacentHTML("beforeend",template);
         chatSection.scrollTo(0,chatSection.scrollHeight);
     }
 
@@ -40,16 +40,17 @@ window.addEventListener("load",function () {
     socket.onmessage = function (e) {
         // let msg = e.data;
         let template =
-        `<li className="received-wrap">
-            <div className="img-wrap">
-                <img className="img" src="/image/talk-icon/human.svg" alt="">
+        `<li class="received-wrap">
+            <div class="img-wrap">
+                <img class="img" src="/image/talk-icon/human.svg" alt="">
             </div>
-            <div className="chat-text">
+            <div class="chat-text">
                 ${e.data}
             </div>
             <div className="chat-text-date">오후 00:00</div>
         </li>`
-        chatTextSection.insertAdjacentHTML("beforeend",template);
+        chatList.insertAdjacentHTML("beforeend",template);
+        chatSection.scrollTo(0,chatSection.scrollHeight);
     }
 
 })

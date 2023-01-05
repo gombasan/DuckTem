@@ -7,7 +7,7 @@ let chatting = function () {
     let customerId = query.split("/").at(1);
     let TempProductId = query.split("/").at(2);
     let productId = Number.parseInt(TempProductId);
-    if(sellerId != "null"){
+    if(customerId != "null"){
         duckTalk.onclick = function (e) {
             e.preventDefault();
             console.log("/chatting?sellerId="+sellerId+"&&customerId="+customerId+"&&productId="+productId);

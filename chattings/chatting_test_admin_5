@@ -1,0 +1,13 @@
+[ {
+  "senderId" : "admin",
+  "chatMsg" : "하이하이",
+  "regDate" : "2023-01-05 12:44:22"
+}, {
+  "senderId" : "admin",
+  "chatMsg" : "하이하이",
+  "regDate" : "2023-01-05 12:44:23"
+}, {
+  "senderId" : "admin",
+  "chatMsg" : "하하하하",
+  "regDate" : "2023-01-05 12:44:25"
+} ]

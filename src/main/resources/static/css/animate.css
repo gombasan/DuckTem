@@ -13,14 +13,14 @@
     animation: loading 1s linear infinite;
 }
 .loading span:nth-child(1){
-    background-color: #FE5F57;
+    background-color: #9893E2;
 }
 .loading span:nth-child(2){
-    background-color: #FEBC2E;
+    background-color: #A1B5DB;
     animation-delay: 0.2s;
 }
 .loading span:nth-child(3){
-    background-color: #2BC840;
+    background-color: #A9D3D5;
     animation-delay: 0.4s;
 }
 @keyframes loading {
