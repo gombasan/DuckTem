@@ -46,6 +46,9 @@ window.addEventListener("load", function(){
 					
 				}
 				
+//				productBox.innerHTML = template;
+				productBox.insertAdjacentHTML = template;
+				
 				}
 			)
 		
