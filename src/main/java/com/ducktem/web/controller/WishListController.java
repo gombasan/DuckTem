@@ -3,7 +3,9 @@ package com.ducktem.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ducktem.web.entity.DucktemUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -60,8 +62,9 @@ public class WishListController {
     @PostMapping("{id}/wish")
 	@ResponseBody
 	public String checkWishList(HttpSession session,
-								@PathVariable("id") Long productId) {
-		String userId = (String)session.getAttribute("userId");
+								@PathVariable("id") Long productId,
+								@AuthenticationPrincipal DucktemUserDetails ducktemUserDetails) {
+		String userId = ducktemUserDetails.getUsername();
         
 		if(userId == null) {
             return "/login";

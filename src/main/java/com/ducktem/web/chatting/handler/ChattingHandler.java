@@ -5,9 +5,12 @@ import com.ducktem.web.dao.ChatRoomDao;
 import com.ducktem.web.dao.ProductDao;
 import com.ducktem.web.entity.Chat;
 import com.ducktem.web.entity.ChatRoom;
+import com.ducktem.web.entity.DucktemUserDetails;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -31,12 +34,21 @@ public class ChattingHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        userSessions.put(getMemberId(session), session);
+        String loginMember = getMemberId(session);
+        if(loginMember != null)
+            userSessions.put(getMemberId(session), session);
     }
 
     private String getMemberId(WebSocketSession session) {
         Map<String, Object> attributes = session.getAttributes();
-        String memberId = (String) attributes.get("userId");
+
+        SecurityContext securityContext = (SecurityContext) attributes.get("SPRING_SECURITY_CONTEXT");
+        String memberId = null;
+        if(securityContext != null) {
+            DucktemUserDetails principal = (DucktemUserDetails) securityContext.getAuthentication().getPrincipal();
+            memberId = principal.getUsername();
+        }
+
         return memberId;
     }
 
