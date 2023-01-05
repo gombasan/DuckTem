@@ -61,7 +61,6 @@ public class DucktemSecurityConfig {
 	@Bean
 	public UserDetailsService ducktemUserDetailsService() {
 
-		System.out.println("detailservice");
 		return new DucktemUserDetailsService();
 	}
 	

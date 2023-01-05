@@ -21,7 +21,7 @@
 
     <select id="findByProductId" resultType="ProductPreview">
         select * from ProductPreview
-        where productId = #{prodcutId}
+        where productId = #{productId}
         order by regDate desc ;
     </select>
 
