@@ -68,8 +68,8 @@ public class ProductController {
 
     /* 내 상품 수정 페이지 요청 */
     @GetMapping("/product/myproduct/{memberNickName}/{id}")
-    public String myProduct(Model model,@PathVariable("memberNickName") String memberNickName,@PathVariable(value = "id", required = false) Long productId, HttpSession session) {
-        if(memberNickName.equals(session.getAttribute("nickName"))) {
+    public String myProduct(Model model,@PathVariable("memberNickName") String memberNickName,@PathVariable(value = "id", required = false) Long productId, @AuthenticationPrincipal DucktemUserDetails user) {
+        if(memberNickName.equals(user.getNickName())) {
             model.addAttribute("img", imgService.getList(productId));
             model.addAttribute("product", productService.get(productId));
             
@@ -127,7 +127,7 @@ public class ProductController {
     public String productDetail(Model model,
                                 HttpServletResponse response,
                                 @CookieValue(name = "newHit", required=false, defaultValue = "default") String hitCookie,
-                                @PathVariable("id") Long productId) {
+                                @PathVariable("id") Long productId, @AuthenticationPrincipal DucktemUserDetails ducktemUserDetails) {
 
         /* 새로 고침 조회수 막기 위해 추가. */
         productService.upHit(response,hitCookie,productId);
@@ -144,6 +144,7 @@ public class ProductController {
         model.addAttribute("member", member);
         model.addAttribute("memberProducts", memberProducts);
         model.addAttribute("category",category);
+        model.addAttribute("user", ducktemUserDetails);
 
         
         return "detail";

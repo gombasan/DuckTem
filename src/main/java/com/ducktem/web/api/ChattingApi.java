@@ -1,15 +1,13 @@
 package com.ducktem.web.api;
 
 
-import com.ducktem.web.entity.Chat;
-import com.ducktem.web.entity.ChatRoom;
-import com.ducktem.web.entity.Member;
-import com.ducktem.web.entity.ProductPreview;
+import com.ducktem.web.entity.*;
 import com.ducktem.web.service.ChattingService;
 import com.ducktem.web.service.MemberService;
 import com.ducktem.web.service.ProductPreviewService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +29,7 @@ public class ChattingApi {
     private MemberService memberService;
 
     @GetMapping("/chatting")
-    public String chatting(Model model, ChatRoom chatRoom, HttpServletRequest request) {
+    public String chatting(Model model, ChatRoom chatRoom, HttpServletRequest request, @AuthenticationPrincipal DucktemUserDetails ducktemUserDetails) {
         ProductPreview productPreview = productPreviewService.get(chatRoom.getProductId());
         Member seller = memberService.getMember(chatRoom.getSellerId());
         Member customer = memberService.getMember(chatRoom.getCustomerId());
@@ -41,6 +39,7 @@ public class ChattingApi {
         model.addAttribute("seller", seller);
         model.addAttribute("customer", customer);
         model.addAttribute("chattingList", chattingList);
+        model.addAttribute("user", ducktemUserDetails);
 
 
         return "member/chatting/detail";
