@@ -22,6 +22,7 @@ import com.ducktem.web.entity.ProductImg;
 import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.entity.ProductTag;
 import com.ducktem.web.entity.SuperCategory;
+import com.ducktem.web.entity.WishList;
 import com.ducktem.web.service.CategoryService;
 import com.ducktem.web.service.ImgService;
 import com.ducktem.web.service.MemberService;
@@ -120,17 +121,25 @@ public class ProductController {
     /* 상품 리스트 보기 (변경 예정.)*/
     @GetMapping("/list")
 
-    public String productList(Model model, @RequestParam(defaultValue="1", name="super") Integer superCategoryId, @RequestParam(defaultValue="-1", name="cate") Integer categoryId) {
+    public String productList(Model model, @RequestParam(defaultValue="1", name="super") Integer superCategoryId, @RequestParam(defaultValue="-1", name="cate") Integer categoryId, @AuthenticationPrincipal DucktemUserDetails user) {
+
+		String userId = null;
 
 
+    	if(user != null) {
+    		userId = user.getUsername();
+    	}
+    	
     	List<SuperCategory> supercategory = categoryService.getList();
     	List<Category> category = categoryService.getSubList(superCategoryId);
-    	List<ProductPreview> preview = productPreviewService.previewByCategory(superCategoryId, categoryId);
+    	List<ProductPreview> preview = productPreviewService.previewByCategory(superCategoryId, categoryId, userId);	
+    	
 
 
     	model.addAttribute("superCategoryList", supercategory);
     	model.addAttribute("categoryList", category);
     	model.addAttribute("preview", preview);
+    	
 
 
         return "list";

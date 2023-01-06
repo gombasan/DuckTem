@@ -17,7 +17,7 @@ public interface ProductPreviewDao {
 
     ProductPreview findByProductId(Long productId);
 
-	List<ProductPreview> findPreviewListByCategory(Integer superCategoryId, Integer categoryId);
+	List<ProductPreview> findPreviewListByCategory(Integer superCategoryId, Integer categoryId, String memberId);
 
 	List<ProductPreview> getWishPreviewList(String memberId);
 
