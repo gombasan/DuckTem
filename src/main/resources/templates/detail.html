@@ -54,14 +54,14 @@
 			<span th:if="${product.salesStatusId == 2 }">판매 완료</span> <span
 				th:if="${product.salesStatusId == 3 }">예약중</span>
 		</div>
-		<div class="dot-container">
+
 			<div class="dot-wrap">
 				<div class="dot-box">
 					<img th:each="productImgs : ${productImgs}" class="index-dot"
 						src="/image/icon/icon-dot.svg">
 				</div>
 			</div>
-		</div>
+
 		<img class="vector vector-left"
 			src="/image/icon/icon-vector-right.svg"> <img
 			class="vector vector-right" src="/image/icon/icon-vector-right.svg">
@@ -104,7 +104,7 @@
 		<ul class="detail-button">
 
 
-			<li th:each="productTags : ${productTags}"><a
+			<li class="tag-box" th:each="productTags : ${productTags}"><a
 				th:text="${productTags.name}" class="btn btn-tag tag-default"
 				href=""></a></li>
 
