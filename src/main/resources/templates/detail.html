@@ -198,7 +198,7 @@
 					th:attr="data-id=${product.id}">선택완료</div>
 			</div>
 		</div>
-		<script sec:authorize="isAuthenticated()">
+		<script sec:authorize="isAuthenticated()" th:if="${user.username} == ${member.nickName}">
             let stateBtn = document.querySelector(".state-btn");
             let stateSelect = document.querySelector(".state-select");
             let main = document.querySelector("main");
