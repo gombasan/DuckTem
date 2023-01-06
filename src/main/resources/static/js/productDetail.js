@@ -22,7 +22,6 @@ window.addEventListener('load', function() {
     if(sellerId != "null"){
         duckTalk.onclick = function (e) {
             e.preventDefault();
-            console.log("/chatting?sellerId="+sellerId+"&&customerId="+customerId+"&&productId="+productId);
           window.location.href = "/chatting?sellerId="+sellerId+"&&customerId="+customerId+"&&productId="+productId;
         };
     }

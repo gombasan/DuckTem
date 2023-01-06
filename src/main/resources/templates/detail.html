@@ -146,7 +146,8 @@
 					<div th:text="${memberProducts.name}" class="name">러브다이브 미공포</div>
 				<div th:text="${memberProducts.nTimeAgo}" class="time">0일 전</div>
 			</div>
-		</section>
+			</section>
+		</div>
 	</section>
 
 	<section class="bottom-bar-wrap">
@@ -162,19 +163,25 @@
 			<div>
 				<span th:text="|${product.price}원|"></span>
 			</div>
-			<div id="duck-talk" th:if="${user.username} != ${member.nickName}"
-				th:attr="data-id=|${product.regMemberId}/${user.username}/${product.id}|">
+			<div sec:authorize="isAnonymous()">
+				<a class="btn btn-default " id="duck-talk" data-id="null" th:href="@{|/chatting?returnURL=${product.id}|}">덕템톡</a>
+			</div>
+			<div id="duck-talk"  sec:authorize="isAuthenticated()" th:if="${user.username} != ${member.nickName}"
+				 th:attr="data-id=|${product.regMemberId}/${user.username}/${product.id}|">
 				<a class="btn btn-default " href="">덕템톡</a>
 			</div>
-			<div th:if="${user.username} == ${member.nickName}" class="state-btn">
+			<div id="duck-talk"  sec:authorize="isAuthenticated()" th:if="${user.username} == ${member.nickName}" class="d-none"
+				 th:attr="data-id=|${product.regMemberId}/${user.username}/${product.id}|">
+				<a class="btn btn-default " href="">덕템톡</a>
+			</div>
+			<div sec:authorize="isAuthenticated()" th:if="${user.username} == ${member.nickName}" class="state-btn">
 				<a class="btn btn-default " href="">상태변경</a>
 			</div>
-			<div th:if="${user.username} == ${member.nickName}">
+			<div sec:authorize="isAuthenticated()" th:if="${user.username} == ${member.nickName}">
 				<a class="btn btn-default "
 					th:href="@{|/product/myproduct/${user.username}/${product.id}|}">수정</a>
 			</div>
-			<div th:if="${user.username} == ${member.nickName}"
-				class="state-select d-none">
+			<div class="state-select d-none">
 				<div class="supercategory-select">상품 상태 변경</div>
 				<img class="exit" src="/image/icon/icon-close.svg" alt="">
 				<div>
@@ -194,7 +201,7 @@
 					th:attr="data-id=${product.id}">선택완료</div>
 			</div>
 		</div>
-		<script th:if="${user.username} == ${member.nickName}">
+		<script sec:authorize="isAuthenticated()">
             let stateBtn = document.querySelector(".state-btn");
             let stateSelect = document.querySelector(".state-select");
             let main = document.querySelector("main");

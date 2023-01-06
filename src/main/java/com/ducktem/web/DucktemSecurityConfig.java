@@ -31,7 +31,8 @@ public class DucktemSecurityConfig {
 				.requestMatchers("/member/**").hasAnyRole("MEMBER")
 				.requestMatchers("/mypage").hasAnyRole("MEMBER")
 				.requestMatchers("/product").hasAnyRole("MEMBER")//상품 등록 페이지
-				.requestMatchers("/mylist").hasAnyRole("MEMBER")//내 상품 보기 
+				.requestMatchers("/mylist").hasAnyRole("MEMBER")//내 상품 보기
+				.requestMatchers("/chatting").hasAnyRole("MEMBER")
 				.anyRequest().permitAll()		
 				.and()
 			.formLogin()
