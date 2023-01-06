@@ -80,7 +80,7 @@ public class ProductController {
     	tagService.upload(tag, productId, (byte) 0, request);
 
 
-    	return "redirect:/";
+    	return "redirect:product/"+productId;
 
     }
 

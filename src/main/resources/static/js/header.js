@@ -2,7 +2,7 @@
 
 // side bar
 window.addEventListener("load", function () {
-    let main = document.querySelector(".main-wrap");
+    let main = document.querySelector("main");
 
     let section = document.querySelector(".header-wrap");
     let burger = section.querySelector(".burger-icon");
