@@ -189,3 +189,99 @@
 	margin-right: 3px;
 	margin-bottom: 5px;
 }
+
+
+
+
+
+/*----------------------*/
+
+
+.state-select{
+   
+	background-color: var(--color-light);
+	width: 100%;
+	box-shadow : 0px -1px 4px black;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+    
+}
+.state-select-title{
+	font-size: var(--font-4);
+	margin: 10px;	
+}
+
+
+
+
+.exit{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	z-index: 1000;
+	color: var(--color-dark);
+	right: 20px;
+	top: 20px;
+	cursor: pointer;
+}
+
+.state-select div{
+	padding: 10px;
+}
+.state-select input{
+    display: none;
+}
+
+
+.state-select label{
+	display: flex;
+	cursor: pointer;
+	font-weight: lighter;
+	margin-left: 10%;
+	justify-content: space-between;
+
+}
+
+.state-select label::after{
+	content: '';
+	display: inline-block;
+	align-items: flex-end;
+	width: 16px;
+	height: 16px;
+	background-size: 16px 16px;
+	background-color: var(--color-dark);
+	margin-right: 15%;
+	mask-size: 16px 16px;
+	-webkit-mask-size: 16px 16px;
+	mask-image: url(/image/icon/icon-check.svg);
+	-webkit-mask-image: url(/image/icon/icon-check.svg);
+
+}
+
+
+
+.state-select input:checked{
+    color: var(--color-primary);
+}
+
+.state-select:checked + label::after{
+    background-color: var(--color-primary);
+}
+
+.state-select .btn-default{
+   width: 75%;
+   align-self: center;
+   margin-top: 20px;
+   margin-bottom: 50px;
+   padding : .5em 0;
+   
+
+}
+

@@ -164,33 +164,49 @@ header {
 
 @media(min-width: 768px) {
     .menu-bar-category {
-        width: 70%;
+        width: 50%;
     }
 }
 
 @media(min-width: 1400px) {
     .menu-bar-category {
-        width: 35%;
+        width: 25%;
     }
 }
 
 /* ===================메뉴 바 카테고리=================== */
 
+/*▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼   씨에스에스는 내가 점령한다 바이   ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼*/
+
+.log-out{
+	margin-top: 10px;
+	font-size: var(--font-3);
+	
+}
+
+
+
+/*▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲*/
+
+
+
+
+
 .category-login {
     margin-bottom: 70px;
 }
 
-.category-login a::after {
+.category-login .login-deco::after {
     content: '123';
     position: absolute;
-    right: 20%;
+    margin-left : 20px;
     -webkit-mask-image: url(../image/icon/꺽쇠.svg);
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-size: 25px 25px;
     background-color: var(--color-dark);
 }
 
-.category-login a {
+.category-login .log-in-font {
     font-weight: bold;
     font-size: var(--font-5);
     padding-right: 40%;
@@ -270,7 +286,7 @@ header {
 .category-goods a::after {
     content: '123';
     position: absolute;
-    right: 50%;
+    right : 50%;
     -webkit-mask-image: url(../image/icon/꺽쇠.svg);
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-size: 20px 20px;

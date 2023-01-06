@@ -13,6 +13,8 @@ window.addEventListener('load', function() {
 
 
 
+
+
 	let imageBox = document.querySelectorAll(".image-box")
 	let vectorRight = document.querySelector(".vector-right")
 	let vectorLeft = document.querySelector(".vector-left")
