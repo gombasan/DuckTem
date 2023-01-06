@@ -8,7 +8,7 @@
 		SELECT * FROM WishList WHERE memberId=#{memberId} AND productId=#{productId}
 	</select>
 	<select id="getStatus" resultType="String">
-		select if(memberId= #{memberId},1,0) as status from WishList where productId = #{productId}
+		select if(memberId= #{memberId},1,0) as status from WishList where productId = #{productId} and memberId=#{memberId}
 	</select>
 	<select id="getNums" resultType="int">
 		select count(productId) from WishList where productId=#{productId}

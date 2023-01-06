@@ -1,3 +1,4 @@
+
 window.addEventListener("load", function () {
     let title = document.querySelector(".title");
 
@@ -55,7 +56,6 @@ window.addEventListener("load", function () {
 					tempHeart = `<img class ="wish" src="/image/icon/heart.svg" alt="찜" data-id = "${products[i].productId}">`
 
 				let temp = `
-				    <section class="product-wrap">		
 			            <div class="product-container" data-location="${products[i].productId}">
 		                    <div><img src="${products[i].thumbNailImg}" alt="product-img"></div>
 		
@@ -71,8 +71,7 @@ window.addEventListener("load", function () {
 		                    <div text="" class="time">
 		                        ${products[i].regDate}
 		                    </div>
-			            </div>
-			        </section>`;
+			            </div>`;
 			        
 			        if(i==0)
 			        	template = temp;
