@@ -152,11 +152,8 @@
 	<section class="bottom-bar-wrap">
 		<div class="bottom-bar">
 			<div class=bottom-wish-box>
-				<img th:if="${bottomStatus== '1'}" class="wish checked"
-					src="/image/icon/icon-heart-red.svg" alt="찜"
-					th:data-id="${product.id}"> <img
-					th:unless="${bottomStatus == '1'}" class="wish"
-					src="/image/icon/heart.svg" alt="찜" th:data-id="${product.id}">
+				<img th:if="${bottomStatus== '1'}" class="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" th:data-id="${product.id}"> 
+					<img th:unless="${bottomStatus == '1'}" class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${product.id}">
 				<label class="bottom-wish-nums">2</label>
 			</div>
 			<div>

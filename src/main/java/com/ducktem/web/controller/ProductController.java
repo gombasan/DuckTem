@@ -170,9 +170,10 @@ public class ProductController {
         List<ProductPreview> memberProducts = productPreviewService.myList(member.getUserId(),userId);
         Category category = categoryService.getCategoryName(productId);
         List<ProductTag> productTags = tagService.getList(productId);
+        
         String bottomStatus = wishListService.getStatus(userId, productId);
 
-
+        
         model.addAttribute("productImgs", productImgs);
         model.addAttribute("product", product);
         model.addAttribute("member", member);
@@ -180,7 +181,7 @@ public class ProductController {
         model.addAttribute("category",category);
         model.addAttribute("productTags",productTags);
         model.addAttribute("user", ducktemUserDetails);
-
+        
         model.addAttribute("bottomStatus", bottomStatus);
         return "detail";
     }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/member/my-page/index.css">
     
     <script src="/js/my-page.js"></script>
-	<script type="module" src="/js/productDetail.js"></script>
+	<script type="module" src="/js/wish.js"></script>
 
 </th:block>
 
@@ -51,8 +51,8 @@
 
             </section>
 
-            <section class="product-wrap product-page">
-            		<section class="product-wrap">		
+            <section class="product-flex">
+            		<section class="product-wrap product-page">		
 			            <div th:each="myProduct : ${myProducts}"  class="product-container" th:data-location="${myProduct.productId}" >
 		                    <div><img th:src="${myProduct.thumbNailImg}" alt="product-img"></div>
 		
@@ -67,9 +67,9 @@
 		                    <div th:text="${myProduct.regDate}" class="time"></div>
 			            </div>
 			        </section>
+	            	<section class="d-none product-wrap wishList-page"></section>
             </section>
 
-            <section class="d-none product-wrap wishList-page"></section>
 
 
             <section class="d-none review">
