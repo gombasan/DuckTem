@@ -1,10 +1,5 @@
 import wish from "./wish.js";
 
-
-
-
-
-
 //==========================================================
 //===================   급조된 자스  준현아 미안하게 됐따. 그냥 써라.  ===================
 //==========================================================
@@ -91,39 +86,39 @@ window.addEventListener('load', function() {
 
 
 
-	let bottomWish = document.querySelector(".bottom-wish-box");
+	let bottomWish = document.querySelector(".bottom-wish");
 	let nums = document.querySelector(".bottom-wish-nums");
 	let currentNums = null;
 
-  	if(bottomWish){
+
     	bottomWish.onclick = function(e){
     		wish(e.target);
-			let currentNumsShow = null;
-    		if(e.target.classList.contains("checked"))
-    			currentNumsShow = currentNums--;
-    		else if(!e.target.classList.contains("checked"))
-    			currentNumsShow = currentNums++;
+    		if(e.target.classList.contains("checked")){
+    			currentNums--;	
+			}
+    		else if(!e.target.classList.contains("checked")){
+    			currentNums++;
+			}
 
-    		nums.innerText = String(currentNumsShow);
+    		nums.innerText = String(currentNums);
 	  }
 
-	  		// bottom 있을 때만 실행하고, 만들어 주기 위한 코드
-		// nums 초기화
-			nums.init = function(){
-				let id = nums.previousElementSibling.dataset.id;
-				fetch(`/${id}/nums`,{
-					method: "GET"
-				})
-		        .then((response) => response.text())
-		        .then((result) => {
-					nums.innerText = String(result);
-					currentNums = result;
-				})
-				.catch(()=>console.log('에러발생'));
-			};
+	// nums 초기화
+		nums.init = function(){
+			let id = nums.previousElementSibling.dataset.id;
+			fetch(`/${id}/nums`,{
+				method: "GET"
+			})
+	        .then((response) => response.text())
+	        .then((result) => {
+				nums.innerText = String(result);
+				currentNums = result;
+			})
+			.catch(()=>console.log('에러발생'));
+		};
 
-			nums.init();
-  }
+		nums.init();
+
 
 
 });

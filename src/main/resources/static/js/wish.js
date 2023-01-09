@@ -20,10 +20,6 @@ export default function wish(target) {
 				}
 
 			})
-			.then(() => {
-				if (target.classList.contains("bottom"))
-					nums.init();
-			})
 			.catch(() => {
 				console.log('에러발생');
 			});

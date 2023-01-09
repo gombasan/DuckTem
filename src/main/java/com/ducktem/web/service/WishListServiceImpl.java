@@ -63,8 +63,7 @@ public class WishListServiceImpl implements WishListService{
 	public boolean confirmWish(String userId, Long productId) {
 		
 		WishList resultWishList = wishListDao.get(userId, productId);
-		
-		System.out.println(resultWishList);
+
 		if(resultWishList==null)
 			return false;
 		else
