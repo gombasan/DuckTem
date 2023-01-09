@@ -96,12 +96,13 @@ window.addEventListener('load', function() {
   	if(bottomWish){
     	bottomWish.onclick = function(e){
     		wish(e.target);
+			let currentNumsShow = null;
     		if(e.target.classList.contains("checked"))
-    			currentNums--;
+    			currentNumsShow = currentNums--;
     		else if(!e.target.classList.contains("checked"))
-    			currentNums++;
+    			currentNumsShow = currentNums++;
 
-    		nums.innerText = String(currentNums);
+    		nums.innerText = String(currentNumsShow);
 	  }
 
 	  		// bottom 있을 때만 실행하고, 만들어 주기 위한 코드

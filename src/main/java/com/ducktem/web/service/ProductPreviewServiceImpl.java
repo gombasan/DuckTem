@@ -67,9 +67,9 @@ public class ProductPreviewServiceImpl implements ProductPreviewService {
     }
 
     @Override
-	public List<ProductPreview> previewByCategory(Integer superCategoryId, Integer categoryId) {
+	public List<ProductPreview> previewByCategory(Integer superCategoryId, Integer categoryId, String userId) {
 
-		return productPreviewDao.findPreviewListByCategory(superCategoryId, categoryId);
+		return productPreviewDao.findPreviewListByCategory(superCategoryId, categoryId, userId);
 	}
 
 

@@ -120,12 +120,20 @@ public class ProductController {
     /* 상품 리스트 보기 (변경 예정.)*/
     @GetMapping("/list")
 
-    public String productList(Model model, @RequestParam(defaultValue="1", name="super") Integer superCategoryId, @RequestParam(defaultValue="-1", name="cate") Integer categoryId) {
+    public String productList(Model model, @RequestParam(defaultValue="1", name="super") Integer superCategoryId,
+    		@AuthenticationPrincipal DucktemUserDetails user,
+    		@RequestParam(defaultValue="-1", name="cate") Integer categoryId) {
 
 
     	List<SuperCategory> supercategory = categoryService.getList();
     	List<Category> category = categoryService.getSubList(superCategoryId);
-    	List<ProductPreview> preview = productPreviewService.previewByCategory(superCategoryId, categoryId);
+    	String userId = null;
+
+    	if(user != null) {
+    		userId = user.getUsername();
+    	}
+    	List<ProductPreview> preview = productPreviewService.previewByCategory(superCategoryId, categoryId, userId);
+
 
 
     	model.addAttribute("superCategoryList", supercategory);
