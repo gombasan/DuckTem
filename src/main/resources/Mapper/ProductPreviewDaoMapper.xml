@@ -39,10 +39,10 @@
 
 
 
-	<select id="findPreviewListByCategory"
-		resultType="ProductPreview">
-		select ProductPreview.*, if ((select memberId from WishList where ProductPreview.productId =
-		productId and memberId = #{memberId}) = #{memberId}, 1, 0) status from ProductPreview
+	<select id="findPreviewListByCategory" resultType="ProductPreview" parameterType="Int">
+		select * , if ((select memberId from WishList where ProductPreview.productId =
+		productId and memberId = #{memberId}) = #{memberId}, 1, 0) status  from ProductPreview
+
 		left join Product
 		on
 		ProductPreview.productId=Product.id

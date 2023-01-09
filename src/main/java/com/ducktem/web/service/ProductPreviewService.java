@@ -12,7 +12,7 @@ public interface ProductPreviewService {
 
 	List<ProductPreview> preview(int page, String memberId);
 
-	List<ProductPreview> previewByCategory(Integer superCategoryId, Integer categoryId, String userId);
+	List<ProductPreview> previewByCategory(Integer superCategoryId, Integer categoryId,String memberId);
 
     ProductPreview get(Long productId);
 

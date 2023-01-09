@@ -14,10 +14,10 @@
    
            <div class="menu-bar-category">
                <div class="category-login">
-                   <a sec:authorize="isAnonymous()" href="/login">로그인/회원가입</a>
+                   <a  class="log-in-font" sec:authorize="isAnonymous()" href="/login">로그인/회원가입</a>
 <!--                    <a sec:authorize="isAuthenticated()" href="/mypage" th:text="|${#authentication.principal.nickName} 님 환영합니다!|"></a> -->
-                   <a sec:authorize="isAuthenticated()" href="/mypage" th:text="|${#authentication.principal.nickName} 님 환영합니다!|"></a>
-                   <a sec:authorize="isAuthenticated()" style="display: block" href="/logout">로그아웃</a>
+                   <a class="log-in-font"  sec:authorize="isAuthenticated()" href="/mypage" th:text="|${#authentication.principal.nickName} 님 환영합니다!|"></a>
+                   <a class="log-out" sec:authorize="isAuthenticated()" style="display: block" href="/logout">로그아웃</a>
                </div>
 
                <ul class="my-list">
