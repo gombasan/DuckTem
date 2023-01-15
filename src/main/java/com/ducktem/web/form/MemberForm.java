@@ -1,7 +1,15 @@
 package com.ducktem.web.form;
 
+import com.ducktem.web.entity.Member;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
+// 갑자기 javadoc? -> getter, setter에는 불필요한 것 같아요
+// lombok을 이용해도 좋을 것 같아요
+// 각 필드는 final로 하면 좋아요
+// setter가 필요한 이유가 있나요? -> 있다면 set 말고 change, update와 같은 변수명으로..
 
 public class MemberForm {
 
@@ -13,10 +21,10 @@ public class MemberForm {
 	@Size(max = 5, message = "이름은 5자 이내로 작성해 주세요.")
 	private String name;
 	@NotBlank(message = "닉네임을 작성해 주세요")
-	@Size(max = 5 , message = "닉네임은 5자 이내로 작성해 주세요")
+	@Size(max = 5, message = "닉네임은 5자 이내로 작성해 주세요")
 	private String nickName;
 	@NotBlank(message = "비밀번호를 입력해주세요.")
-	@Size(min= 6, max = 10, message = "비밀번호는 6~10자 이내로 작성해 주세요.")
+	@Size(min = 6, max = 10, message = "비밀번호는 6~10자 이내로 작성해 주세요.")
 	private String pwd;
 	@NotBlank(message = "비밀번호를 입력해주세요.")
 	private String pwdCheck;
@@ -26,8 +34,7 @@ public class MemberForm {
 	@NotBlank(message = "이메일을 작성해 주세요.")
 	@Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$", message = "이메일 형식에 맞추어 입력해 주세요.")
 	private String eMail;
-	
-	
+
 	public MemberForm(String userId, String nickName, String name, String pwd, String phoneNumber, String eMail) {
 		this.userId = userId;
 		this.nickName = nickName;
@@ -52,14 +59,12 @@ public class MemberForm {
 		return userId;
 	}
 
-
 	/**
 	 * @param userId the userId to set
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
 
 	/**
 	 * @return the nickName
@@ -68,14 +73,12 @@ public class MemberForm {
 		return nickName;
 	}
 
-
 	/**
 	 * @param nickName the nickName to set
 	 */
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-
 
 	/**
 	 * @return the name
@@ -84,14 +87,12 @@ public class MemberForm {
 		return name;
 	}
 
-
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	/**
 	 * @return the pwd
@@ -100,14 +101,12 @@ public class MemberForm {
 		return pwd;
 	}
 
-
 	/**
 	 * @param pwd the pwd to set
 	 */
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-
 
 	/**
 	 * @return the phoneNumber
@@ -116,14 +115,12 @@ public class MemberForm {
 		return phoneNumber;
 	}
 
-
 	/**
 	 * @param phoneNumber the phoneNumber to set
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
 
 	/**
 	 * @return the eMail
@@ -132,7 +129,6 @@ public class MemberForm {
 		return eMail;
 	}
 
-
 	/**
 	 * @param eMail the eMail to set
 	 */
@@ -140,17 +136,27 @@ public class MemberForm {
 		this.eMail = eMail;
 	}
 
+	public Member toEntity() {
+		Member member = new Member();
+		member.setUserId(userId);
+		member.setName(name);
+		member.setNickName(nickName);
+		member.setPhoneNumber(phoneNumber);
+		member.setPwd(pwd);
+		member.setEmail(eMail);
+		return member;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberForm{" +
-				"userId='" + userId + '\'' +
-				", nickName='" + nickName + '\'' +
-				", name='" + name + '\'' +
-				", pwd='" + pwd + '\'' +
-				", pwdCheck='" + pwdCheck + '\'' +
-				", phoneNumber='" + phoneNumber + '\'' +
-				", eMail='" + eMail + '\'' +
-				'}';
+			"userId='" + userId + '\'' +
+			", nickName='" + nickName + '\'' +
+			", name='" + name + '\'' +
+			", pwd='" + pwd + '\'' +
+			", pwdCheck='" + pwdCheck + '\'' +
+			", phoneNumber='" + phoneNumber + '\'' +
+			", eMail='" + eMail + '\'' +
+			'}';
 	}
 }

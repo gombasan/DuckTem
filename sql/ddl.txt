@@ -8,3 +8,7 @@ VALUES ('15000', '맛이 좋아요.', '맛좋은 산이', '456');
 
 /* 상품 이미지 저장 ddl */
 INSERT INTO `ducktemdb`.`Product_image` (`name`) VALUES ('하이요');
+
+DDL X -> DML O
+data.sql(sql파일)로 관리하는게 좋아요
+테이블 명 => https://killu.tistory.com/52 참고

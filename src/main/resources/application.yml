@@ -1,0 +1,8 @@
+spring:
+  # dataSource 암호화 한후에 어플리케이션 설정 파일은 올려줘야 해요
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/duckTeam
+    username: root
+    password: 1234
+

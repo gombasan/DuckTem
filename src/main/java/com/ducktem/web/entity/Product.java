@@ -1,99 +1,98 @@
 package com.ducktem.web.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Product {
-    private Long id;
-    private String name;
-    private String price;
-    private String description;
-    private LocalDateTime regDate;
+	private Long id;
+	private String name;
+	private String price;
+	private String description;
+	private LocalDateTime regDate;
 
-    private String condition;
-    private int categoryId;
-    private String regMemberId;
-    private int salesStatusId;
+	private String condition;
+	private int categoryId;
+	private String regMemberId;
+	private int salesStatusId;
 
-    private int hit;
+	private int hit;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public int getHit() {
-        return hit;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setHit(int hit) {
-        this.hit = hit;
-    }
+	public int getHit() {
+		return hit;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 
-    public String getCondition() {
-        return condition;
-    }
+	public String getCondition() {
+		return condition;
+	}
 
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getPrice() {
-        return price;
-    }
+	public String getPrice() {
+		return price;
+	}
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public LocalDateTime getRegDate() {
-        return regDate;
-    }
+	public LocalDateTime getRegDate() {
+		return regDate;
+	}
 
-    public void setRegDate(LocalDateTime regDate) {
-        this.regDate = regDate;
-    }
+	public void setRegDate(LocalDateTime regDate) {
+		this.regDate = regDate;
+	}
 
-    public int getCategoryId() {
-        return categoryId;
-    }
+	public int getCategoryId() {
+		return categoryId;
+	}
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
 
-    public String getRegMemberId() {
-        return regMemberId;
-    }
+	public String getRegMemberId() {
+		return regMemberId;
+	}
 
-    public void setRegMemberId(String regMemberId) {
-        this.regMemberId = regMemberId;
-    }
+	public void setRegMemberId(String regMemberId) {
+		this.regMemberId = regMemberId;
+	}
 
-    public int getSalesStatusId() {
-        return salesStatusId;
-    }
+	public int getSalesStatusId() {
+		return salesStatusId;
+	}
 
-    public void setSalesStatusId(int salesStatusId) {
-        this.salesStatusId = salesStatusId;
-    }
+	public void setSalesStatusId(int salesStatusId) {
+		this.salesStatusId = salesStatusId;
+	}
 }
