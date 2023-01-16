@@ -1,9 +1,10 @@
 # ‼️ 웹 서비스 Study 프로젝트입니다.‼️
+* 정식 버전은 아래 링크를 클릭해주세요 😆
+
+[Rest API와 Vue를 이용한 DUCKTEM보러가기](https://github.com/2nd-anniversaryy/Ducktem)
 ## 내 굿즈 사고 팔땐 덕템 DuckTem   
 중고 아이돌 굿즈를 거래하는 플랫폼입니다. 기존 아이돌 굿즈하는 사람들은 트위터를 이용하여 거래하던 불편함과 불안함을 해소하기 위해 제작했습니다.
 간단한 Spring MVC를 기본적으로 사용하였으며, 간단한 페이지 전환은 Javascript 비동기를 활용하였습니다.
-
-[Rest API와 Vue를 이용한 DUCKTEM보러가기](https://github.com/2nd-anniversaryy/Ducktem)
 
 # 프로젝트 목표
 * Git를 사용하여 버전관리와 코드 공유를 하며, git/github 학습
