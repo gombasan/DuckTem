@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
+
+<!--  공통 css 제외한 나머지 css&js  -->
+<th:block layout:fragment="css">
+    <script src="/js/chatting.js"></script>
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/member/chatting/detail.css">
+
+</th:block>
+
+
+
+
+
+  <!-- ==============================   메인   ============================== -->
+  <main layout:fragment="content" class="chat-main">
+
+    <div class="chat-container">
+
+
+
+      <section class="chat-header">
+        <h1 class="d-none">대화창헤더</h1>
+
+        <div class="member-summary">
+
+
+          <img class="member-profile-img" th:src="@{|/prfileimgs/${seller.profileImg}|}" alt="프로필이미지">
+          <div class="member-title">
+            <span th:attr="data-id=${seller.userId}" th:text="${seller.nickName}"  class="member-nickname">은비</span>
+            <a href=""><span class="report">신고하기</span></a>
+          </div>
+          <div class="member-product-count">
+            <span>판매상품</span>
+            <span>0</span>
+          </div>
+
+
+        </div>
+
+
+        <div class="product-summary">
+          <img class="product-img" th:src="@{|/productimgs/${productPreview.thumbNailImg}|}" alt="문의이미지">
+          <div th:text="${productPreview.salesStatusId}" class="product-state">판매중</div>
+          <div th:attr="data-id=${productPreview.productId}" th:text="${productPreview.name}" class="product-title">뉴진스 민지 포카 판매</div>
+          <div class="product-title-container">
+            <span class="product-price-nego">(가격제안불가)</span>
+            <span th:text="${productPreview.price}" class="produc-price">3000</span>
+          </div>
+        </div>
+
+      </section>
+
+
+      <section class="chat">
+        <h1 id="chat-title" class="d-none" th:attr="data-id=${customer.userId}">대화창</h1>
+        <div class="chat-start-date">2022년 11월 30일</div>
+
+        <div id="chat-box" th:each="chatMsg : ${chattingList}">
+          <div th:if="${chatMsg.senderId} != ${user.username}" class="chat-receive">
+            <img class="member-profile-img" src="/image/example-image0.png" alt="프로필이미지">
+            <span th:text="${chatMsg.chatMsg}" class="chat-text">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</span>
+            <span class="chat-time">오후 16:08</span>
+          </div>
+
+          <div th:if="${chatMsg.senderId} == ${user.username}" class="chat-send">
+            <img class="my-profile-img" src="/image/example-image2.png" alt="나의프로필이미지">
+            <span th:text="${chatMsg.chatMsg}" class="chat-text send">아니요.</span>
+            <span class="chat-time">오전 08:10</span>
+          </div>
+        </div>
+       
+
+
+
+      </section>
+
+
+      <section class="chat-input-container">
+        <h1 class="d-none">메세지입력창</h1>
+        <form action="">
+          <!-- <textarea class="chat-input" name="" id="" cols="30" rows="10" placeholder="보내실 메세지를 작성해주세요."></textarea> -->
+          <div class="chat-input-wrap">
+            <div class="chat-input" contenteditable="true" placeholder="보내실 메세지를 작성해주세요."></div>
+
+            <div class="filebox">
+              <label for="file"><img class="file-upload" src="/image/icon/icon-clip.svg" alt=""></label>
+              <input type="file" id="file">
+            </div>
+            <div><img class="emoji" src="/image/icon/icon-smile.svg" alt="이모티콘 보내기"></div>
+            <button class="btn btn-default chat-send-btn">전송</button>
+
+
+          </div>
+
+
+
+        </form>
+
+      </section>
+
+    </div>
+
+
+
+  </main>
+
+
+
+</html>

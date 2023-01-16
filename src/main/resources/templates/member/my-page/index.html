@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
+
+<!--  공통 css 제외한 나머지 css&js  -->
+<th:block layout:fragment="css">
+
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/member/my-page/index.css">
+    
+    <script src="/js/my-page.js"></script>
+	<script type="module" src="/js/wish.js"></script>
+
+</th:block>
+
+
+    <main layout:fragment="content">
+
+        <section class="main-wrap">
+
+            <section class="profile">
+                <div>
+                    <img th:if="${member.profileImg == null}" src="/image/profile-img.png" alt="">
+                    <img th:if="${member.profileImg != null}" th:src="${member.profileImg}" alt="">
+                </div>
+                <div>
+                    <span th:text="${member.nickName}">Nickname</span>
+                </div>
+                <div>
+                    <a class="btn btn-default" href="">내 정보</a>
+                </div>
+                <div>
+                    <span th:text="${member.intro}">소개말</span>
+                </div>
+                <div>
+                    <a class="btn btn-default keyword-alert-btn" href="">키워드 알림</a>
+                </div>
+            </section>
+
+            <section class="title">
+                <div class="selling-btn">
+                    <span class="open-with-product">판매중</span><span th:text="${myProducts.size}">0</span>
+                </div>
+                <div class="wish-list-btn">
+                    <span class="open-with-wish">찜 상품</span><span>0</span>
+                </div>
+                <div class="review-btn">
+                    <span>후기</span><span>0</span>
+                </div>
+
+            </section>
+
+            <section class="product-flex">
+            		<section class="product-wrap product-page">		
+			            <div th:each="myProduct : ${myProducts}"  class="product-container" th:data-location="${myProduct.productId}" >
+		                    <div><img th:src="${myProduct.thumbNailImg}" alt="product-img"></div>
+		
+		                    <div class="price-wish">
+		                        <span th:text="${myProduct.price}+원"></span>	
+		                        <img th:if="${myProduct.status == 1}" class="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" th:data-id="${myProduct.productId}">
+								<img th:unless="${myProduct.status == 1}" class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${myProduct.productId}">
+		                    </div>
+		
+		                    <div th:text="${myProduct.name}" class="name"></div>
+		
+		                    <div th:text="${myProduct.regDate}" class="time"></div>
+			            </div>
+			        </section>
+	            	<section class="d-none product-wrap wishList-page"></section>
+            </section>
+
+
+
+            <section class="d-none review">
+                <div class="stars">
+                    <span class="">
+                        4.5
+                    </span>
+
+                    <span class="">
+                        ★★★★☆
+                    </span>
+
+                    <span class="">
+                        (1)
+                    </span>
+                </div>              
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- 키워드 알림 버튼 누르면 이거 떠야함~ -->
+    <aside class="d-none keyword-alert-wrap">
+        <section class="keyword-alert">
+            <div class="keyword-alert-title">
+                <h1>키워드 알림 설정</h1><img class="keyword-close" src="/image/icon/icon-close.svg" alt="">
+            </div>
+
+            <div class="keyword-alert-category">
+                <label for="">카테고리</label>
+                <select name="" id="">
+                    <option value="">전체선택</option>
+                    <option value="">공식굿즈</option>
+                    <option value="">비공식굿즈</option>
+                    <option value="">대리티켓팅</option>
+                </select>
+            </div>
+
+            <div class="flex-wrap">
+                <div class="keyword-alert-input">
+                    <input type="text" placeholder="키워드를 입력해 주세요(예: #NCT)">
+                    <span class="">등록</span>
+                </div>
+            </div>
+
+            <div class="keyword-alert-count">
+                <span>등록한 키워드</span><span>0/5</span>
+            </div>
+
+            <div class="keyword-sort">
+                <span class="btn btn-tag">#테스트</span>
+                <span class="btn btn-tag">#테스트</span>
+                <span class="btn btn-tag">#테스트</span>
+            </div>
+
+            <div class="text-sort">
+                <span>아름다운 키워드로 아름다운 덕템 만들기</span>
+            </div>
+
+            <div class="button-sort">
+                <span class="btn btn-default btn-size-control">알림 받기</span>
+            </div>
+        </section>
+    </aside>
+
+ 
+
+</html>

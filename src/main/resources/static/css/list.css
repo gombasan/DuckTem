@@ -1,3 +1,15 @@
+/* ---------------검색결과 css------------ */
+.search-result-wrap{
+    padding-left: 1em;
+    padding-top: 1em;
+}
+
+.search-result{
+    color: red;
+    font-weight: bold;
+}
+
+
 /* ==================== 카테고리 */
 
 
@@ -135,24 +147,4 @@
     font-weight: 900;
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 80%);
 
-}
-
-
-
-
-
-/* ==================================== */
-
-
-.product-wrap {
-    margin: 0 15px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.product-container {
-    width: 48%;
-    margin-bottom: 20px;
-    height: 100%;
 }

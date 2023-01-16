@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ducktem.web.dao.SearchDao">
+
+	<select id="getList" resultType="ProductPreview">
+		select pp.*,
+		if ((select memberId from WishList where pp.productId = productId and
+		memberId = #{userId}) = #{userId}, 1, 0) status
+		from ProductPreview pp
+		where pp.name like '%${keyword}%'
+		<if test="option == null || option == 'latest'">
+			order by pp.regDate desc
+		</if>
+		<if test="option == 'price-high'">
+			order by pp.price desc
+		</if>
+		<if test="option == 'price-low'">
+			order by pp.price asc
+		</if>
+		<if test="option == 'most-viewed'">
+			order by pp.hit desc
+		</if>
+	</select>
+
+
+	<select id="count" resultType="int">
+		select count(pp.productId)
+		from ProductPreview pp
+		where pp.name like '%${keyword}%'
+	</select>
+
+</mapper>

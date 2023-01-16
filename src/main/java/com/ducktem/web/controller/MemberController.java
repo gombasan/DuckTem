@@ -1,15 +1,21 @@
 package com.ducktem.web.controller;
 
 
+import com.ducktem.web.entity.DucktemUserDetails;
 import com.ducktem.web.entity.Member;
+import com.ducktem.web.entity.ProductPreview;
 import com.ducktem.web.form.MemberForm;
 import com.ducktem.web.service.MemberService;
+import com.ducktem.web.service.ProductPreviewService;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +31,9 @@ import java.util.List;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+    
+    @Autowired
+    private ProductPreviewService productPreviewService;
 
     // ===================================================================회원 등록 ==========================================================
     @GetMapping("/sign-up")
@@ -42,8 +51,12 @@ public class MemberController {
                 return "/sign-up";
             }
             else {
+        		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        		String pwd = encoder.encode(memberForm.getPwd());
+        		memberForm.setPwd(pwd);
+        		
                 memberService.reg(memberForm);
-                return "redirect:/sign-up-ending";
+                return "/sign-up-ending";
             }
         }
         else {
@@ -61,26 +74,21 @@ public class MemberController {
         return "member/list";
     }
 
-
-
-
-
-
-    // ===================================================================로그인/로그아웃==========================================================
-
-
-
-
     // =====================================마이페이지==========================================================
 
 
     @GetMapping("/mypage")
-    public String myPage(HttpSession session, Model model) {
-
-        String userId = (String)session.getAttribute("userId");
+    public String myPage(@AuthenticationPrincipal DucktemUserDetails user, Model model) {
+    	
+        String userId = user.getUsername();
+        
         Member member = memberService.getMember(userId);
         model.addAttribute(member);
 
+        List<ProductPreview> myProducts = productPreviewService.myList(userId, userId);
+        model.addAttribute("myProducts",myProducts);
+
+        
         return "member/my-page/index";
     }
 
@@ -106,64 +114,6 @@ public class MemberController {
         else {
             return "test-deactive";
         }
-    }
-
-
-    // =======================================(수정중)============================로그인/로그아웃==========================================================
-
-    @GetMapping("/login")
-    public String loginForm() {
-
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam("userId") String id,
-                        @RequestParam("pwd") String pwd,
-                        @RequestParam(defaultValue = "false" ,name = "autologin") boolean autoLogin,
-                        HttpSession session,
-                        HttpServletRequest request,
-                        HttpServletResponse response
-    ) {
-        Member user = memberService.getMember(id);
-
-        //탈퇴 회원 확인
-        if(user.getStatus() == 1) {
-            //로그인 인풋창 아래에 '회원 정보가 존재하지 않습니다' 띄우는 방법?
-            System.out.println("없는 계정입니다.");
-
-            return "/login";
-        }
-        else if(user != null && user.getPwd().equals(pwd)) {
-            session.setAttribute("id",user.getNickName());
-            session.setAttribute("userId",user.getUserId());
-//            세션에서 멤버식별용 아이디 얻어와야 마이페이지에서 멤버별 정보 가져올 수 있음
-            String sessionId = session.getId();
-            System.out.println(sessionId);
-
-            if(autoLogin == true) {
-                Cookie cookie = new Cookie("loginInfo",sessionId);
-                cookie.setPath("/");
-                cookie.setMaxAge(60*60*24*7);
-                response.addCookie(cookie);
-            }
-
-            return "redirect:/";
-        }
-        else {
-            System.out.println("없는 계정입니다.");
-            return "/login";
-        }
-
-
-
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-
-        return "redirect:/";
     }
 
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ducktem.web.dao.ProductPreviewDao">
+
+	<select id="getPreviewAll" resultType="ProductPreview">
+		select * from ProductPreview
+		order by regDate desc ;
+	</select>
+
+	<select id="findMemberProductList" resultType="ProductPreview">
+		select pp.*, if ((select memberId from WishList where pp.productId =
+		productId and memberId = #{myUserId}) = #{myUserId}, 1, 0) status from
+		ProductPreview pp
+		where regMemberId = #{memberId}
+		order by regDate desc;
+	</select>
+
+	<select id="getWishPreviewList" resultType="ProductPreview">
+		select
+		pp.thumbNailImg,pp.price,wl.regDate,pp.productId,pp.name,pp.regMemberId,pp.salesStatusId,
+		if(wl.memberId = #{memberId},1,0) status
+		from ProductPreview pp join WishList wl on pp.productId = wl.productId
+		where memberId = #{memberId}
+		order by regDate desc;
+	</select>
+
+	<select id="getPreviewList" resultType="ProductPreview">
+		select pp.*, if ((select memberId from WishList where pp.productId =
+		productId and memberId = #{memberId}) = #{memberId}, 1, 0) status from
+		ProductPreview pp
+		order by regDate desc LIMIT #{size} OFFSET #{offset};
+	</select>
+
+	<select id="findByProductId" resultType="ProductPreview">
+		select * from ProductPreview
+		where productId = #{productId}
+		order by regDate desc ;
+	</select>
+
+
+
+	<select id="findPreviewListByCategory" resultType="ProductPreview" parameterType="Int">
+		select * , if ((select memberId from WishList where ProductPreview.productId =
+		productId and memberId = #{memberId}) = #{memberId}, 1, 0) status  from ProductPreview
+
+		left join Product
+		on
+		ProductPreview.productId=Product.id
+		left join Category
+		on
+		Product.categoryId = Category.id
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="superCategoryId != null and categoryId == -1">
+				Category.superCategoryId=#{superCategoryId}
+			</if>
+			<if test="categoryId != -1">
+				Category.id=#{categoryId}
+			</if>
+		</trim>
+		order by ProductPreview.regDate desc ;
+	</select>
+
+
+</mapper>

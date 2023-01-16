@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:replace="~{inc/config :: config}" ></th:block>
+
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>덕템</title>
+</head>
+
+
+
+<body>
+
+
+	<!-- -----------------------------   헤더   ----------------------------------------- -->
+	<heder th:replace="~{inc/header :: header}"></heder>
+
+	<!-- -----------------------------   메인   ----------------------------------------- -->
+
+	<div layout:fragment="content"></div>
+
+	<!-- -----------------------------   풋터   ----------------------------------------- -->
+
+	<footer th:replace="~{inc/footer :: footer}"></footer>
+
+</body>
+
+
+
+</html>

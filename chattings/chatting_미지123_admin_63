@@ -1,0 +1,17 @@
+[ {
+  "senderId" : "admin",
+  "chatMsg" : "asda",
+  "regDate" : "2023-01-05 09:47:55"
+}, {
+  "senderId" : "미지123",
+  "chatMsg" : "어어어어어",
+  "regDate" : "2023-01-05 09:48:38"
+}, {
+  "senderId" : "미지123",
+  "chatMsg" : "물건 사요",
+  "regDate" : "2023-01-05 09:48:45"
+}, {
+  "senderId" : "admin",
+  "chatMsg" : "안팔아요",
+  "regDate" : "2023-01-05 09:48:49"
+} ]

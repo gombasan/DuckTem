@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
+
+
+    <th:block layout:fragment="css">
+
+        <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/list.css">
+        <script src="/js/list-search.js"></script>
+    
+    	<script type="module" src="/js/wish.js"></script>
+    </th:block>
+
+
+
+
+    <!-- ==============================   메인   ============================== -->
+    <main layout:fragment="content">
+        <section class="search-result-wrap">
+            <h1 class="d-none">검색결과</h1>
+            <div>
+                <span class="search-result" th:text="${keyword}">잇지</span><span th:text="|의 검색결과 ${resultCount} 건|">의 검색결과 6건</span>
+            </div>
+        </section>
+
+        <section>
+            <!-- class="category" -->
+            <h1 class="d-none">카테고리</h1>
+            <section class="supercategory">
+                <h1 class="d-none">대분류</h1>
+                <span><a href="">공식굿즈 </a></span>
+                <span><a href="">비공식굿즈</a></span>
+                <span><a href="">대리티켓팅</a></span>
+            </section>
+
+            <section class="subcategory">
+                <h1 class="d-none">소분류</h1>
+                <input type="checkbox" name="" id="1-btn"><label class="btn btn-default aaa" for="1-btn">전체보기</label>
+                <input type="checkbox" name="" id="2-btn"><label class="btn btn-default aaa" for="2-btn">음반/영상물</label>
+                <input type="checkbox" name="" id="3-btn"><label class="btn btn-default aaa" for="3-btn">응원도구</label>
+                <input type="checkbox" name="" id="4-btn"><label class="btn btn-default aaa" for="4-btn">포토카드</label>
+                <input type="checkbox" name="" id="5-btn"><label class="btn btn-default aaa" for="5-btn">포스터/포토북</label>
+                <input type="checkbox" name="" id="6-btn"><label class="btn btn-default aaa" for="6-btn">문구류</label>
+                <input type="checkbox" name="" id="7-btn"><label class="btn btn-default aaa" for="7-btn">기타잡화</label>
+            </section>
+
+        </section>
+
+
+
+        <div class="option">
+
+            <select class="search-filter">
+                <option class="latest" value="latest">최신순</option>
+                <option class="price-high" value="price-high">높은 가격순</option>
+                <option class="price-low" value="price-low">낮은 가격순</option>
+                <option class="most-wished" value="most-viewed">인기상품순</option>
+            </select>
+        </div>
+
+
+
+
+
+        <section class="product-list">
+            <h1 class="d-none">상품목록</h1>
+
+
+
+
+            <div class="product-wrap">
+                <div th:each="preview : ${searchResult}" class="product-container" th:data-location="${preview.productId}">
+                    <div>
+                        <img th:src="${preview.thumbNailImg}" alt="product-img">
+                    </div>
+
+                    <div class="price-wish">
+                        <span th:text="${preview.price}"> 80,000원</span>
+                        <img th:if="${preview.status == 1}" class="wish checked" src="/image/icon/icon-heart-red.svg" alt="찜" th:data-id="${preview.productId}">
+                     	<img th:unless="${preview.status == 1}" class="wish" src="/image/icon/heart.svg" alt="찜" th:data-id="${preview.productId}">
+                    </div>
+
+                    <div th:text="${preview.name}" class="name">러브다이브미공포</div>
+                    <div th:text="${preview.regDate}" class="time">0일 전</div>
+                </div>
+
+               
+
+
+            </div>
+
+        </section>
+
+
+
+
+    </main>
+
+
+
+
+   
+
+</html>

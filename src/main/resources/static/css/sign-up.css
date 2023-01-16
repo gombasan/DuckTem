@@ -8,9 +8,6 @@
 
 }
 
-.alert {
-
-}
 
 
 .signup-container label,.signup-container input, .signup-container div{
@@ -102,7 +99,4 @@
     display: flex;
     justify-content: center;
     
-}
-.d-none {
-    display: none!important;
 }
